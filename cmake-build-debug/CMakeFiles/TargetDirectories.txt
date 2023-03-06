@@ -1,0 +1,3 @@
+/Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/DA2023_PRJ1_G02_2.dir
+/Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
