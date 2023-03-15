@@ -4,7 +4,7 @@
 
 #include "VertexEdge.h"
 
-Vertex::Vertex(int id): id(id) {}
+Vertex::Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line) : id(id), Station(name, district, municipality, township, line) {}
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),

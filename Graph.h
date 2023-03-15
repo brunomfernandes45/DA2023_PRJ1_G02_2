@@ -9,14 +9,15 @@
 #include "VertexEdge.h"
 
 class Graph {
+public:
     // ~Graph();
 
     Vertex *findVertex(const int &id)const;
 
-    bool addVertex(const int &id);
+    bool addVertex(const int &id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
 
-    bool addEdge(const int &sourc, const int &dest, double w);
-    bool addBidirectionalEdge(const int &sourc, const int &dest, double w);
+    bool addEdge(const int &source, const int &dest, double w);
+    bool addBidirectionalEdge(const int &source, const int &dest, double w);
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
