@@ -4,7 +4,7 @@
 
 #include "Controller.h"
 
-void Controller::start_Menu() {
+void Controller::startMenu() {
     std::system("clear");
     std::cout << "\t\t*APP NAME*\n\n";
     std::vector options = {"Read standard files","Read other files"};
@@ -24,9 +24,9 @@ void Controller::start_Menu() {
             std::cout << "Fetching Data...";
             stations = "stations.csv";
             network = "network.csv";
-            //read_stations(stations);
-            //read_network(network);
-            //main_Menu();
+            //readStations(stations);
+            //readNetwork(network);
+            //mainMenu();
             return;
 
         case 2:
@@ -36,9 +36,9 @@ void Controller::start_Menu() {
             std::cin >> stations;
             std::cout << "Network file: ";
             std::cin >> network;
-            //read_stations(stations);
-            //read_network(network);
-            //main_Menu();
+            //readStations(stations);
+            //readNetwork(network);
+            //mainMenu();
             return;
 
         default:
@@ -47,7 +47,7 @@ void Controller::start_Menu() {
             std::cout << "ERROR: Invalid option!\n";
             std::cout << "(Press any key + Enter to continue)\n";
             std::cin >> aux;
-            start_Menu();
+            startMenu();
             return;
 
     }

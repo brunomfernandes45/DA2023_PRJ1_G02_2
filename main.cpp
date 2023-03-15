@@ -3,6 +3,6 @@
 
 int main() {
     Controller controller;
-    controller.start_Menu();
+    controller.startMenu();
     return 0;
 }
