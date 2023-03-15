@@ -16,7 +16,7 @@ public:
     // void readNetwork(std::string filename);
 
     void startMenu();
-    // void mainMenu();
+    void mainMenu();
     
 private:
     std::unordered_set<std::string> stations;
