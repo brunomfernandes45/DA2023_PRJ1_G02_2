@@ -15,7 +15,7 @@ void Controller::startMenu() {
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit";
+    std::cout << "0. Exit\n";
     unsigned int option;
     std::cin >> option;
     std::string stations,network,aux;
@@ -24,34 +24,68 @@ void Controller::startMenu() {
             return;
 
         case 1:
-            system("clear");
+            system("CLS");
+            std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "Fetching Data...";
             stations = "stations.csv";
             network = "network.csv";
             //readStations(stations);
             //readNetwork(network);
-            //mainMenu();
+            mainMenu();
             return;
 
         case 2:
-            system("clear");
-            std::cout << "\t\t*APP NAME*\n\n";
+            system("CLS");
+            std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "Stations file: ";
             std::cin >> stations;
             std::cout << "Network file: ";
             std::cin >> network;
             //readStations(stations);
             //readNetwork(network);
-            //mainMenu();
+            mainMenu();
             return;
 
         default:
-            system("clear");
-            std::cout << "\t\t*APP NAME*\n\n";
+            system("CLS");
+            std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "ERROR: Invalid option!\n";
             std::cout << "(Press any key + Enter to continue)\n";
             std::cin >> aux;
             startMenu();
+            return;
+
+    }
+}
+
+
+void Controller::mainMenu(){
+    std::system("CLS");
+    std::cout << "\t\t**Main Menu**\n\n";
+    std::vector options = {"option"};
+    for(int i=1;i<=options.size();i++){
+        std::cout << i << ". " << options[i-1] << "\n";
+    }
+    std::cout << "0. Exit\n";
+    unsigned int option;
+    std::cin >> option;
+    std::string aux;
+    switch (option) {
+        case 0:
+            return;
+
+        case 1:
+            system("CLS");
+            std::cout << "\n\tNoice!";
+            return;
+
+        default:
+            system("CLS");
+            std::cout << "\t\t**Start Menu**\n\n";
+            std::cout << "ERROR: Invalid option!\n";
+            std::cout << "(Press any key + Enter to continue)\n";
+            std::cin >> aux;
+            mainMenu();
             return;
 
     }
