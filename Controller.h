@@ -4,20 +4,23 @@
 
 #ifndef PROJETO_CONTROLLER_H
 #define PROJETO_CONTROLLER_H
-#include <iostream>
+
 #include <vector>
+#include <unordered_set>
+#include <string>
 
 class Controller {
 public:
 
     //readers
-    //void read_stations(std::string filename);
-    //void read_network(std::string filename);
+    void readStations(std::string filename);
+    //void readNetwork(std::string filename);
 
     //Menus
-    void start_Menu();
-    //void main_Menu();
-
+    void startMenu();
+    //void mainMenu();
+private:
+    std::unordered_set<std::string> stations;
 };
 
 

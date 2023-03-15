@@ -2,10 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "DA2023_PRJ1_G02_2.exe"
-		},
-		{
-			"path" : "DA2023_PRJ1_G02_2.pdb"
+			"path" : "DA2023_PRJ1_G02_2"
 		}
 	],
 	"backtrace" : 1,
@@ -38,7 +35,10 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -fdiagnostics-color=always"
+					"fragment" : "-g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk -fcolor-diagnostics"
+				},
+				{
+					"fragment" : "-std=gnu++17"
 				}
 			],
 			"language" : "CXX",
@@ -54,7 +54,8 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
 			]
 		}
 	],
@@ -70,16 +71,12 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
-			},
-			{
-				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
-				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "DA2023_PRJ1_G02_2",
-	"nameOnDisk" : "DA2023_PRJ1_G02_2.exe",
+	"nameOnDisk" : "DA2023_PRJ1_G02_2",
 	"paths" : 
 	{
 		"build" : ".",
@@ -93,7 +90,15 @@
 			[
 				0,
 				1,
-				2
+				2,
+				3
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				4
 			]
 		}
 	],
@@ -116,6 +121,17 @@
 			"compileGroupIndex" : 0,
 			"path" : "Graph.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Station.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Station.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
