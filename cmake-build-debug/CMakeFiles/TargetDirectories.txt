@@ -1,3 +1,0 @@
-C:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/DA2023_PRJ1_G02_2.dir
-C:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

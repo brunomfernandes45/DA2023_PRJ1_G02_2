@@ -17,7 +17,7 @@ public:
 
     //Menus
     void startMenu();
-    //void mainMenu();
+    void mainMenu();
 
 };
 
