@@ -1,16 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2 -B /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug
--- The C compiler identification is AppleClang 14.0.0.14000029
--- The CXX compiler identification is AppleClang 14.0.0.14000029
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
+"C:\Program Files\JetBrains\CLion 231.7864.77\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 231.7864.77/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\35191\Desktop\UNI\2ano\2SEM\DA\Projeto\DA2023_PRJ1_G02_2 -B C:\Users\35191\Desktop\UNI\2ano\2SEM\DA\Projeto\DA2023_PRJ1_G02_2\cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug
+-- Build files have been written to: C:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/cmake-build-debug
