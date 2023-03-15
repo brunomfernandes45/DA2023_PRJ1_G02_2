@@ -3,6 +3,10 @@
 //
 
 #include "Controller.h"
+#include <iostream>
+#include <sstream>
+#include <fstream>
+#include <string>
 
 void Controller::startMenu() {
     std::system("clear");
@@ -50,5 +54,31 @@ void Controller::startMenu() {
             startMenu();
             return;
 
+    }
+}
+
+void Controller::readStations(std::string filename) {
+    std::ifstream file(filename);
+
+    if (!file.is_open()) {
+        std::cerr << "Error opening file " << filename << std::endl;
+        exit(1);
+    }
+
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        std::string name, district, municipality, township, stationLine;
+
+        std::getline(iss, name, ',');
+        std::getline(iss, district, ',');
+        std::getline(iss, municipality, ',');
+        std::getline(iss, township, ',');
+        std::getline(iss, stationLine);
+
+        if (stations.find(name) == stations.end()) {
+            stations.insert(name);
+            // create Vertex and add it to Graph
+        }
     }
 }
