@@ -67,6 +67,12 @@ build CMakeFiles/DA2023_PRJ1_G02_2.dir/Graph.cpp.obj: CXX_COMPILER__DA2023_PRJ1_
   OBJECT_DIR = CMakeFiles\DA2023_PRJ1_G02_2.dir
   OBJECT_FILE_DIR = CMakeFiles\DA2023_PRJ1_G02_2.dir
 
+build CMakeFiles/DA2023_PRJ1_G02_2.dir/VertexEdge.cpp.obj: CXX_COMPILER__DA2023_PRJ1_G02_2_Debug C$:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/VertexEdge.cpp || cmake_object_order_depends_target_DA2023_PRJ1_G02_2
+  DEP_FILE = CMakeFiles\DA2023_PRJ1_G02_2.dir\VertexEdge.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\DA2023_PRJ1_G02_2.dir
+  OBJECT_FILE_DIR = CMakeFiles\DA2023_PRJ1_G02_2.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target DA2023_PRJ1_G02_2
@@ -75,7 +81,7 @@ build CMakeFiles/DA2023_PRJ1_G02_2.dir/Graph.cpp.obj: CXX_COMPILER__DA2023_PRJ1_
 #############################################
 # Link the executable DA2023_PRJ1_G02_2.exe
 
-build DA2023_PRJ1_G02_2.exe: CXX_EXECUTABLE_LINKER__DA2023_PRJ1_G02_2_Debug CMakeFiles/DA2023_PRJ1_G02_2.dir/main.cpp.obj CMakeFiles/DA2023_PRJ1_G02_2.dir/Controller.cpp.obj CMakeFiles/DA2023_PRJ1_G02_2.dir/Graph.cpp.obj
+build DA2023_PRJ1_G02_2.exe: CXX_EXECUTABLE_LINKER__DA2023_PRJ1_G02_2_Debug CMakeFiles/DA2023_PRJ1_G02_2.dir/main.cpp.obj CMakeFiles/DA2023_PRJ1_G02_2.dir/Controller.cpp.obj CMakeFiles/DA2023_PRJ1_G02_2.dir/Graph.cpp.obj CMakeFiles/DA2023_PRJ1_G02_2.dir/VertexEdge.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\DA2023_PRJ1_G02_2.dir
