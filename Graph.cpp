@@ -52,7 +52,11 @@ bool Graph::addEdge(const int &source, const int &dest, double w) {
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    v1->addEdge(v2, w);
+    for (auto edge : v1 -> getAdj()) {
+        if (edge -> getDest() -> getId() == v2 -> getId())
+            return false;
+    }
+    v1 -> addEdge(v2, w);
     return true;
 }
 

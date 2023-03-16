@@ -8,18 +8,18 @@
 #include "Graph.h"
 #include <string>
 #include <vector>
-#include <unordered_set>
+#include <unordered_map>
 
 class Controller {
 public:
     void readStations(std::string filename);
-    // void readNetwork(std::string filename);
+    void readNetwork(std::string filename);
 
     void startMenu();
     void mainMenu();
     
 private:
-    std::unordered_set<std::string> stations;
+    std::unordered_map<std::string, int> stations;
     Graph network;
 };
 
