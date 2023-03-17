@@ -20,7 +20,7 @@ public:
     
 private:
     std::unordered_set<std::string> stations;
-    
+    Graph network;
 };
 
 

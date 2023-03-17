@@ -11,13 +11,14 @@
 #ifndef DA2023_PRJ1_G02_2_VERTEXEDGE_H
 #define DA2023_PRJ1_G02_2_VERTEXEDGE_H
 
+#include "Station.h"
 #define INF std::numeric_limits<double>::max()
 
 class Edge;
 
-class Vertex {
+class Vertex: public Station {
 public:
-    Vertex(int id);
+    Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
 
     int getId() const;

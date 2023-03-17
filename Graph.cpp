@@ -35,10 +35,10 @@ int Graph::findVertexIdx(const int &id) const {
  *  Adds a vertex with a given content or info (in) to a graph (this).
  *  Returns true if successful, and false if a vertex with that content already exists.
  */
-bool Graph::addVertex(const int &id) {
+bool Graph::addVertex(const int &id, std::string name, std::string district, std::string municipality, std::string township, std::string line) {
     if (findVertex(id) != nullptr)
         return false;
-    vertexSet.push_back(new Vertex(id));
+    vertexSet.push_back(new Vertex(id, name, district, municipality, township, line));
     return true;
 }
 
@@ -47,8 +47,8 @@ bool Graph::addVertex(const int &id) {
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &sourc, const int &dest, double w) {
-    auto v1 = findVertex(sourc);
+bool Graph::addEdge(const int &source, const int &dest, double w) {
+    auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
@@ -56,8 +56,8 @@ bool Graph::addEdge(const int &sourc, const int &dest, double w) {
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &sourc, const int &dest, double w) {
-    auto v1 = findVertex(sourc);
+bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
+    auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
