@@ -12,11 +12,11 @@
 void Controller::startMenu() {
     std::system("clear");
     std::cout << "\t\t*APP NAME*\n\n";
-    std::vector options = {"Read standard files","Read other files"};
+    std::vector options = {"Read standard files;","Read other files;"};
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
@@ -64,11 +64,16 @@ void Controller::startMenu() {
 void Controller::mainMenu(){
     std::system("clear");
     std::cout << "\t\t**Main Menu**\n\n";
-    std::vector options = {"option"};
+    std::vector options = { "Discover maximum number of trains that can simultaneously travel between two stations;",
+                            "Determine which pairs of stations require the most amount of trains;",
+                            "Discover the top-k municipalities and districts;",
+                            "Discover the maximum number of trains that can simultaneously arrive at a station;",
+                            "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;"
+                            };
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
