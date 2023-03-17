@@ -15,7 +15,7 @@ void Controller::startMenu() {
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cin >> option;
     std::string stations,network,aux;
@@ -62,11 +62,16 @@ void Controller::startMenu() {
 void Controller::mainMenu(){
     std::system("CLS");
     std::cout << "\t\t**Main Menu**\n\n";
-    std::vector options = {"option"};
+    std::vector options = {"Calculate the maximum number of trains that can simultaneously travel between two specific stations;",
+                           "Determine which pairs of stations require the most amount of trains;",
+                           "Discover the maximum number of trains that can simultaneously arrive at a station;",
+                           "Discover the maximum amount of trains that can simultaneously travel between two specific stations with minimum cost;"
+                           "top-k municipalities and districts;",
+                           };
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cin >> option;
     std::string aux;

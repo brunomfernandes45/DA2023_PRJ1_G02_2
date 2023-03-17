@@ -1,4 +1,4 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2 -B /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug
+"C:\Program Files\JetBrains\CLion 231.7864.77\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 231.7864.77/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\35191\Desktop\UNI\2ano\2SEM\DA\Projeto\DA2023_PRJ1_G02_2 -B C:\Users\35191\Desktop\UNI\2ano\2SEM\DA\Projeto\DA2023_PRJ1_G02_2\cmake-build-debug
 -- Configuring done
 -- Generating done
--- Build files have been written to: /Users/brunofernandes/Desktop/FEUP/2ANO/2S/DA/DA2023_PRJ1_G02_2/cmake-build-debug
+-- Build files have been written to: C:/Users/35191/Desktop/UNI/2ano/2SEM/DA/Projeto/DA2023_PRJ1_G02_2/cmake-build-debug
