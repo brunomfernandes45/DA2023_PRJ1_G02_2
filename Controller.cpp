@@ -11,7 +11,7 @@
 
 void Controller::startMenu() {
     std::system("clear");
-    std::cout << "\t\t*APP NAME*\n\n";
+    std::cout << "\t\t*Start Menu*\n\n";
     std::vector options = {"Read standard files;","Read other files;"};
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
@@ -27,8 +27,6 @@ void Controller::startMenu() {
 
         case 1:
             system("clear");
-            std::cout << "\t\t**Start Menu**\n\n";
-            std::cout << "Fetching Data...";
             stationsFile = "../stations.csv"; // tem que ser assim
             networkFile = "../network.csv"; // porque o path é em relação ao executável
             readStations(stationsFile); // e o executável está na pasta cmake-build-debug
@@ -124,5 +122,4 @@ void Controller::readStations(std::string filename) {
         }
     }
 
-    std::cout << "\nNumber of nodes in the network: " << network.getNumVertex() << std::endl;
 }
