@@ -9,14 +9,23 @@
 #include <string>
 #include <cstdlib>
 
+void clearScreen() {
+#ifdef WINDOWS
+    std::system("cls");
+#else
+    // Assume POSIX
+    std::system ("clear");
+#endif
+}
+
 void Controller::startMenu() {
-    std::system("clear");
+    clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
     std::vector options = { "Read standard files", "Read other files" };
     for(int i = 1; i <= options.size(); i++){
         std::cout << i << ". " << options[i - 1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
@@ -26,9 +35,7 @@ void Controller::startMenu() {
             return;
 
         case 1:
-            system("clear");
-            std::cout << "\t\t**Start Menu**\n\n";
-            std::cout << "Fetching Data...";
+            clearScreen();
             stationsFile = "../stations.csv"; // tem que ser assim
             networkFile = "../network.csv"; // porque o path é em relação ao executável
             readStations(stationsFile); // e o executável está na pasta cmake-build-debug
@@ -37,7 +44,7 @@ void Controller::startMenu() {
             return;
 
         case 2:
-            system("clear");
+            clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "Stations file: ";
             std::cin >> stationsFile;
@@ -49,7 +56,7 @@ void Controller::startMenu() {
             return;
 
         default:
-            system("clear");
+            clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "ERROR: Invalid option!\n";
             std::cout << "(Press any key + Enter to continue)\n";
@@ -62,13 +69,18 @@ void Controller::startMenu() {
 
 
 void Controller::mainMenu(){
-    std::system("clear");
+    clearScreen();
     std::cout << "\t\t**Main Menu**\n\n";
-    std::vector options = {"option"};
+    std::vector options = { "Discover maximum number of trains that can simultaneously travel between two stations;",
+                            "Determine which pairs of stations require the most amount of trains;",
+                            "Discover the top-k municipalities and districts;",
+                            "Discover the maximum number of trains that can simultaneously arrive at a station;",
+                            "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;"
+                            };
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
-    std::cout << "0. Exit\n";
+    std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
@@ -78,12 +90,12 @@ void Controller::mainMenu(){
             return;
 
         case 1:
-            system("clear");
+            clearScreen();
             std::cout << "\n\tNoice!";
             return;
 
         default:
-            system("clear");
+            clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "ERROR: Invalid option!\n";
             std::cout << "(Press any key + Enter to continue)\n";
@@ -126,7 +138,6 @@ void Controller::readStations(std::string filename) {
         }
     }
 
-    std::cout << "\nNumber of nodes in the network: " << network.getNumVertex() << std::endl;
 }
 
 void Controller::readNetwork(std::string filename) {
