@@ -3,6 +3,7 @@
 //
 
 #include "Graph.h"
+#include <unordered_map>
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
@@ -72,6 +73,54 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
+int Graph::edmondsKarp(const int &source, const int &dest) {
+    auto s = findVertex(source);
+    auto t = findVertex(dest);
+    if (s == nullptr || t == nullptr)
+        return -1;
+
+    int flow = 0;
+
+    while (true) {
+        std::queue<Vertex *> q;
+        q.push(s);
+
+        std::unordered_map<Vertex *, Edge *> path;
+        path[s] = nullptr;
+
+        while (!q.empty()) {
+            auto v = q.front();
+            q.pop();
+
+            for (auto edge : v -> getAdj()) {
+                auto w = edge -> getDest();
+                if (path.find(w) == path.end() && edge -> getFlow() < edge -> getWeight()) {
+                    path[w] = edge;
+                    q.push(w);
+                }
+            }
+        }
+        if (!path.count(t))
+            break;
+
+        double bottleneck = INT_MAX;
+
+        for (auto v = t; v != s; v = path[v] -> getOrig()) {
+            auto edge = path[v];
+            bottleneck = std::min(bottleneck, edge -> getWeight() - edge -> getFlow());
+        }
+
+        for (auto v = t; v != s; v = path[v] -> getOrig()) {
+            auto edge = path[v];
+            edge -> setFlow(edge -> getFlow() + bottleneck);
+            edge -> getReverse() -> setFlow(edge -> getReverse() -> getFlow() - bottleneck);
+        }
+        flow += bottleneck;
+    }
+
+    return flow;
+}
+
 void deleteMatrix(int **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -81,17 +130,8 @@ void deleteMatrix(int **m, int n) {
     }
 }
 
-void deleteMatrix(double **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
 /*
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
- */

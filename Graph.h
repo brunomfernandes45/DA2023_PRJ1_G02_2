@@ -21,6 +21,7 @@ public:
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
+    int edmondsKarp(const int &source, const int &dest);
 
 protected:
     std::vector<Vertex *> vertexSet;
