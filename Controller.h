@@ -1,7 +1,3 @@
-//
-// Created by 35191 on 08/03/2023.
-//
-
 #ifndef PROJETO_CONTROLLER_H
 #define PROJETO_CONTROLLER_H
 
@@ -12,8 +8,8 @@
 
 class Controller {
 public:
-    void readStations(std::string filename);
-    void readNetwork(std::string filename);
+    void readStations(const std::string& filename);
+    void readNetwork(const std::string& filename);
 
     void startMenu();
     void mainMenu();

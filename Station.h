@@ -1,7 +1,3 @@
-//
-// Created by Bruno Fernandes on 15/03/2023.
-//
-
 #ifndef DA2023_PRJ1_G02_2_STATION_H
 #define DA2023_PRJ1_G02_2_STATION_H
 
