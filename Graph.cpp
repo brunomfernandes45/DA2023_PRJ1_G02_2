@@ -68,6 +68,8 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
         return false;
     auto e1 = v1->addEdge(v2, w);
     auto e2 = v2->addEdge(v1, w);
+    e1->setIsReverse(false);
+    e2->setIsReverse(true);
     e1->setReverse(e2);
     e2->setReverse(e1);
     return true;
@@ -80,17 +82,22 @@ double Graph::edmondsKarp(const int &source, const int &dest) {
     Vertex *t = findVertex(dest);
     if (s == nullptr || t == nullptr)
         return 0;
-
+    resetFlows();
     double maxFlow = 0;
     while (bfs_edmondsKarp(s, t)) {
-        double pathFlow = std::numeric_limits<double>::infinity();
-        for (Vertex *v = t; v != s; v = v->getPath()->getOrig())
-            pathFlow = std::min(pathFlow, v->getPath()->getReverse()->getFlow());
-
-        for (Vertex *v = t; v != s; v = v->getPath()->getOrig()) {
-            Edge *e = v->getPath()->getReverse();
-            e->setFlow(e->getFlow() - pathFlow);
-            e->getReverse()->setFlow(e->getFlow() + pathFlow);
+        double pathFlow = INF;
+        Vertex *v = findVertex(dest);
+        while (v->getPath() != nullptr) {
+            Edge *e = v->getPath();
+            pathFlow = std::min(pathFlow, e->getWeight() - e->getFlow());
+            v = e->getOrig();
+        }
+        v = findVertex(dest);
+        while (v->getPath() != nullptr) {
+            Edge *e = v->getPath();
+            e->setFlow(e->getFlow() + pathFlow);
+            e->getReverse()->setFlow(e->getReverse()->getFlow() - pathFlow);
+            v = e->getOrig();
         }
         maxFlow += pathFlow;
     }
@@ -106,23 +113,33 @@ bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
     }
     s->setVisited(true);
     s->setDist(0);
-    std::queue<Vertex *> q;
+    std::queue<Vertex*> q;
     q.push(s);
     while (!q.empty()) {
-        Vertex *v = q.front();
+        Vertex* u = q.front();
         q.pop();
-        for (Edge *e : v->getAdj()) {
-            Vertex *w = e->getDest();
-            if (!w->isVisited() && e->getFlow() < e->getWeight()) {
-                w->setVisited(true);
-                w->setDist(v->getDist() + 1);
-                w->setPath(e);
-                q.push(w);
+        for (Edge* e : u->getAdj()) {
+            Vertex* v = e->getDest();
+            if (!v->isVisited() && e->getWeight() > e->getFlow()) {
+                v->setVisited(true);
+                v->setPath(e);
+                if (v == t) return true;
+                q.push(v);
             }
         }
     }
-    return t->isVisited();
+    return false;
 }
+
+void Graph::resetFlows() {
+    for (Vertex *v: vertexSet){
+        for(Edge *e:v->getAdj()){
+            if(e->isReverse())e->setFlow(e->getWeight());
+            else e->setFlow(0);
+        }
+    }
+}
+
 
 void deleteMatrix(int **m, int n) {
     if (m != nullptr) {

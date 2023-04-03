@@ -149,3 +149,11 @@ void Edge::setReverse(Edge *reverse) {
 void Edge::setFlow(double flow) {
     this->flow = flow;
 }
+
+bool Edge::isReverse() const {
+    return isreverse;
+}
+
+void Edge::setIsReverse(bool c) {
+    isreverse=c;
+}

@@ -185,7 +185,7 @@ void Controller::readNetwork(std::string filename) {
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
 
-        network.addEdge(stations[stationA], stations[stationB], std::stod(capacity));
+        network.addBidirectionalEdge(stations[stationA], stations[stationB], std::stod(capacity));
     }
 }
 

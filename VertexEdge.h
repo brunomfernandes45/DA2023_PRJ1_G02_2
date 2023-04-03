@@ -68,10 +68,12 @@ public:
     Vertex * getOrig() const;
     Edge *getReverse() const;
     double getFlow() const;
+    bool isReverse() const;
 
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
     void setFlow(double flow);
+    void setIsReverse(bool c);
 
 protected:
     Vertex * dest; // destination vertex
@@ -83,7 +85,7 @@ protected:
     // used for bidirectional edges
     Vertex *orig;
     Edge *reverse = nullptr;
-
+    bool isreverse;
     double flow; // for flow-related problems
 };
 
