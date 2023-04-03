@@ -130,11 +130,39 @@ bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
 void Graph::resetFlows() {
     for (Vertex *v: vertexSet){
         for(Edge *e:v->getAdj()){
-            if(e->isReverse())e->setFlow(e->getWeight());
+            if(e->isReverse()) e->setFlow(e->getWeight());
             else e->setFlow(0);
         }
     }
 }
+
+
+
+void Graph::maxTrainsNeeded() {
+    double maxFlow = 0;
+    std::vector<std::pair<std::string, std::string>> maxFlowStations;
+    for (Vertex *s : vertexSet) {
+        for (Vertex *t : vertexSet) {
+            if (s == t) continue;
+            double flow = edmondsKarp(s->getId(), t->getId());
+            if (flow > maxFlow) {
+                maxFlow = flow;
+                maxFlowStations.clear();
+                maxFlowStations.push_back(std::make_pair(s->getName(), t->getName()));
+            } else if (flow == maxFlow) {
+                maxFlowStations.push_back(std::make_pair(s->getName(), t->getName()));
+            }
+        }
+    }
+
+    std::cout << "Max flow: " << maxFlow << std::endl;
+    std::cout << "Stations with max flow: ";
+    for (const auto &p : maxFlowStations) {
+        std::cout << "(" << p.first << ", " << p.second << ") ";
+    }
+    std::cout << std::endl;
+}
+
 
 
 void deleteMatrix(int **m, int n) {
