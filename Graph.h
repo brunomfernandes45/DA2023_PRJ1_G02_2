@@ -21,7 +21,9 @@ public:
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
-    int edmondsKarp(const int &source, const int &dest);
+
+    double edmondsKarp(const int &source, const int &dest);
+    bool bfs_edmondsKarp(Vertex* source, Vertex* dest);
 
 protected:
     std::vector<Vertex *> vertexSet;

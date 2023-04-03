@@ -73,52 +73,55 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
-int Graph::edmondsKarp(const int &source, const int &dest) {
-    auto s = findVertex(source);
-    auto t = findVertex(dest);
+
+
+double Graph::edmondsKarp(const int &source, const int &dest) {
+    Vertex *s = findVertex(source);
+    Vertex *t = findVertex(dest);
     if (s == nullptr || t == nullptr)
-        return -1;
+        return 0;
 
-    int flow = 0;
+    double maxFlow = 0;
+    while (bfs_edmondsKarp(s, t)) {
+        double pathFlow = std::numeric_limits<double>::infinity();
+        for (Vertex *v = t; v != s; v = v->getPath()->getOrig())
+            pathFlow = std::min(pathFlow, v->getPath()->getReverse()->getFlow());
 
-    while (true) {
-        std::queue<Vertex *> q;
-        q.push(s);
+        for (Vertex *v = t; v != s; v = v->getPath()->getOrig()) {
+            Edge *e = v->getPath()->getReverse();
+            e->setFlow(e->getFlow() - pathFlow);
+            e->getReverse()->setFlow(e->getFlow() + pathFlow);
+        }
+        maxFlow += pathFlow;
+    }
+    return maxFlow;
+}
 
-        std::unordered_map<Vertex *, Edge *> path;
-        path[s] = nullptr;
 
-        while (!q.empty()) {
-            auto v = q.front();
-            q.pop();
-
-            for (auto edge : v -> getAdj()) {
-                auto w = edge -> getDest();
-                if (path.find(w) == path.end() && edge -> getFlow() < edge -> getWeight()) {
-                    path[w] = edge;
-                    q.push(w);
-                }
+bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
+    for (Vertex *v : vertexSet) {
+        v->setVisited(false);
+        v->setDist(std::numeric_limits<double>::infinity());
+        v->setPath(nullptr);
+    }
+    s->setVisited(true);
+    s->setDist(0);
+    std::queue<Vertex *> q;
+    q.push(s);
+    while (!q.empty()) {
+        Vertex *v = q.front();
+        q.pop();
+        for (Edge *e : v->getAdj()) {
+            Vertex *w = e->getDest();
+            if (!w->isVisited() && e->getFlow() < e->getWeight()) {
+                w->setVisited(true);
+                w->setDist(v->getDist() + 1);
+                w->setPath(e);
+                q.push(w);
             }
         }
-        if (!path.count(t))
-            break;
-
-        double bottleneck = INT_MAX;
-
-        for (auto v = t; v != s; v = path[v] -> getOrig()) {
-            auto edge = path[v];
-            bottleneck = std::min(bottleneck, edge -> getWeight() - edge -> getFlow());
-        }
-
-        for (auto v = t; v != s; v = path[v] -> getOrig()) {
-            auto edge = path[v];
-            edge -> setFlow(edge -> getFlow() + bottleneck);
-            edge -> getReverse() -> setFlow(edge -> getReverse() -> getFlow() - bottleneck);
-        }
-        flow += bottleneck;
     }
-
-    return flow;
+    return t->isVisited();
 }
 
 void deleteMatrix(int **m, int n) {
@@ -135,3 +138,4 @@ Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
+*/

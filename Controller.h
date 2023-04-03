@@ -17,6 +17,7 @@ public:
 
     void startMenu();
     void mainMenu();
+    void maxFlowMenu();
     
 private:
     std::unordered_map<std::string, int> stations;
