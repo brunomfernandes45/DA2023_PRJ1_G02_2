@@ -18,6 +18,18 @@ void clearScreen() {
 #endif
 }
 
+void removeWhitespace(std::string& str) {
+    auto it = find_if(str.begin(), str.end(), [](char c) {
+        return isspace(c);
+    });
+    while (it != str.end()) {
+        it = str.erase(it);
+        it = find_if(it, str.end(), [](char c) {
+            return isspace(c);
+        });
+    }
+}
+
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
@@ -91,7 +103,7 @@ void Controller::mainMenu(){
 
         case 1:
             clearScreen();
-            std::cout << "\n\tNoice!";
+            maxFlowMenu();
             return;
 
         default:
@@ -129,6 +141,12 @@ void Controller::readStations(std::string filename) {
         std::getline(iss, township, ',');
         std::getline(iss, stationLine);
 
+        removeWhitespace(name);
+        removeWhitespace(district);
+        removeWhitespace(municipality);
+        removeWhitespace(township);
+        removeWhitespace(stationLine);
+
         if (name.empty() && district.empty() && municipality.empty() && township.empty() && stationLine.empty())
             continue;
 
@@ -160,18 +178,38 @@ void Controller::readNetwork(std::string filename) {
         std::getline(iss, capacity, ',');
         std::getline(iss, service);
 
+        removeWhitespace(stationA);
+        removeWhitespace(stationB);
+        removeWhitespace(service);
+
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
 
         network.addEdge(stations[stationA], stations[stationB], std::stod(capacity));
     }
+}
 
-    int total = 0;
-
-    for (auto i = 0; i < network.getNumVertex(); i++) {
-        std::cout << "\nNumber of edges of vertex " << i << ": " << network.getVertexSet()[i] -> getAdj().size() << std::endl;
-        total += network.getVertexSet()[i] -> getAdj().size();
+void Controller::maxFlowMenu() {
+    std::cout << "\t\t**Maximum Amount of Trains Between Two Stations**\n\n";
+    std::string stationA, stationB;
+    std::cout << "Source station: ";
+    std::cin >> stationA;
+    std::cout << "Destination station: ";
+    std::cin >> stationB;
+    clearScreen();
+    if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxFlowMenu();
+        return;
     }
-    std::cout << "\n" << total << std::endl;
+
+    std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << network.edmondsKarp(stations[stationA], stations[stationB]) << "\n";
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
 }
 

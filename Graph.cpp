@@ -3,6 +3,7 @@
 //
 
 #include "Graph.h"
+#include <unordered_map>
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
@@ -72,6 +73,57 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
+
+
+double Graph::edmondsKarp(const int &source, const int &dest) {
+    Vertex *s = findVertex(source);
+    Vertex *t = findVertex(dest);
+    if (s == nullptr || t == nullptr)
+        return 0;
+
+    double maxFlow = 0;
+    while (bfs_edmondsKarp(s, t)) {
+        double pathFlow = std::numeric_limits<double>::infinity();
+        for (Vertex *v = t; v != s; v = v->getPath()->getOrig())
+            pathFlow = std::min(pathFlow, v->getPath()->getReverse()->getFlow());
+
+        for (Vertex *v = t; v != s; v = v->getPath()->getOrig()) {
+            Edge *e = v->getPath()->getReverse();
+            e->setFlow(e->getFlow() - pathFlow);
+            e->getReverse()->setFlow(e->getFlow() + pathFlow);
+        }
+        maxFlow += pathFlow;
+    }
+    return maxFlow;
+}
+
+
+bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
+    for (Vertex *v : vertexSet) {
+        v->setVisited(false);
+        v->setDist(std::numeric_limits<double>::infinity());
+        v->setPath(nullptr);
+    }
+    s->setVisited(true);
+    s->setDist(0);
+    std::queue<Vertex *> q;
+    q.push(s);
+    while (!q.empty()) {
+        Vertex *v = q.front();
+        q.pop();
+        for (Edge *e : v->getAdj()) {
+            Vertex *w = e->getDest();
+            if (!w->isVisited() && e->getFlow() < e->getWeight()) {
+                w->setVisited(true);
+                w->setDist(v->getDist() + 1);
+                w->setPath(e);
+                q.push(w);
+            }
+        }
+    }
+    return t->isVisited();
+}
+
 void deleteMatrix(int **m, int n) {
     if (m != nullptr) {
         for (int i = 0; i < n; i++)
@@ -81,17 +133,9 @@ void deleteMatrix(int **m, int n) {
     }
 }
 
-void deleteMatrix(double **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
 /*
 Graph::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
- */
+*/

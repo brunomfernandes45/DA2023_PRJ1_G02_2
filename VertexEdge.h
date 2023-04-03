@@ -53,7 +53,7 @@ protected:
 
     std::vector<Edge *> incoming; // incoming edges
 
-    //int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+    // int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
 };
 
 /********************** Edge  ****************************/
