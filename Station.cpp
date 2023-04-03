@@ -1,7 +1,3 @@
-//
-// Created by Bruno Fernandes on 15/03/2023.
-//
-
 #include "Station.h"
 
 #include <utility>

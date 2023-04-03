@@ -1,6 +1,3 @@
-//
-// Created by 35191 on 09/03/2023.
-//
 #include <vector>
 
 #ifndef DA2023_PRJ1_G02_2_GRAPH_H

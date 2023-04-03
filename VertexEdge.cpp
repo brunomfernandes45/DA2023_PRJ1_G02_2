@@ -1,7 +1,3 @@
-//
-// Created by 35191 on 15/03/2023.
-//
-
 #include "VertexEdge.h"
 
 Vertex::Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line) : id(id), Station(name, district, municipality, township, line) {}

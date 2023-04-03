@@ -1,12 +1,11 @@
-//
-// Created by 35191 on 08/03/2023.
-//
-
 #include "Controller.h"
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <cctype>
 #include <string>
+#include <vector>
+#include <algorithm>
 #include <cstdlib>
 
 void clearScreen() {
@@ -18,17 +17,28 @@ void clearScreen() {
 #endif
 }
 
-void removeWhitespace(std::string& str) {
-    auto it = find_if(str.begin(), str.end(), [](char c) {
-        return isspace(c);
-    });
-    while (it != str.end()) {
-        it = str.erase(it);
-        it = find_if(it, str.end(), [](char c) {
-            return isspace(c);
-        });
+void removeWhitespaceAndAccents(std::vector<std::string>& vec) {
+    static const char* accents = "ÀÁÂÃÇÈÉÊÌÍÎÒÓÔÕÙÚàáâãçèéêìíîòóôõùú";
+    static const char* noaccents = "AAAACEEEIIIOOOOUUaaaaceeeiiioooouu";
+    for (auto& str : vec) {
+        auto it = str.begin();
+        while (it != str.end()) {
+            // remove whitespace
+            if (isspace(*it)) {
+                it = str.erase(it);
+            }
+                // remove accents
+            else {
+                auto pos = std::find(accents, accents + 60, *it);
+                if (pos != accents + 60) {
+                    *it = noaccents[pos - accents];
+                }
+                ++it;
+            }
+        }
     }
 }
+
 
 void Controller::startMenu() {
     clearScreen();
@@ -83,13 +93,13 @@ void Controller::startMenu() {
 void Controller::mainMenu(){
     clearScreen();
     std::cout << "\t\t**Main Menu**\n\n";
-    std::vector options = { "Discover maximum number of trains that can simultaneously travel between two stations;",
+    std::vector options = { "Discover the maximum number of trains that can simultaneously travel between two stations;",
                             "Determine which pairs of stations require the most amount of trains;",
                             "Discover the top-k municipalities and districts regarding their transportation needs;",
                             "Discover the maximum number of trains that can simultaneously arrive at a station;",
                             "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;",
-                            "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of train",
-                            "Discover the top-k most affected stations for each segment"
+                            "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of train;",
+                            "Discover the top-k most affected stations for each segment."
                             };
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
@@ -120,7 +130,7 @@ void Controller::mainMenu(){
     }
 }
 
-void Controller::readStations(std::string filename) {
+void Controller::readStations(const std::string& filename) {
     std::ifstream ifs(filename);
 
     if (!ifs.is_open()) {
@@ -143,11 +153,13 @@ void Controller::readStations(std::string filename) {
         std::getline(iss, township, ',');
         std::getline(iss, stationLine);
 
-        removeWhitespace(name);
-        removeWhitespace(district);
-        removeWhitespace(municipality);
-        removeWhitespace(township);
-        removeWhitespace(stationLine);
+        std::vector<std::string> vec;
+        vec.push_back(name);
+        vec.push_back(district);
+        vec.push_back(municipality);
+        vec.push_back(township);
+        vec.push_back(stationLine);
+        removeWhitespaceAndAccents(vec);
 
         if (name.empty() && district.empty() && municipality.empty() && township.empty() && stationLine.empty())
             continue;
@@ -160,7 +172,7 @@ void Controller::readStations(std::string filename) {
 
 }
 
-void Controller::readNetwork(std::string filename) {
+void Controller::readNetwork(const std::string& filename) {
     std::ifstream ifs(filename);
 
     if (!ifs.is_open()) {
@@ -180,9 +192,11 @@ void Controller::readNetwork(std::string filename) {
         std::getline(iss, capacity, ',');
         std::getline(iss, service);
 
-        removeWhitespace(stationA);
-        removeWhitespace(stationB);
-        removeWhitespace(service);
+        std::vector<std::string> vec;
+        vec.push_back(stationA);
+        vec.push_back(stationB);
+        vec.push_back(service);
+        removeWhitespaceAndAccents(vec);
 
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
