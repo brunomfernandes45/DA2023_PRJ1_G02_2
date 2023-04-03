@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include "Controller.h"
 #include <unordered_map>
 
 int Graph::getNumVertex() const {
@@ -71,6 +72,8 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
+
+void removeWhitespaceAndAccents(std::string& str);
 
 
 double Graph::edmondsKarp(const int &source, const int &dest) {
@@ -161,6 +164,49 @@ void Graph::maxTrainsNeeded() {
         std::cout << "(" << p.first << ", " << p.second << ") ";
     }
     std::cout << std::endl;
+}
+
+
+void Graph::topkTransportNeeds(int k) {
+    // Create unordered maps to store the total transportation needs for each district and municipality
+    std::unordered_map<std::string, double> districtTransportationNeeds;
+    std::unordered_map<std::string, double> municipalityTransportationNeeds;
+
+    // Calculate the total transportation needs for each district and municipality
+    for (auto vertex : vertexSet) {
+        std::string district = vertex->getDistrict();
+        removeWhitespaceAndAccents(district);
+        std::string municipality = vertex->getMunicipality();
+        removeWhitespaceAndAccents(municipality);
+        double weight = 0.0;
+        for (auto edge : vertex->getAdj()) {
+            weight += edge->getWeight();
+        }
+        districtTransportationNeeds[district] += weight;
+        municipalityTransportationNeeds[municipality] += weight;
+    }
+
+    // Sort the maps in descending order of transportation needs
+    std::vector<std::pair<std::string, double>> sortedDistricts(districtTransportationNeeds.begin(), districtTransportationNeeds.end());
+    std::sort(sortedDistricts.begin(), sortedDistricts.end(), [](auto &left, auto &right) {
+        return left.second > right.second;
+    });
+
+    std::vector<std::pair<std::string, double>> sortedMunicipalities(municipalityTransportationNeeds.begin(), municipalityTransportationNeeds.end());
+    std::sort(sortedMunicipalities.begin(), sortedMunicipalities.end(), [](auto &left, auto &right) {
+        return left.second > right.second;
+    });
+
+    // Print the top-k districts and municipalities by transportation needs
+    std::cout << "Top " << k << " districts by transportation needs:" << std::endl;
+    for (int i = 0; i < k && i < sortedDistricts.size(); i++) {
+        std::cout << sortedDistricts[i].first << ": " << sortedDistricts[i].second << std::endl;
+    }
+
+    std::cout << "Top " << k << " municipalities by transportation needs:" << std::endl;
+    for (int i = 0; i < k && i < sortedMunicipalities.size(); i++) {
+        std::cout << sortedMunicipalities[i].first << ": " << sortedMunicipalities[i].second << std::endl;
+    }
 }
 
 

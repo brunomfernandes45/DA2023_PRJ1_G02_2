@@ -5,7 +5,7 @@
 #include <cctype>
 #include <string>
 #include <vector>
-#include <algorithm>
+#include <unordered_map>
 #include <cstdlib>
 
 void clearScreen() {
@@ -18,21 +18,29 @@ void clearScreen() {
 }
 
 void removeWhitespaceAndAccents(std::string& str) {
-    static const char* accents = "ÀÁÂÃÇÈÉÊÌÍÎÒÓÔÕÙÚàáâãçèéêìíîòóôõùú";
-    static const char* noaccents = "AAAACEEEIIIOOOOUUaaaaceeeiiioooouu";
+    static const std::unordered_map<std::string, std::string> accents = {
+            {"À", "A"}, {"Á", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ç", "C"}, {"È", "E"},
+            {"É", "E"}, {"Ê", "E"}, {"Ì", "I"}, {"Í", "I"}, {"Î", "I"}, {"Ò", "O"},
+            {"Ó", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ù", "U"}, {"Ú", "U"}, {"à", "a"},
+            {"á", "a"}, {"â", "a"}, {"ã", "a"}, {"ç", "c"}, {"è", "e"}, {"é", "e"},
+            {"ê", "e"}, {"ì", "i"}, {"í", "i"}, {"î", "i"}, {"ò", "o"}, {"ó", "o"},
+            {"ô", "o"}, {"õ", "o"}, {"ù", "u"}, {"ú", "u"}
+    };
+
     auto it = str.begin();
     while (it != str.end()) {
-        // remove extra whitespace
         if (isspace(*it) && (it == str.begin() || isspace(*(it - 1)))) {
             it = str.erase(it);
-        }
-            // remove accents
-        else {
-            auto pos = std::find(accents, accents + 60, *it);
-            if (pos != accents + 60) {
-                *it = noaccents[pos - accents];
+        } else {
+            std::string c;
+            c += *it;
+            auto pos = accents.find(c);
+            if (pos != accents.end()) {
+                str.replace(it, it+1, pos->second);
+                it += pos->second.length();
+            } else {
+                ++it;
             }
-            ++it;
         }
     }
 }
@@ -122,6 +130,13 @@ void Controller::mainMenu(){
             network.maxTrainsNeeded();
             return;
 
+        case 3:
+            clearScreen();
+            int k;
+            std::cout << "Enter the value of k: ";
+            std::cin >> k;
+            network.topkTransportNeeds(k);
+            return;
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";

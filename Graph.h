@@ -24,7 +24,8 @@ public:
     void resetFlows();
 
     void maxTrainsNeeded();
-    std::unordered_map<int, double> dijkstra(Vertex *source);
+
+    void topkTransportNeeds(int k);
 
 protected:
     std::vector<Vertex *> vertexSet;
