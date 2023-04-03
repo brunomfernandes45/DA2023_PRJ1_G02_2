@@ -24,6 +24,7 @@ public:
 
     double edmondsKarp(const int &source, const int &dest);
     bool bfs_edmondsKarp(Vertex* source, Vertex* dest);
+    void resetFlows();
 
 protected:
     std::vector<Vertex *> vertexSet;
