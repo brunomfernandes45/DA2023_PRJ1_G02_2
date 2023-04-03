@@ -23,6 +23,9 @@ public:
     bool bfs_edmondsKarp(Vertex* source, Vertex* dest);
     void resetFlows();
 
+    void maxTrainsNeeded();
+    std::unordered_map<int, double> dijkstra(Vertex *source);
+
 protected:
     std::vector<Vertex *> vertexSet;
 
