@@ -85,9 +85,11 @@ void Controller::mainMenu(){
     std::cout << "\t\t**Main Menu**\n\n";
     std::vector options = { "Discover maximum number of trains that can simultaneously travel between two stations;",
                             "Determine which pairs of stations require the most amount of trains;",
-                            "Discover the top-k municipalities and districts;",
+                            "Discover the top-k municipalities and districts regarding their transportation needs;",
                             "Discover the maximum number of trains that can simultaneously arrive at a station;",
-                            "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;"
+                            "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;",
+                            "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of train",
+                            "Discover the top-k most affected stations for each segment"
                             };
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
