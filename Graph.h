@@ -27,6 +27,8 @@ public:
 
     void topkTransportNeeds(int k);
 
+    void maxSimultaneousTrains(std::string stationName);
+
 protected:
     std::vector<Vertex *> vertexSet;
 
