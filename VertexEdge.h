@@ -3,6 +3,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
+#include "MutablePriorityQueue.h"
 
 #ifndef DA2023_PRJ1_G02_2_VERTEXEDGE_H
 #define DA2023_PRJ1_G02_2_VERTEXEDGE_H
@@ -35,7 +36,7 @@ public:
     Edge * addEdge(Vertex *dest, double w, std::string s);
     bool removeEdge(int destID);
 
-    // friend class MutablePriorityQueue<Vertex>;
+    friend class MutablePriorityQueue<Vertex>;
 protected:
     int id;                // identifier
     std::vector<Edge *> adj;  // outgoing edges
@@ -49,7 +50,8 @@ protected:
 
     std::vector<Edge *> incoming; // incoming edges
 
-    // int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+
 };
 
 /********************** Edge  ****************************/

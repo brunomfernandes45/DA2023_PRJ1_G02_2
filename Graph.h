@@ -27,14 +27,14 @@ public:
 
     void topkTransportNeeds(int k);
 
+    std::vector<Vertex*> dijkstra(const int &origin, const int &dest);
     void maxSimultaneousTrains(std::string stationName);
 
     Vertex* findVertexByName(const std::string& name) const;
     void MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const;
-
+    
 protected:
     std::vector<Vertex *> vertexSet;
-
     int findVertexIdx(const int &id) const;
 };
 #endif //DA2023_PRJ1_G02_2_GRAPH_H

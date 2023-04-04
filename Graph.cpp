@@ -211,6 +211,40 @@ void Graph::topkTransportNeeds(int k) {
     }
 }
 
+std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
+    std::vector<Vertex *> res;
+    Vertex *s = findVertex(origin);
+    Vertex *t = findVertex(dest);
+    if (s == nullptr || t == nullptr)
+        return res;
+    MutablePriorityQueue<Vertex> q;
+    for (Vertex *v : vertexSet) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+    }
+    s->setDist(0);
+    q.insert(s);
+    while (!q.empty()) {
+        Vertex *v = q.extractMin();
+        if (v == t) break;
+        for (Edge *e : v->getAdj()) {
+            double newDist = v->getDist() + e->getWeight();
+            if (newDist < e->getDest()->getDist()) {
+                e->getDest()->setDist(newDist);
+                e->getDest()->setPath(e);
+                if (q.inQueue(e->getDest()))
+                    q.decreaseKey(e->getDest());
+                else
+                    q.insert(e->getDest());
+            }
+        }
+    }
+    if (t->getPath() == nullptr) return res; // t is not reachable from s
+    for (Vertex *v = t; v != nullptr; v = v->getPath()->getOrig())
+        res.push_back(v);
+    reverse(res.begin(), res.end());
+    return res;
+}
 
 void Graph::maxSimultaneousTrains(std::string stationName) {
     int maxTrains = 0;
