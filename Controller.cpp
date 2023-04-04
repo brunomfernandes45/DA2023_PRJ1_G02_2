@@ -43,15 +43,15 @@ void Controller::startMenu() {
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
-    std::string stationsFile, networkFile, aux;
+    std::string stationsFile = "../", networkFile = "../", aux, fs, fn;
     switch (option) {
         case 0:
             return;
 
         case 1:
             clearScreen();
-            stationsFile = "../stations.csv"; // tem que ser assim
-            networkFile = "../network.csv"; // porque o path é em relação ao executável
+            stationsFile += "stations.csv"; // tem que ser assim
+            networkFile += "network.csv"; // porque o path é em relação ao executável
             readStations(stationsFile); // e o executável está na pasta cmake-build-debug
             readNetwork(networkFile);
             mainMenu();
@@ -61,9 +61,11 @@ void Controller::startMenu() {
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
             std::cout << "Stations file: ";
-            std::cin >> stationsFile;
+            std::cin >> fs;
             std::cout << "Network file: ";
-            std::cin >> networkFile;
+            std::cin >> fn;
+            stationsFile += fs;
+            networkFile += fn;
             readStations(stationsFile);
             readNetwork(networkFile);
             mainMenu();
@@ -113,12 +115,10 @@ void Controller::mainMenu(){
         case 2:
             clearScreen();
             network.maxTrainsNeeded();
-            std::cout << "ERROR: Invalid option!\n";
             std::cout << "(Press any key + Enter to continue)\n";
             std::cin >> aux;
             mainMenu();
             return;
-
         case 3:
             clearScreen();
             int k;
