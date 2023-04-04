@@ -1,5 +1,4 @@
 #include "Graph.h"
-#include "Controller.h"
 #include <unordered_map>
 
 int Graph::getNumVertex() const {
@@ -72,10 +71,6 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
-
-void removeWhitespaceAndAccents(std::string& str);
-
-
 double Graph::edmondsKarp(const int &source, const int &dest) {
     Vertex *s = findVertex(source);
     Vertex *t = findVertex(dest);
@@ -131,10 +126,9 @@ bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
 }
 
 void Graph::resetFlows() {
-    for (Vertex *v: vertexSet){
-        for(Edge *e:v->getAdj()){
-            if(e->isReverse()) e->setFlow(e->getWeight());
-            else e->setFlow(0);
+    for (Vertex *v: vertexSet) {
+        for(Edge *e:v->getAdj()) {
+            e->setFlow(0);
         }
     }
 }
@@ -175,9 +169,7 @@ void Graph::topkTransportNeeds(int k) {
     // Calculate the total transportation needs for each district and municipality
     for (auto vertex : vertexSet) {
         std::string district = vertex->getDistrict();
-        removeWhitespaceAndAccents(district);
         std::string municipality = vertex->getMunicipality();
-        removeWhitespaceAndAccents(municipality);
         double weight = 0.0;
         for (auto edge : vertex->getAdj()) {
             weight += edge->getWeight();

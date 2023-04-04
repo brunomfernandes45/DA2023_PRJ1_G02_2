@@ -17,31 +17,16 @@ void clearScreen() {
 #endif
 }
 
-void removeWhitespaceAndAccents(std::string& str) {
-    static const std::unordered_map<std::string, std::string> accents = {
-            {"À", "A"}, {"Á", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ç", "C"}, {"È", "E"},
-            {"É", "E"}, {"Ê", "E"}, {"Ì", "I"}, {"Í", "I"}, {"Î", "I"}, {"Ò", "O"},
-            {"Ó", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ù", "U"}, {"Ú", "U"}, {"à", "a"},
-            {"á", "a"}, {"â", "a"}, {"ã", "a"}, {"ç", "c"}, {"è", "e"}, {"é", "e"},
-            {"ê", "e"}, {"ì", "i"}, {"í", "i"}, {"î", "i"}, {"ò", "o"}, {"ó", "o"},
-            {"ô", "o"}, {"õ", "o"}, {"ù", "u"}, {"ú", "u"}
-    };
+void removeWhitespace(std::string& str) {
+    auto it = find_if(str.begin(), str.end(), [](char c) {
+        return isspace(c);
+    });
 
-    auto it = str.begin();
     while (it != str.end()) {
-        if (isspace(*it) && (it == str.begin() || isspace(*(it - 1)))) {
-            it = str.erase(it);
-        } else {
-            std::string c;
-            c += *it;
-            auto pos = accents.find(c);
-            if (pos != accents.end()) {
-                str.replace(it, it+1, pos->second);
-                it += pos->second.length();
-            } else {
-                ++it;
-            }
-        }
+        it = str.erase(it);
+        it = find_if(it, str.end(), [](char c) {
+            return isspace(c);
+        });
     }
 }
 
@@ -79,8 +64,8 @@ void Controller::startMenu() {
             std::cin >> stationsFile;
             std::cout << "Network file: ";
             std::cin >> networkFile;
-            //readStations(stationsFile);
-            //readNetwork(networkFile);
+            readStations(stationsFile);
+            readNetwork(networkFile);
             mainMenu();
             return;
 
@@ -128,6 +113,10 @@ void Controller::mainMenu(){
         case 2:
             clearScreen();
             network.maxTrainsNeeded();
+            std::cout << "ERROR: Invalid option!\n";
+            std::cout << "(Press any key + Enter to continue)\n";
+            std::cin >> aux;
+            mainMenu();
             return;
 
         case 3:
@@ -136,6 +125,10 @@ void Controller::mainMenu(){
             std::cout << "Enter the value of k: ";
             std::cin >> k;
             network.topkTransportNeeds(k);
+            std::cout << "ERROR: Invalid option!\n";
+            std::cout << "(Press any key + Enter to continue)\n";
+            std::cin >> aux;
+            mainMenu();
             return;
         default:
             clearScreen();
@@ -172,12 +165,11 @@ void Controller::readStations(const std::string& filename) {
         std::getline(iss, township, ',');
         std::getline(iss, stationLine);
 
-        removeWhitespaceAndAccents(name);
-        removeWhitespaceAndAccents(name);
-        removeWhitespaceAndAccents(district);
-        removeWhitespaceAndAccents(municipality);
-        removeWhitespaceAndAccents(township);
-        removeWhitespaceAndAccents(stationLine);
+        removeWhitespace(name);
+        removeWhitespace(district);
+        removeWhitespace(municipality);
+        removeWhitespace(township);
+        removeWhitespace(stationLine);
 
         if (name.empty() && district.empty() && municipality.empty() && township.empty() && stationLine.empty())
             continue;
@@ -187,6 +179,7 @@ void Controller::readStations(const std::string& filename) {
             network.addVertex(id++, name, district, municipality, township, stationLine);
         }
     }
+
 }
 
 void Controller::readNetwork(const std::string& filename) {
@@ -209,9 +202,9 @@ void Controller::readNetwork(const std::string& filename) {
         std::getline(iss, capacity, ',');
         std::getline(iss, service);
 
-        removeWhitespaceAndAccents(stationA);
-        removeWhitespaceAndAccents(stationB);
-        removeWhitespaceAndAccents(service);
+        removeWhitespace(stationA);
+        removeWhitespace(stationB);
+        removeWhitespace(service);
 
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
