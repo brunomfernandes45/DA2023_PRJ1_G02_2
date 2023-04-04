@@ -20,7 +20,7 @@ public:
     std::vector<Vertex *> getVertexSet() const;
 
     double edmondsKarp(const int &source, const int &dest);
-    bool bfs_edmondsKarp(Vertex* source, Vertex* dest);
+    bool bfs_edmondsKarp(Vertex& source, Vertex& dest);
     void resetFlows();
 
     void maxTrainsNeeded();

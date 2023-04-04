@@ -1,6 +1,6 @@
 #include "Graph.h"
-#include "Controller.h"
 #include <unordered_map>
+#include <unordered_set>
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
@@ -72,28 +72,24 @@ bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
     return true;
 }
 
-
-void removeWhitespaceAndAccents(std::string& str);
-
-
-double Graph::edmondsKarp(const int &source, const int &dest) {
-    Vertex *s = findVertex(source);
-    Vertex *t = findVertex(dest);
+double Graph::edmondsKarp(const int& source, const int& dest) {
+    Vertex* s = findVertex(source);
+    Vertex* t = findVertex(dest);
     if (s == nullptr || t == nullptr)
         return 0;
     resetFlows();
     double maxFlow = 0;
-    while (bfs_edmondsKarp(s, t)) {
+    while (bfs_edmondsKarp(*s, *t)) {
         double pathFlow = INF;
-        Vertex *v = findVertex(dest);
+        Vertex* v = t;
         while (v->getPath() != nullptr) {
-            Edge *e = v->getPath();
+            Edge* e = v->getPath();
             pathFlow = std::min(pathFlow, e->getWeight() - e->getFlow());
             v = e->getOrig();
         }
-        v = findVertex(dest);
+        v = t;
         while (v->getPath() != nullptr) {
-            Edge *e = v->getPath();
+            Edge* e = v->getPath();
             e->setFlow(e->getFlow() + pathFlow);
             e->getReverse()->setFlow(e->getReverse()->getFlow() - pathFlow);
             v = e->getOrig();
@@ -103,27 +99,26 @@ double Graph::edmondsKarp(const int &source, const int &dest) {
     return maxFlow;
 }
 
-
-bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
-    for (Vertex *v : vertexSet) {
+bool Graph::bfs_edmondsKarp(Vertex& s, Vertex& t) {
+    for (Vertex* v : vertexSet) {
         v->setVisited(false);
         v->setDist(std::numeric_limits<double>::infinity());
         v->setPath(nullptr);
     }
-    s->setVisited(true);
-    s->setDist(0);
-    std::queue<Vertex*> q;
-    q.push(s);
+    s.setVisited(true);
+    s.setDist(0);
+    std::deque<Vertex *> q;
+    q.push_back(&s);
     while (!q.empty()) {
-        Vertex* u = q.front();
-        q.pop();
-        for (Edge* e : u->getAdj()) {
-            Vertex* v = e->getDest();
+        Vertex *u = q.front();
+        q.pop_front();
+        for (Edge *e: u->getAdj()) {
+            Vertex *v = e->getDest();
             if (!v->isVisited() && e->getWeight() > e->getFlow()) {
                 v->setVisited(true);
                 v->setPath(e);
-                if (v == t) return true;
-                q.push(v);
+                if (v == &t) return true;
+                q.push_back(v);
             }
         }
     }
@@ -131,10 +126,9 @@ bool Graph::bfs_edmondsKarp(Vertex *s, Vertex *t) {
 }
 
 void Graph::resetFlows() {
-    for (Vertex *v: vertexSet){
-        for(Edge *e:v->getAdj()){
-            if(e->isReverse()) e->setFlow(e->getWeight());
-            else e->setFlow(0);
+    for (Vertex *v: vertexSet) {
+        for(Edge *e:v->getAdj()) {
+            e->setFlow(0);
         }
     }
 }
@@ -143,25 +137,30 @@ void Graph::resetFlows() {
 
 void Graph::maxTrainsNeeded() {
     double maxFlow = 0;
-    std::vector<std::pair<std::string, std::string>> maxFlowStations;
+    std::unordered_set<int> checkedStations;
+
+    std::vector<std::pair<int, int>> maxFlowStations;
     for (Vertex *s : vertexSet) {
         for (Vertex *t : vertexSet) {
-            if (s == t) continue;
+            if (s == t || checkedStations.find(t -> getId()) != checkedStations.end()) continue;
             double flow = edmondsKarp(s->getId(), t->getId());
             if (flow > maxFlow) {
                 maxFlow = flow;
                 maxFlowStations.clear();
-                maxFlowStations.push_back(std::make_pair(s->getName(), t->getName()));
+                maxFlowStations.emplace_back(s->getId(), t->getId());
             } else if (flow == maxFlow) {
-                maxFlowStations.push_back(std::make_pair(s->getName(), t->getName()));
+                maxFlowStations.emplace_back(s->getId(), t->getId());
             }
         }
+        checkedStations.insert(s -> getId());
     }
 
     std::cout << "Max flow: " << maxFlow << std::endl;
-    std::cout << "Stations with max flow: ";
+    std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
     for (const auto &p : maxFlowStations) {
-        std::cout << "(" << p.first << ", " << p.second << ") ";
+        auto s = findVertex(p.first);
+        auto t = findVertex(p.second);
+        std::cout << "(" << s -> getName() << ", " << t -> getName() << ")\n";
     }
     std::cout << std::endl;
 }
@@ -175,9 +174,7 @@ void Graph::topkTransportNeeds(int k) {
     // Calculate the total transportation needs for each district and municipality
     for (auto vertex : vertexSet) {
         std::string district = vertex->getDistrict();
-        removeWhitespaceAndAccents(district);
         std::string municipality = vertex->getMunicipality();
-        removeWhitespaceAndAccents(municipality);
         double weight = 0.0;
         for (auto edge : vertex->getAdj()) {
             weight += edge->getWeight();
