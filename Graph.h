@@ -31,7 +31,7 @@ public:
     void maxSimultaneousTrains(std::string stationName);
 
     Vertex* findVertexByName(const std::string& name) const;
-    void MaxTrainsMinCost(const std::string& srcName, const std::string& destName);
+    void maxTrainsMinCost(const std::string& srcName, const std::string& destName);
     
 protected:
     std::vector<Vertex *> vertexSet;

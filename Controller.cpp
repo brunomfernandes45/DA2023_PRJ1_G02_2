@@ -17,9 +17,6 @@ void clearScreen() {
 #endif
 }
 
-#include <iostream>
-#include <string>
-
 std::string normalizeCamelCase(const std::string& str) {
     // Create a new string to store the normalized result
     std::string result;
@@ -153,7 +150,7 @@ void Controller::mainMenu(){
 
         case 5:
             clearScreen();
-            MaxTrainsMinCostMenu();
+            maxTrainsMinCostMenu();
             return;
 
         default:
@@ -319,7 +316,7 @@ void Controller::maxSimultaneousTrainsMenu() {
 }
 
 
-void Controller::MaxTrainsMinCostMenu(){
+void Controller::maxTrainsMinCostMenu(){
     std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Minimum Cost**\n\n";
     std::string stationA, stationB;
     std::cout << "Source station: ";
@@ -332,10 +329,10 @@ void Controller::MaxTrainsMinCostMenu(){
         std::cout << "(Press any key + Enter to continue)\n";
         std::string aux;
         std::cin >> aux;
-        MaxTrainsMinCostMenu();
+        maxTrainsMinCostMenu();
         return;
     }
-    network.MaxTrainsMinCost(stationA, stationB);
+    network.maxTrainsMinCost(stationA, stationB);
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

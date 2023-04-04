@@ -47,7 +47,7 @@ bool Graph::addVertex(const int &id, std::string name, std::string district, std
 
 /*
  * Adds an edge to a graph (this), given the contents of the source and
- * destination vertices and the edge weight (w).
+ * destination vertices and the edge capacity (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 bool Graph::addEdge(const int &source, const int &dest, double w, std::string s) {
@@ -89,7 +89,7 @@ double Graph::edmondsKarp(const int& source, const int& dest) {
         Vertex* v = t;
         while (v->getPath() != nullptr) {
             Edge* e = v->getPath();
-            pathFlow = std::min(pathFlow, e->getWeight() - e->getFlow());
+            pathFlow = std::min(pathFlow, e->getCapacity() - e->getFlow());
             v = e->getOrig();
         }
         v = t;
@@ -119,7 +119,7 @@ bool Graph::bfs_edmondsKarp(Vertex& s, Vertex& t) {
         q.pop_front();
         for (Edge *e: u->getAdj()) {
             Vertex *v = e->getDest();
-            if (!v->isVisited() && e->getWeight() > e->getFlow()) {
+            if (!v->isVisited() && e->getCapacity() > e->getFlow()) {
                 v->setVisited(true);
                 v->setPath(e);
                 if (v == &t) return true;
@@ -174,7 +174,7 @@ void Graph::topkTransportNeeds(int k) {
         std::string municipality = vertex->getMunicipality();
         double weight = 0.0;
         for (auto edge : vertex->getAdj()) {
-            weight += edge->getWeight();
+            weight += edge->getCapacity();
         }
         districtTransportationNeeds[district] += weight;
         municipalityTransportationNeeds[municipality] += weight;
@@ -220,7 +220,7 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
         Vertex *v = q.extractMin();
         if (v == t) break;
         for (Edge *e : v->getAdj()) {
-            double newDist = v->getDist() + e->getWeight();
+            double newDist = v->getDist() + e->getCapacity();
             if (newDist < e->getDest()->getDist()) {
                 e->getDest()->setDist(newDist);
                 e->getDest()->setPath(e);
@@ -244,7 +244,7 @@ void Graph::maxSimultaneousTrains(std::string stationName) {
         if (vertex->getName() == stationName) {
             int count = 0;
             for (auto edge : vertex->getAdj()) {
-                count += edge->getWeight();
+                count += edge->getCapacity();
             }
             if (count > maxTrains) {
                 maxTrains = count;
@@ -269,7 +269,7 @@ Vertex* Graph::findVertexByName(const std::string& name) const {
 }
 
 
-void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) {
+void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& destName) {
     // Find the source and destination vertices
     Vertex* s = findVertexByName(srcName);
     Vertex* t = findVertexByName(destName);
@@ -294,8 +294,8 @@ void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& dest
         else cost1 = 4.0;
         if (e2->getService() == "STANDARD") cost2 = 2.0;
         else cost1 = 4.0;
-        double cost_per_train_1 = cost1 / e1->getWeight();
-        double cost_per_train_2 = cost2 / e2->getWeight();
+        double cost_per_train_1 = cost1 / e1->getCapacity();
+        double cost_per_train_2 = cost2 / e2->getCapacity();
         return cost_per_train_1 < cost_per_train_2;
     });
 
@@ -311,13 +311,13 @@ void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& dest
         }
         double cost = 0.0;
         if (e->getService() == "STANDARD") {
-            cost = 2.0 * e->getWeight();
+            cost = 2.0 * e->getCapacity();
         } else if (e->getService() == "ALFA PENDULAR") {
-            cost = 4.0 * e->getWeight();
+            cost = 4.0 * e->getCapacity();
         }
-        double cost_per_train = cost / e->getWeight();
-        if (e->getWeight() < max_trains) {
-            max_trains = e->getWeight();
+        double cost_per_train = cost / e->getCapacity();
+        if (e->getCapacity() < max_trains) {
+            max_trains = e->getCapacity();
             min_cost = cost;
         } else if (cost_per_train <= min_cost / max_trains) {
             min_cost = cost_per_train * max_trains;
