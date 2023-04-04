@@ -28,7 +28,7 @@ public:
     void topkTransportNeeds(int k);
 
     std::vector<Vertex*> dijkstra(const int &origin, const int &dest);
-
+    void maxSimultaneousTrains(std::string stationName);
 protected:
     std::vector<Vertex *> vertexSet;
     int findVertexIdx(const int &id) const;

@@ -31,7 +31,6 @@ void removeWhitespace(std::string& str) {
 }
 
 
-
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
@@ -114,22 +113,19 @@ void Controller::mainMenu(){
 
         case 2:
             clearScreen();
-            network.maxTrainsNeeded();
-            std::cout << "(Press any key + Enter to continue)\n";
-            std::cin >> aux;
-            mainMenu();
+            maxTrainsNeededMenu();
             return;
+            
         case 3:
             clearScreen();
-            int k;
-            std::cout << "Enter the value of k: ";
-            std::cin >> k;
-            network.topkTransportNeeds(k);
-            std::cout << "ERROR: Invalid option!\n";
-            std::cout << "(Press any key + Enter to continue)\n";
-            std::cin >> aux;
-            mainMenu();
+            topkTransportNeedsMenu();
             return;
+            
+        case 4:
+            clearScreen();
+            maxSimultaneousTrainsMenu();
+            return;
+
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -213,6 +209,7 @@ void Controller::readNetwork(const std::string& filename) {
     }
 }
 
+
 void Controller::maxFlowMenu() {
     std::cout << "\t\t**Maximum Amount of Trains Between Two Stations**\n\n";
     std::string stationA, stationB;
@@ -237,3 +234,48 @@ void Controller::maxFlowMenu() {
     mainMenu();
 }
 
+
+void Controller::maxTrainsNeededMenu(){
+    std::cout << "\t\t**Pairs of Stations taht Require the Most Amount of Trains**\n\n";
+    network.maxTrainsNeeded();
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+
+void Controller::topkTransportNeedsMenu(){
+    std::cout << "\t\t**Top-k Municipalities and Districts Regarding their Transportation Needs**\n\n";
+    int k;
+    std::cout << "Enter the value of k: ";
+    std::cin >> k;
+    network.topkTransportNeeds(k);
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+
+void Controller::maxSimultaneousTrainsMenu() {
+    std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Arrive at a Station**\n\n";
+    std::string stationName;
+    std::cout << "Enter the name of the station: ";
+    std::cin >> stationName;
+
+    if(stations.find(stationName) == stations.end()){
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxSimultaneousTrainsMenu();
+        return;
+    }
+    else network.maxSimultaneousTrains(stationName);
+
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
