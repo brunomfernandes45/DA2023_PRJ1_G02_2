@@ -68,6 +68,7 @@ public:
     double getFlow() const;
     std::string getService() const;
     bool isReverse() const;
+    int getCost() const;
 
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
@@ -87,6 +88,7 @@ protected:
     bool isreverse;
     double flow; // for flow-related problems
     std::string service;
+    int cost;
 };
 
 
