@@ -106,9 +106,14 @@ void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
+
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(s){}
+Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(s){
+    cost=0;
+    if(service=="STANDARD")cost=2;
+    else if(service=="ALFA-PENDULAR")cost=4;
+}
 
 Vertex * Edge::getDest() const {
     return this->dest;
@@ -157,4 +162,8 @@ bool Edge::isReverse() const {
 
 void Edge::setIsReverse(bool c) {
     isreverse=c;
+}
+
+int Edge::getCost() const {
+    return cost;
 }

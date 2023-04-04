@@ -52,6 +52,19 @@ void removeWhitespace(std::string& str) {
     }
 }
 
+void replaceWhitespace(std::string& str, char replacement) {
+    auto it = find_if(str.begin(), str.end(), [](char c) {
+        return isspace(c);
+    });
+
+    while (it != str.end()) {
+        *it = replacement;
+        it = find_if(it, str.end(), [](char c) {
+            return isspace(c);
+        });
+    }
+}
+
 
 void Controller::startMenu() {
     clearScreen();
@@ -227,7 +240,7 @@ void Controller::readNetwork(const std::string& filename) {
 
         removeWhitespace(stationA);
         removeWhitespace(stationB);
-        removeWhitespace(service);
+        replaceWhitespace(service,'-');
 
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;

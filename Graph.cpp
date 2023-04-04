@@ -220,7 +220,7 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
         Vertex *v = q.extractMin();
         if (v == t) break;
         for (Edge *e : v->getAdj()) {
-            double newDist = v->getDist() + e->getCapacity();
+            double newDist = v->getDist() + e->getCost();
             if (newDist < e->getDest()->getDist()) {
                 e->getDest()->setDist(newDist);
                 e->getDest()->setPath(e);
@@ -293,7 +293,7 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
         if (e1->getService() == "STANDARD") cost1 = 2.0;
         else cost1 = 4.0;
         if (e2->getService() == "STANDARD") cost2 = 2.0;
-        else cost1 = 4.0;
+        else cost2 = 4.0;
         double cost_per_train_1 = cost1 / e1->getCapacity();
         double cost_per_train_2 = cost2 / e2->getCapacity();
         return cost_per_train_1 < cost_per_train_2;
@@ -312,14 +312,19 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
         double cost = 0.0;
         if (e->getService() == "STANDARD") {
             cost = 2.0 * e->getCapacity();
-        } else if (e->getService() == "ALFA PENDULAR") {
+        } else if (e->getService() == "ALFA-PENDULAR") {
             cost = 4.0 * e->getCapacity();
         }
-        double cost_per_train = cost / e->getCapacity();
-        if (e->getCapacity() < max_trains) {
-            max_trains = e->getCapacity();
-            min_cost = cost;
-        } else if (cost_per_train <= min_cost / max_trains) {
+        double cost_per_train = 0.0;
+        if(e->getCapacity()!=0){
+            cost_per_train = cost / e->getCapacity();
+        }
+        if (e->getCapacity() <= max_trains) {
+            if (cost < min_cost) {
+                max_trains = e->getCapacity();
+                min_cost = cost;
+            }
+        } else if (e->getCapacity()!=0 && cost_per_train <= min_cost / max_trains) {
             min_cost = cost_per_train * max_trains;
         } else {
             break;
