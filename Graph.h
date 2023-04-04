@@ -23,7 +23,7 @@ public:
     bool bfs_edmondsKarp(Vertex& source, Vertex& dest);
     void resetFlows();
 
-    void maxTrainsNeeded();
+    std::pair<int, std::vector<std::pair<std::string, std::string>>> maxTrainsNeeded();
 
     void topkTransportNeeds(int k);
 
@@ -31,7 +31,7 @@ public:
     void maxSimultaneousTrains(std::string stationName);
 
     Vertex* findVertexByName(const std::string& name) const;
-    void MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const;
+    void MaxTrainsMinCost(const std::string& srcName, const std::string& destName);
     
 protected:
     std::vector<Vertex *> vertexSet;

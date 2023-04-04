@@ -13,9 +13,34 @@ void clearScreen() {
     std::system("cls");
 #else
     // Assume POSIX
-    std::system ("clear");
+    std::system("clear");
 #endif
 }
+
+#include <iostream>
+#include <string>
+
+std::string normalizeCamelCase(const std::string& str) {
+    // Create a new string to store the normalized result
+    std::string result;
+
+    // Append the first character to the result string
+    result += str[0];
+
+    // Iterate through the rest of the string
+    for (int i = 1; i < str.length(); i++) {
+        // If the current character is uppercase, insert a space before it
+        if (std::isupper(str[i])) {
+            result += ' '; // Insert a space
+        }
+        // Append the current character to the result string
+        result += str[i];
+    }
+
+    // Copy the normalized result back to the original string
+    return result;
+}
+
 
 void removeWhitespace(std::string& str) {
     auto it = find_if(str.begin(), str.end(), [](char c) {
@@ -241,8 +266,16 @@ void Controller::maxFlowMenu() {
 
 
 void Controller::maxTrainsNeededMenu(){
-    std::cout << "\t\t**Pairs of Stations taht Require the Most Amount of Trains**\n\n";
-    network.maxTrainsNeeded();
+    std::cout << "\t\t**Pairs of Stations that Require the Most Amount of Trains**\n\n";
+    std::pair<int, std::vector<std::pair<std::string, std::string>>> res = network.maxTrainsNeeded();
+    int maxFlow = res.first;
+    std::vector<std::pair<std::string, std::string>> maxFlowStations = res.second;
+    std::cout << "Max flow: " << maxFlow << std::endl;
+    std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
+    for (const auto &p : maxFlowStations) {
+        std::cout << "(" << normalizeCamelCase(p.first) << ", " << normalizeCamelCase(p.second) << ")\n";
+    }
+    std::cout << std::endl;
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

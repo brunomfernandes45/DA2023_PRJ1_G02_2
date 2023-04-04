@@ -140,11 +140,11 @@ void Graph::resetFlows() {
 
 
 
-void Graph::maxTrainsNeeded() {
+std::pair<int, std::vector<std::pair<std::string, std::string>>> Graph::maxTrainsNeeded() {
     double maxFlow = 0;
     std::unordered_set<int> checkedStations;
 
-    std::vector<std::pair<int, int>> maxFlowStations;
+    std::vector<std::pair<std::string, std::string>> maxFlowStations;
     for (Vertex *s : vertexSet) {
         for (Vertex *t : vertexSet) {
             if (s == t || checkedStations.find(t -> getId()) != checkedStations.end()) continue;
@@ -152,22 +152,14 @@ void Graph::maxTrainsNeeded() {
             if (flow > maxFlow) {
                 maxFlow = flow;
                 maxFlowStations.clear();
-                maxFlowStations.emplace_back(s->getId(), t->getId());
+                maxFlowStations.emplace_back(s->getName(), t->getName());
             } else if (flow == maxFlow) {
-                maxFlowStations.emplace_back(s->getId(), t->getId());
+                maxFlowStations.emplace_back(s->getName(), t->getName());
             }
         }
         checkedStations.insert(s -> getId());
     }
-
-    std::cout << "Max flow: " << maxFlow << std::endl;
-    std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
-    for (const auto &p : maxFlowStations) {
-        auto s = findVertex(p.first);
-        auto t = findVertex(p.second);
-        std::cout << "(" << s -> getName() << ", " << t -> getName() << ")\n";
-    }
-    std::cout << std::endl;
+    return {maxFlow, maxFlowStations};
 }
 
 
@@ -277,7 +269,7 @@ Vertex* Graph::findVertexByName(const std::string& name) const {
 }
 
 
-void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const {
+void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) {
     // Find the source and destination vertices
     Vertex* s = findVertexByName(srcName);
     Vertex* t = findVertexByName(destName);
@@ -287,7 +279,7 @@ void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& dest
     }
 
     // Run Dijkstra's algorithm to find the shortest path between the two stations
-    std::vector<Vertex*> path = dijkstra(s, t);
+    std::vector<Vertex*> path = dijkstra(s -> getId(), t -> getId());
     if (path.empty()) {
         std::cout << "No path found between source and destination stations\n";
         return;
