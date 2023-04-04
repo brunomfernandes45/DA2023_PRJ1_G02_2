@@ -207,6 +207,28 @@ void Graph::topkTransportNeeds(int k) {
 }
 
 
+void Graph::maxSimultaneousTrains(std::string stationName) {
+    int maxTrains = 0;
+    for (auto vertex : vertexSet) {
+        if (vertex->getName() == stationName) {
+            int count = 0;
+            for (auto edge : vertex->getAdj()) {
+                count += edge->getWeight();
+            }
+            if (count > maxTrains) {
+                maxTrains = count;
+            }
+        }
+    }
+    if (maxTrains > 0) {
+        std::cout << "Maximum number of trains that can simultaneously arrive at station " << stationName << ": " << maxTrains << std::endl;
+    } else {
+        std::cout << "Station " << stationName << " does not exist in the railway grid." << std::endl;
+    }
+}
+
+
+
 
 void deleteMatrix(int **m, int n) {
     if (m != nullptr) {
