@@ -1,6 +1,11 @@
 #include "Graph.h"
 #include <unordered_map>
 #include <unordered_set>
+#include <iostream>
+#include <vector>
+#include <limits>
+#include <queue>
+#include <cmath>
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
@@ -45,7 +50,7 @@ bool Graph::addVertex(const int &id, std::string name, std::string district, std
  * destination vertices and the edge weight (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
-bool Graph::addEdge(const int &source, const int &dest, double w) {
+bool Graph::addEdge(const int &source, const int &dest, double w, std::string s) {
     auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
@@ -54,17 +59,17 @@ bool Graph::addEdge(const int &source, const int &dest, double w) {
         if (edge -> getDest() -> getId() == v2 -> getId())
             return false;
     }
-    v1 -> addEdge(v2, w);
+    v1 -> addEdge(v2, w, s);
     return true;
 }
 
-bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w) {
+bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w, std::string s) {
     auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr)
         return false;
-    auto e1 = v1->addEdge(v2, w);
-    auto e2 = v2->addEdge(v1, w);
+    auto e1 = v1->addEdge(v2, w, s);
+    auto e2 = v2->addEdge(v1, w, s);
     e1->setIsReverse(false);
     e2->setIsReverse(true);
     e1->setReverse(e2);
@@ -261,6 +266,77 @@ void Graph::maxSimultaneousTrains(std::string stationName) {
     }
 }
 
+
+Vertex* Graph::findVertexByName(const std::string& name) const {
+    for (Vertex* v : vertexSet) {
+        if (v->getName() == name) {
+            return v;
+        }
+    }
+    return nullptr;
+}
+
+
+void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const {
+    // Find the source and destination vertices
+    Vertex* s = findVertexByName(srcName);
+    Vertex* t = findVertexByName(destName);
+    if (s == nullptr || t == nullptr) {
+        std::cout << "Invalid source or destination station\n";
+        return;
+    }
+
+    // Run Dijkstra's algorithm to find the shortest path between the two stations
+    std::vector<Vertex*> path = dijkstra(s, t);
+    if (path.empty()) {
+        std::cout << "No path found between source and destination stations\n";
+        return;
+    }
+
+    // Sort the edges based on cost per train
+    std::sort(path.begin() + 1, path.end(), [](Vertex* a, Vertex* b) {
+        Edge* e1 = a->getPath();
+        Edge* e2 = b->getPath();
+        double cost1, cost2;
+        if (e1->getService() == "STANDARD") cost1 = 2.0;
+        else cost1 = 4.0;
+        if (e2->getService() == "STANDARD") cost2 = 2.0;
+        else cost1 = 4.0;
+        double cost_per_train_1 = cost1 / e1->getWeight();
+        double cost_per_train_2 = cost2 / e2->getWeight();
+        return cost_per_train_1 < cost_per_train_2;
+    });
+
+    // Find the maximum number of trains that can travel simultaneously with the minimum cost
+    int max_trains = std::numeric_limits<int>::max();
+    double min_cost = std::numeric_limits<double>::infinity();
+    for (auto v : path) {
+        Edge* e = v->getPath();
+        if (e == nullptr) {
+            // There is no path between the source and destination vertices
+            std::cout << "No path found between source and destination stations\n";
+            return;
+        }
+        double cost = 0.0;
+        if (e->getService() == "STANDARD") {
+            cost = 2.0 * e->getWeight();
+        } else if (e->getService() == "ALFA PENDULAR") {
+            cost = 4.0 * e->getWeight();
+        }
+        double cost_per_train = cost / e->getWeight();
+        if (e->getWeight() < max_trains) {
+            max_trains = e->getWeight();
+            min_cost = cost;
+        } else if (cost_per_train <= min_cost / max_trains) {
+            min_cost = cost_per_train * max_trains;
+        } else {
+            break;
+        }
+    }
+
+    std::cout << "The maximum number of trains that can travel simultaneously between " << srcName << " and " << destName << " is: " << max_trains << std::endl;
+    std::cout << "The minimum cost for the company while maintaining the same level of service is: " << min_cost << "€\n";
+}
 
 
 

@@ -126,6 +126,11 @@ void Controller::mainMenu(){
             maxSimultaneousTrainsMenu();
             return;
 
+        case 5:
+            clearScreen();
+            MaxTrainsMinCostMenu();
+            return;
+
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -205,7 +210,7 @@ void Controller::readNetwork(const std::string& filename) {
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
 
-        network.addBidirectionalEdge(stations[stationA], stations[stationB], std::stod(capacity));
+        network.addBidirectionalEdge(stations[stationA], stations[stationB], std::stod(capacity), service);
     }
 }
 
@@ -274,6 +279,30 @@ void Controller::maxSimultaneousTrainsMenu() {
     }
     else network.maxSimultaneousTrains(stationName);
 
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+
+void Controller::MaxTrainsMinCostMenu(){
+    std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Minimum Cost**\n\n";
+    std::string stationA, stationB;
+    std::cout << "Source station: ";
+    std::cin >> stationA;
+    std::cout << "Destination station: ";
+    std::cin >> stationB;
+    clearScreen();
+    if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        MaxTrainsMinCostMenu();
+        return;
+    }
+    network.MaxTrainsMinCost(stationA, stationB);
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

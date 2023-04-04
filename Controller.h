@@ -13,10 +13,12 @@ public:
 
     void startMenu();
     void mainMenu();
+
     void maxFlowMenu();
     void maxTrainsNeededMenu();
     void topkTransportNeedsMenu();
     void maxSimultaneousTrainsMenu();
+    void MaxTrainsMinCostMenu();
     
 private:
     std::unordered_map<std::string, int> stations;
