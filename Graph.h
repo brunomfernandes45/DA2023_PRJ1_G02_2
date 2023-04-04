@@ -13,8 +13,8 @@ public:
 
     bool addVertex(const int &id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
 
-    bool addEdge(const int &source, const int &dest, double w);
-    bool addBidirectionalEdge(const int &source, const int &dest, double w);
+    bool addEdge(const int &source, const int &dest, double w, std::string s);
+    bool addBidirectionalEdge(const int &source, const int &dest, double w, std::string s);
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
@@ -28,6 +28,9 @@ public:
     void topkTransportNeeds(int k);
 
     void maxSimultaneousTrains(std::string stationName);
+
+    Vertex* findVertexByName(const std::string& name) const;
+    void MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const;
 
 protected:
     std::vector<Vertex *> vertexSet;

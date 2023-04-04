@@ -6,8 +6,8 @@ Vertex::Vertex(int id, std::string name, std::string district, std::string munic
  * Auxiliary function to add an outgoing edge to a vertex (this),
  * with a given destination vertex (d) and edge weight (w).
  */
-Edge * Vertex::addEdge(Vertex *d, double w) {
-    auto newEdge = new Edge(this, d, w);
+Edge * Vertex::addEdge(Vertex *d, double w, std::string s) {
+    auto newEdge = new Edge(this, d, w, s);
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
     return newEdge;
@@ -108,7 +108,7 @@ void Vertex::setPath(Edge *path) {
 
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w): orig(orig), dest(dest), weight(w) {}
+Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), weight(w), service(s){}
 
 Vertex * Edge::getDest() const {
     return this->dest;
@@ -133,6 +133,11 @@ bool Edge::isSelected() const {
 double Edge::getFlow() const {
     return flow;
 }
+
+std::string Edge::getService() const {
+    return this->service;
+}
+
 
 void Edge::setSelected(bool selected) {
     this->selected = selected;
