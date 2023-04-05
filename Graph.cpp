@@ -335,6 +335,20 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
     std::cout << "The minimum cost for the company while maintaining the same level of service is: " << min_cost << "€\n";
 }
 
+bool Graph::removeVertex(const int &id) {
+    for(std::vector<Vertex*>::iterator v = vertexSet.begin(); v != vertexSet.end(); ++v){
+        if((*v)->getId() == id){
+            for(Edge *e: (*v)->getAdj()){
+                (*v)->removeEdge(e->getDest()->getId());
+                e->getDest()->removeEdge((*v)->getId());
+            }
+            vertexSet.erase(v);
+            int a=vertexSet.size();
+            return true;
+        }
+    }
+    return false;
+}
 
 
 void deleteMatrix(int **m, int n) {
