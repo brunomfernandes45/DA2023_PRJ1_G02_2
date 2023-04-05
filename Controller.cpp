@@ -69,7 +69,7 @@ void replaceWhitespace(std::string& str, char replacement) {
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
-    std::vector options = { "Read standard files", "Read other files" };
+    std::vector options = { "Read standard files", "Read other files", "Read demo files" };
     for(int i = 1; i <= options.size(); i++){
         std::cout << i << ". " << options[i - 1] << "\n";
     }
@@ -84,9 +84,9 @@ void Controller::startMenu() {
 
         case 1:
             clearScreen();
-            stationsFile += "stations.csv"; // tem que ser assim
-            networkFile += "network.csv"; // porque o path é em relação ao executável
-            readStations(stationsFile); // e o executável está na pasta cmake-build-debug
+            stationsFile += "stations.csv";
+            networkFile += "network.csv";
+            readStations(stationsFile);
             readNetwork(networkFile);
             mainMenu();
             return;
@@ -105,6 +105,14 @@ void Controller::startMenu() {
             mainMenu();
             return;
 
+        case 3:
+            clearScreen();
+            stationsFile += "demoStations.csv";
+            networkFile += "demoNetwork.csv";
+            readStations(stationsFile);
+            readNetwork(networkFile);
+            mainMenu();
+            return;
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";

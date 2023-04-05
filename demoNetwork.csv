@@ -1,34 +1,22 @@
 Station_A,Station_B,Capacity,Service
 Viana,Braga,15,ALFA PENDULAR
-Viana,Vila,7,STANDARD
 Braga,Vila,7,STANDARD
 Braga,Porto,20,ALFA PENDULAR
 Vila,Porto,9,STANDARD
 Vila,Braganca,5,STANDARD
 Vila,Viseu,4,STANDARD
-Braganca,Viseu,4,STANDARD
-Braganca,Guarda,6,STANDARD
-Porto,Viseu,8,STANDARD
 Porto,Aveiro,22,ALFA PENDULAR
 Aveiro,Viseu,9,STANDARD
 Viseu,Guarda,5,STANDARD
 Aveiro,Coimbra,22,ALFA PENDULAR
-Viseu,Coimbra,11,STANDARD
-Guarda,Coimbra,6,STANDARD
 Guarda,Castelo,3,STANDARD
 Coimbra,Castelo,5,STANDARD
 Coimbra,Leiria,20,ALFA PENDULAR
-Castelo,Leiria,3,STANDARD
-Castelo,Santarem,4,STANDARD
-Castelo,Portalegre,2,STANDARD
-Leiria,Santarem,12,STANDARD
 Santarem,Portalegre,5,STANDARD
 Leiria,Lisboa,25,ALFA PENDULAR
 Lisboa,Santarem,14,STANDARD
-Santarem,Setubal,6,STANDARD
 Santarem,Evora,9,STANDARD
 Lisboa,Setubal,20,ALFA PENDULAR
-Setubal,Evora,5,STANDARD
 Setubal,Beja,18,ALFA PENDULAR
 Evora,Beja,7,STANDARD
 Beja,Faro,16,ALFA PENDULAR
