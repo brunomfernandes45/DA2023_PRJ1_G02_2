@@ -232,9 +232,10 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
         }
     }
     if (t->getPath() == nullptr) return res; // t is not reachable from s
-    for (Vertex *v = t; v != nullptr; v = v->getPath()->getOrig())
+    for (Vertex *v = t; v->getPath() != nullptr; v = v->getPath()->getOrig()) {
         res.push_back(v);
-    reverse(res.begin(), res.end());
+    }
+    std::reverse(res.begin(), res.end());
     return res;
 }
 
@@ -286,22 +287,18 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
     }
 
     // Sort the edges based on cost per train
+    /*
     std::sort(path.begin() + 1, path.end(), [](Vertex* a, Vertex* b) {
         Edge* e1 = a->getPath();
         Edge* e2 = b->getPath();
-        double cost1, cost2;
-        if (e1->getService() == "STANDARD") cost1 = 2.0;
-        else cost1 = 4.0;
-        if (e2->getService() == "STANDARD") cost2 = 2.0;
-        else cost2 = 4.0;
-        double cost_per_train_1 = cost1 / e1->getCapacity();
-        double cost_per_train_2 = cost2 / e2->getCapacity();
+        double cost_per_train_1 = e1->getCost() / e1->getCapacity();
+        double cost_per_train_2 = e2->getCost() / e2->getCapacity();
         return cost_per_train_1 < cost_per_train_2;
-    });
+    });*/
 
     // Find the maximum number of trains that can travel simultaneously with the minimum cost
     int max_trains = std::numeric_limits<int>::max();
-    double min_cost = std::numeric_limits<double>::infinity();
+    double cost = 0;
     for (auto v : path) {
         Edge* e = v->getPath();
         if (e == nullptr) {
@@ -309,30 +306,20 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
             std::cout << "No path found between source and destination stations\n";
             return;
         }
-        double cost = 0.0;
-        if (e->getService() == "STANDARD") {
-            cost = 2.0 * e->getCapacity();
-        } else if (e->getService() == "ALFA-PENDULAR") {
-            cost = 4.0 * e->getCapacity();
-        }
-        double cost_per_train = 0.0;
-        if(e->getCapacity()!=0){
-            cost_per_train = cost / e->getCapacity();
-        }
-        if (e->getCapacity() <= max_trains) {
-            if (cost < min_cost) {
-                max_trains = e->getCapacity();
-                min_cost = cost;
-            }
-        } else if (e->getCapacity()!=0 && cost_per_train <= min_cost / max_trains) {
-            min_cost = cost_per_train * max_trains;
-        } else {
-            break;
+        cost += e->getCost();
+        if(e->getCapacity()<max_trains){
+            max_trains = e->getCapacity();
         }
     }
 
     std::cout << "The maximum number of trains that can travel simultaneously between " << srcName << " and " << destName << " is: " << max_trains << std::endl;
-    std::cout << "The minimum cost for the company while maintaining the same level of service is: " << min_cost << "€\n";
+    std::cout << "The path is: " << std::endl;
+    std::cout << srcName << " -> " << (*path.begin())->getName() << std::endl;
+    for(auto it = path.begin(); it != path.end() - 1; it++){
+        std::cout << (*it)->getName() << " -> " << (*(it+1))->getName() << std::endl;
+    }
+
+    std::cout << "The minimum cost for the company while maintaining the same level of service is: " << (cost*max_trains) << " euros.\n";
 }
 
 bool Graph::removeVertex(const int &id) {
@@ -343,7 +330,6 @@ bool Graph::removeVertex(const int &id) {
                 e->getDest()->removeEdge((*v)->getId());
             }
             vertexSet.erase(v);
-            int a=vertexSet.size();
             return true;
         }
     }
