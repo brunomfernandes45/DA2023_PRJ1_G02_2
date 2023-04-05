@@ -328,7 +328,7 @@ void Controller::maxSimultaneousTrainsMenu() {
         maxSimultaneousTrainsMenu();
         return;
     }
-    else network.maxSimultaneousTrains(stationName);
+    else maxSimultaneousTrains(stationName);
 
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
@@ -336,6 +336,25 @@ void Controller::maxSimultaneousTrainsMenu() {
     mainMenu();
 }
 
+void Controller::maxSimultaneousTrains(std::string targetStation){
+    if(stations.find(targetStation) == stations.end()){
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxSimultaneousTrainsMenu();
+        return;
+    }
+    network.addVertex(-1,"ss","ss","ss","ss","ss");
+    for(Vertex *v: network.getVertexSet()){
+        if(v->getId() != stations[targetStation] && v->getId() != -1 && v->getAdj().size()==1){
+            network.addBidirectionalEdge(-1,v->getId(),INF,"ss");
+        }
+    }
+    double res=network.edmondsKarp(-1,stations[targetStation]);
+    network.removeVertex(-1);
+    std::cout << "Maximum amount of trains that can simultaneously arrive at " << targetStation << ": " << res << std::endl;
+}
 
 void Controller::maxTrainsMinCostMenu(){
     std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Minimum Cost**\n\n";

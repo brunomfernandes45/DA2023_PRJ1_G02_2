@@ -18,6 +18,7 @@ public:
     void maxTrainsNeededMenu();
     void topkTransportNeedsMenu();
     void maxSimultaneousTrainsMenu();
+    void maxSimultaneousTrains(std::string targetStation);
     void maxTrainsMinCostMenu();
     
 private:
