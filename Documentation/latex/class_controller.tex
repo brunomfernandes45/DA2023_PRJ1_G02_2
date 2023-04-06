@@ -3,36 +3,210 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_controller_af0dc0ae28716e67627b54bebc6b8db61}\label{class_controller_af0dc0ae28716e67627b54bebc6b8db61}} 
-void {\bfseries read\+Stations} (const std\+::string \&filename)
-\item 
-\mbox{\Hypertarget{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}\label{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}} 
-void {\bfseries read\+Network} (const std\+::string \&filename)
-\item 
+std\+::string \mbox{\hyperlink{class_controller_a59174c30b2b0c7d72204769e8cb3266e}{normalize\+Camel\+Case}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_af65d62bd77565df2b6017a21657ee5ef}{remove\+Whitespace\+And\+Accents}} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Removes whitespace and accents from a string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}{replace\+Whitespace}} (std\+::string \&str, char replacement)
+\begin{DoxyCompactList}\small\item\em Replaces all whitespace characters in a string with a given character. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_af0dc0ae28716e67627b54bebc6b8db61}{read\+Stations}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em This function reads a CSV file with information about railway stations and populates the \textquotesingle{}stations\textquotesingle{} and \textquotesingle{}network\textquotesingle{} data structures. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}{read\+Network}} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em This function reads a CSV file with information about railway connections between stations and populates the \textquotesingle{}network\textquotesingle{} data structure. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_controller_ab929f0564e2970c093e6eb3466c276b1}\label{class_controller_ab929f0564e2970c093e6eb3466c276b1}} 
 void {\bfseries start\+Menu} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Displays the start menu and allows the user to select an option to read files (either read the standard files, other files or the demo files). \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_controller_a07ecd51cea1200ec1cbe53b105829e74}\label{class_controller_a07ecd51cea1200ec1cbe53b105829e74}} 
 void {\bfseries main\+Menu} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Displays the main menu of the program and allows the user to select an option to execute a specific functionality. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}{max\+Flow\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}{max\+Trains\+Needed\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the pairs of stations that require the most amount of trains to be scheduled between them. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_af5aea15b36c4a8eb6ed14570699b5596}{topk\+Transport\+Needs\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the top-\/k municipalities and districts with the highest transportation needs in the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_ab34ee9e911a4b8a2f78cb7b44a6156f6}{max\+Simultaneous\+Trains\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user to enter the name of a railway station and calculates the maximum number of trains that can simultaneously arrive at that station. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_aaa9e47824ecccbbfb00e9e689674d289}{max\+Trains\+Min\+Cost\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user to input the source and destination stations for finding the maximum amount of trains that can simultaneously travel between the two with minimum cost. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_acbf6c3a17b5e2fc9d718f7eaf0677915}{max\+Trains\+One\+Type\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
 \mbox{\Hypertarget{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}\label{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}} 
-void {\bfseries max\+Flow\+Menu} ()
-\item 
-\mbox{\Hypertarget{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}\label{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}} 
-void {\bfseries max\+Trains\+Needed\+Menu} ()
-\item 
-\mbox{\Hypertarget{class_controller_af5aea15b36c4a8eb6ed14570699b5596}\label{class_controller_af5aea15b36c4a8eb6ed14570699b5596}} 
-void {\bfseries topk\+Transport\+Needs\+Menu} ()
-\item 
+\index{Controller@{Controller}!maxFlowMenu@{maxFlowMenu}}
+\index{maxFlowMenu@{maxFlowMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{maxFlowMenu()}{maxFlowMenu()}}
+{\footnotesize\ttfamily void Controller\+::max\+Flow\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-\/\+Karp algorithm. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where E is the number of edges and V is the number of vertices in the network 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_controller_ab34ee9e911a4b8a2f78cb7b44a6156f6}\label{class_controller_ab34ee9e911a4b8a2f78cb7b44a6156f6}} 
-void {\bfseries max\+Simultaneous\+Trains\+Menu} ()
-\item 
-\mbox{\Hypertarget{class_controller_a45b4532b34e8bdf99176e3ae7d770614}\label{class_controller_a45b4532b34e8bdf99176e3ae7d770614}} 
-void {\bfseries max\+Simultaneous\+Trains} (std\+::string target\+Station)
-\item 
+\index{Controller@{Controller}!maxSimultaneousTrainsMenu@{maxSimultaneousTrainsMenu}}
+\index{maxSimultaneousTrainsMenu@{maxSimultaneousTrainsMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{maxSimultaneousTrainsMenu()}{maxSimultaneousTrainsMenu()}}
+{\footnotesize\ttfamily void Controller\+::max\+Simultaneous\+Trains\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prompts the user to enter the name of a railway station and calculates the maximum number of trains that can simultaneously arrive at that station. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V $\ast$ E $\ast$ log\+V), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_controller_aaa9e47824ecccbbfb00e9e689674d289}\label{class_controller_aaa9e47824ecccbbfb00e9e689674d289}} 
-void {\bfseries max\+Trains\+Min\+Cost\+Menu} ()
-\end{DoxyCompactItemize}
+\index{Controller@{Controller}!maxTrainsMinCostMenu@{maxTrainsMinCostMenu}}
+\index{maxTrainsMinCostMenu@{maxTrainsMinCostMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{maxTrainsMinCostMenu()}{maxTrainsMinCostMenu()}}
+{\footnotesize\ttfamily void Controller\+::max\+Trains\+Min\+Cost\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prompts the user to input the source and destination stations for finding the maximum amount of trains that can simultaneously travel between the two with minimum cost. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+E log V), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}\label{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}} 
+\index{Controller@{Controller}!maxTrainsNeededMenu@{maxTrainsNeededMenu}}
+\index{maxTrainsNeededMenu@{maxTrainsNeededMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{maxTrainsNeededMenu()}{maxTrainsNeededMenu()}}
+{\footnotesize\ttfamily void Controller\+::max\+Trains\+Needed\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the pairs of stations that require the most amount of trains to be scheduled between them. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(V$^\wedge$3 (V + E)), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_acbf6c3a17b5e2fc9d718f7eaf0677915}\label{class_controller_acbf6c3a17b5e2fc9d718f7eaf0677915}} 
+\index{Controller@{Controller}!maxTrainsOneTypeMenu@{maxTrainsOneTypeMenu}}
+\index{maxTrainsOneTypeMenu@{maxTrainsOneTypeMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{maxTrainsOneTypeMenu()}{maxTrainsOneTypeMenu()}}
+{\footnotesize\ttfamily void Controller\+::max\+Trains\+One\+Type\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+E$^\wedge$2 $\ast$ V), where E is the number of edges and V is the number of vertices in the graph 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a59174c30b2b0c7d72204769e8cb3266e}\label{class_controller_a59174c30b2b0c7d72204769e8cb3266e}} 
+\index{Controller@{Controller}!normalizeCamelCase@{normalizeCamelCase}}
+\index{normalizeCamelCase@{normalizeCamelCase}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{normalizeCamelCase()}{normalizeCamelCase()}}
+{\footnotesize\ttfamily std\+::string Controller\+::normalize\+Camel\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The camel case string to normalize \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normalized string with spaces between words. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n), where n is the length of the input string. 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}\label{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}} 
+\index{Controller@{Controller}!readNetwork@{readNetwork}}
+\index{readNetwork@{readNetwork}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{readNetwork()}{readNetwork()}}
+{\footnotesize\ttfamily void Controller\+::read\+Network (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+This function reads a CSV file with information about railway connections between stations and populates the \textquotesingle{}network\textquotesingle{} data structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the CSV file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n), where n is the number of lines in the CSV file 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_af0dc0ae28716e67627b54bebc6b8db61}\label{class_controller_af0dc0ae28716e67627b54bebc6b8db61}} 
+\index{Controller@{Controller}!readStations@{readStations}}
+\index{readStations@{readStations}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{readStations()}{readStations()}}
+{\footnotesize\ttfamily void Controller\+::read\+Stations (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+This function reads a CSV file with information about railway stations and populates the \textquotesingle{}stations\textquotesingle{} and \textquotesingle{}network\textquotesingle{} data structures. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the CSV file to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n), where n is the number of stations in the input file 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_af65d62bd77565df2b6017a21657ee5ef}\label{class_controller_af65d62bd77565df2b6017a21657ee5ef}} 
+\index{Controller@{Controller}!removeWhitespaceAndAccents@{removeWhitespaceAndAccents}}
+\index{removeWhitespaceAndAccents@{removeWhitespaceAndAccents}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{removeWhitespaceAndAccents()}{removeWhitespaceAndAccents()}}
+{\footnotesize\ttfamily void Controller\+::remove\+Whitespace\+And\+Accents (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Removes whitespace and accents from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to modify \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n), where n is the length of the input string 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}\label{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}} 
+\index{Controller@{Controller}!replaceWhitespace@{replaceWhitespace}}
+\index{replaceWhitespace@{replaceWhitespace}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{replaceWhitespace()}{replaceWhitespace()}}
+{\footnotesize\ttfamily void Controller\+::replace\+Whitespace (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{char}]{replacement }\end{DoxyParamCaption})}
+
+
+
+Replaces all whitespace characters in a string with a given character. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The input string to modify \\
+\hline
+{\em replacement} & The replacement character to use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(n), where n is the length of the input string 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_af5aea15b36c4a8eb6ed14570699b5596}\label{class_controller_af5aea15b36c4a8eb6ed14570699b5596}} 
+\index{Controller@{Controller}!topkTransportNeedsMenu@{topkTransportNeedsMenu}}
+\index{topkTransportNeedsMenu@{topkTransportNeedsMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{topkTransportNeedsMenu()}{topkTransportNeedsMenu()}}
+{\footnotesize\ttfamily void Controller\+::topk\+Transport\+Needs\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the top-\/k municipalities and districts with the highest transportation needs in the network. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(VlogV + E), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

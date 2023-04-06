@@ -11,25 +11,41 @@
 \DoxyCodeLine{8 }
 \DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_controller}{Controller}} \{}
 \DoxyCodeLine{10 \textcolor{keyword}{public}:}
-\DoxyCodeLine{11     \textcolor{keywordtype}{void} readStations(\textcolor{keyword}{const} std::string\& filename);}
-\DoxyCodeLine{12     \textcolor{keywordtype}{void} readNetwork(\textcolor{keyword}{const} std::string\& filename);}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14     \textcolor{keywordtype}{void} startMenu();}
-\DoxyCodeLine{15     \textcolor{keywordtype}{void} mainMenu();}
+\DoxyCodeLine{15     std::string \mbox{\hyperlink{class_controller_a59174c30b2b0c7d72204769e8cb3266e}{normalizeCamelCase}}(\textcolor{keyword}{const} std::string\& str);}
 \DoxyCodeLine{16 }
-\DoxyCodeLine{17     \textcolor{keywordtype}{void} maxFlowMenu();}
-\DoxyCodeLine{18     \textcolor{keywordtype}{void} maxTrainsNeededMenu();}
-\DoxyCodeLine{19     \textcolor{keywordtype}{void} topkTransportNeedsMenu();}
-\DoxyCodeLine{20     \textcolor{keywordtype}{void} maxSimultaneousTrainsMenu();}
-\DoxyCodeLine{21     \textcolor{keywordtype}{void} maxSimultaneousTrains(std::string targetStation);}
-\DoxyCodeLine{22     \textcolor{keywordtype}{void} maxTrainsMinCostMenu();}
-\DoxyCodeLine{23     }
-\DoxyCodeLine{24 \textcolor{keyword}{private}:}
-\DoxyCodeLine{25     std::unordered\_map<std::string, int> stations;}
-\DoxyCodeLine{26     \mbox{\hyperlink{class_graph}{Graph}} network;}
-\DoxyCodeLine{27 \};}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_af65d62bd77565df2b6017a21657ee5ef}{removeWhitespaceAndAccents}}(std::string\& str);}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}{replaceWhitespace}}(std::string\& str, \textcolor{keywordtype}{char} replacement);}
+\DoxyCodeLine{27 }
 \DoxyCodeLine{28 }
-\DoxyCodeLine{29 }
-\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO\_CONTROLLER\_H}}
+\DoxyCodeLine{32     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_af0dc0ae28716e67627b54bebc6b8db61}{readStations}}(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}{readNetwork}}(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{41     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_ab929f0564e2970c093e6eb3466c276b1}{startMenu}}();}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_a07ecd51cea1200ec1cbe53b105829e74}{mainMenu}}();}
+\DoxyCodeLine{45 }
+\DoxyCodeLine{46 }
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}{maxFlowMenu}}();}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{53     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}{maxTrainsNeededMenu}}();}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_af5aea15b36c4a8eb6ed14570699b5596}{topkTransportNeedsMenu}}();}
+\DoxyCodeLine{58 }
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_ab34ee9e911a4b8a2f78cb7b44a6156f6}{maxSimultaneousTrainsMenu}}();}
+\DoxyCodeLine{62 }
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_aaa9e47824ecccbbfb00e9e689674d289}{maxTrainsMinCostMenu}}();}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{69     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_controller_acbf6c3a17b5e2fc9d718f7eaf0677915}{maxTrainsOneTypeMenu}}();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{keyword}{private}:}
+\DoxyCodeLine{73     std::unordered\_map<std::string, int> stations;}
+\DoxyCodeLine{75     \mbox{\hyperlink{class_graph}{Graph}} network;}
+\DoxyCodeLine{76 \};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO\_CONTROLLER\_H}}
 
 \end{DoxyCode}

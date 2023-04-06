@@ -80,8 +80,8 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7c1ccdc28a63e7d1ff2374138e72239f"><td class="memItemLeft" align="right" valign="top"><a id="a7c1ccdc28a63e7d1ff2374138e72239f" name="a7c1ccdc28a63e7d1ff2374138e72239f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Edge</b> (<a class="el" href="class_vertex.html">Vertex</a> *orig, <a class="el" href="class_vertex.html">Vertex</a> *dest, double w, std::string service)</td></tr>
+<tr class="memitem:a7c1ccdc28a63e7d1ff2374138e72239f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edge.html#a7c1ccdc28a63e7d1ff2374138e72239f">Edge</a> (<a class="el" href="class_vertex.html">Vertex</a> *orig, <a class="el" href="class_vertex.html">Vertex</a> *dest, double w, std::string service)</td></tr>
+<tr class="memdesc:a7c1ccdc28a63e7d1ff2374138e72239f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Line between two stations.  <a href="class_edge.html#a7c1ccdc28a63e7d1ff2374138e72239f">More...</a><br /></td></tr>
 <tr class="separator:a7c1ccdc28a63e7d1ff2374138e72239f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cda44e9ba257b03963a1ac301371a59"><td class="memItemLeft" align="right" valign="top"><a id="a5cda44e9ba257b03963a1ac301371a59" name="a5cda44e9ba257b03963a1ac301371a59"></a>
 <a class="el" href="class_vertex.html">Vertex</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getDest</b> () const</td></tr>
@@ -153,6 +153,58 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>service</b></t
 int&#160;</td><td class="memItemRight" valign="bottom"><b>cost</b></td></tr>
 <tr class="separator:ad7099a9059c497bb6d6191b6257837cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7c1ccdc28a63e7d1ff2374138e72239f" name="a7c1ccdc28a63e7d1ff2374138e72239f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c1ccdc28a63e7d1ff2374138e72239f">&#9670;&#160;</a></span>Edge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Edge::Edge </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a> *&#160;</td>
+          <td class="paramname"><em>orig</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a> *&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>service</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Line between two stations. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">orig</td><td>The station of the origin </td></tr>
+    <tr><td class="paramname">dest</td><td>The station of destination </td></tr>
+    <tr><td class="paramname">w</td><td>The capacity (weight) of the edge </td></tr>
+    <tr><td class="paramname">service</td><td>The service type of the line </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_vertex_edge_8h_source.html">VertexEdge.h</a></li>
 <li>VertexEdge.cpp</li>

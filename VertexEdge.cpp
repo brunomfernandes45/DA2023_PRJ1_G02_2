@@ -2,10 +2,6 @@
 
 Vertex::Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line) : id(id), Station(name, district, municipality, township, line) {}
 
-/*
- * Auxiliary function to add an outgoing edge to a vertex (this),
- * with a given destination vertex (d) and edge capacity (w).
- */
 Edge * Vertex::addEdge(Vertex *d, double w, std::string s) {
     auto newEdge = new Edge(this, d, w, s);
     adj.push_back(newEdge);
@@ -13,11 +9,6 @@ Edge * Vertex::addEdge(Vertex *d, double w, std::string s) {
     return newEdge;
 }
 
-/*
- * Auxiliary function to remove an outgoing edge (with a given destination (d))
- * from a vertex (this).
- * Returns true if successful, and false if such edge does not exist.
- */
 bool Vertex::removeEdge(int destID) {
     bool removedEdge = false;
     auto it = adj.begin();
@@ -110,9 +101,9 @@ void Vertex::setPath(Edge *path) {
 /********************** Edge  ****************************/
 
 Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(s){
-    cost=0;
-    if(service=="STANDARD")cost=2;
-    else if(service=="ALFA-PENDULAR")cost=4;
+    cost = 0;
+    if (service == "STANDARD") cost=2;
+    else if (service == "ALFA-PENDULAR") cost=4;
 }
 
 Vertex * Edge::getDest() const {
@@ -142,7 +133,6 @@ double Edge::getFlow() const {
 std::string Edge::getService() const {
     return this->service;
 }
-
 
 void Edge::setSelected(bool selected) {
     this->selected = selected;

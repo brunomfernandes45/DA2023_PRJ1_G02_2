@@ -3,12 +3,6 @@
 
 #include <vector>
 
-
-
-/**
- * class T must have: (i) accessible field int queueIndex; (ii) operator< defined.
- */
-
 template <class T>
 class MutablePriorityQueue {
     std::vector<T *> H;
@@ -21,19 +15,15 @@ public:
     T * extractMin();
     void decreaseKey(T * x);
     bool empty();
-
     bool inQueue(T *elem) const;
 };
 
-// Index calculations
 #define parent(i) ((i) / 2)
 #define leftChild(i) ((i) * 2)
 
 template <class T>
 MutablePriorityQueue<T>::MutablePriorityQueue() {
     H.push_back(nullptr);
-    // indices will be used starting in 1
-    // to facilitate parent/child calculations
 }
 
 template <class T>
@@ -77,12 +67,9 @@ void MutablePriorityQueue<T>::heapifyDown(unsigned i) {
     auto x = H[i];
     while (true) {
         unsigned k = leftChild(i);
-        if (k >= H.size())
-            break;
-        if (k+1 < H.size() && *H[k+1] < *H[k])
-            ++k; // right child of i
-        if ( ! (*H[k] < *x) )
-            break;
+        if (k >= H.size()) break;
+        if (k+1 < H.size() && *H[k+1] < *H[k]) ++k;
+        if ( ! (*H[k] < *x) ) break;
         set(i, H[k]);
         i = k;
     }
@@ -98,9 +85,7 @@ void MutablePriorityQueue<T>::set(unsigned i, T * x) {
 template <typename T>
 bool MutablePriorityQueue<T>::inQueue(T *elem) const {
     for (const auto &i: H) {
-        if (i == elem) {
-            return true;
-        }
+        if (i == elem) return true;
     }
     return false;
 }

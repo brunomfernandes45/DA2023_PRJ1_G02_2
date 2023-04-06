@@ -19,27 +19,18 @@ void clearScreen() {
 
 
 std::string Controller::normalizeCamelCase(const std::string& str) {
-    // Create a new string to store the normalized result
     std::string result;
-
-    // Append the first character to the result string
     result += str[0];
 
-    // Iterate through the rest of the string
     for (int i = 1; i < str.length(); i++) {
-        // If the current character is uppercase, insert a space before it
-        if (std::isupper(str[i])) {
-            result += ' '; // Insert a space
-        }
-        // Append the current character to the result string
+        if (std::isupper(str[i])) result += ' ';
         result += str[i];
     }
 
-    // Copy the normalized result back to the original string
     return result;
 }
 
-void Controller::removeWhitespace(std::string& str) {
+void Controller::removeWhitespaceAndAccents(std::string& str) {
     static const std::unordered_map<std::string, std::string> accents = {
             {"À", "A"}, {"Á", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ç", "C"}, {"È", "E"},
             {"É", "E"}, {"Ê", "E"}, {"Ì", "I"}, {"Í", "I"}, {"Î", "I"}, {"Ò", "O"},
@@ -48,6 +39,7 @@ void Controller::removeWhitespace(std::string& str) {
             {"ê", "e"}, {"ì", "i"}, {"í", "i"}, {"î", "i"}, {"ò", "o"}, {"ó", "o"},
             {"ô", "o"}, {"õ", "o"}, {"ù", "u"}, {"ú", "u"}
     };
+
     auto it = str.begin();
     while (it != str.end()) {
         if (isspace(*it) && (it == str.begin() || isspace(*(it - 1)))) {
@@ -60,9 +52,7 @@ void Controller::removeWhitespace(std::string& str) {
             if (pos != accents.end()) {
                 str.replace(it, it + 1, pos->second);
                 it += pos->second.length();
-            } else {
-                ++it;
-            }
+            } else ++it;
         }
     }
 }
@@ -81,18 +71,90 @@ void Controller::replaceWhitespace(std::string& str, char replacement) {
 }
 
 
+void Controller::readStations(const std::string& filename) {
+    std::ifstream ifs(filename);
+    if (!ifs.is_open()) {
+        std::cerr << "Error opening file " << filename << std::endl;
+        exit(1);
+    }
+
+    int id = 0;
+    std::string line;
+    std::getline(ifs, line);
+
+    while (std::getline(ifs, line)) {
+        std::istringstream iss(line);
+        std::string name, district, municipality, township, stationLine;
+
+        std::getline(iss, name, ',');
+        std::getline(iss, district, ',');
+        std::getline(iss, municipality, ',');
+        std::getline(iss, township, ',');
+        std::getline(iss, stationLine);
+
+        removeWhitespaceAndAccents(name);
+        removeWhitespaceAndAccents(district);
+        removeWhitespaceAndAccents(municipality);
+        removeWhitespaceAndAccents(township);
+        removeWhitespaceAndAccents(stationLine);
+
+        if (name.empty() && district.empty() && municipality.empty() && township.empty() && stationLine.empty())
+            continue;
+
+        if (stations.find(name) == stations.end()) {
+            stations.insert({name, id});
+            network.addVertex(id++, name, district, municipality, township, stationLine);
+        }
+    }
+}
+
+void Controller::readNetwork(const std::string& filename) {
+    std::ifstream ifs(filename);
+    if (!ifs.is_open()) {
+        std::cerr << "Error opening file " << filename << std::endl;
+        exit(1);
+    }
+
+    std::string line;
+    std::getline(ifs, line);
+
+    while (std::getline(ifs, line)) {
+        std::istringstream iss(line);
+        std::string stationA, stationB, capacity, service;
+
+        std::getline(iss, stationA, ',');
+        std::getline(iss, stationB, ',');
+        std::getline(iss, capacity, ',');
+        std::getline(iss, service);
+
+        removeWhitespaceAndAccents(stationA);
+        removeWhitespaceAndAccents(stationB);
+        replaceWhitespace(service,'-');
+
+        if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
+            continue;
+
+        network.addBidirectionalEdge(stations[stationA], stations[stationB], std::stod(capacity), service);
+    }
+}
+
+
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
+
     std::vector options = { "Read standard files", "Read other files", "Read demo files" };
     for(int i = 1; i <= options.size(); i++){
         std::cout << i << ". " << options[i - 1] << "\n";
     }
+
     std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
+
     std::string stationsFile = "../", networkFile = "../", aux, fs, fn;
+
     switch (option) {
         case 0:
             return;
@@ -128,6 +190,7 @@ void Controller::startMenu() {
             readNetwork(networkFile);
             mainMenu();
             return;
+
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -143,6 +206,7 @@ void Controller::startMenu() {
 void Controller::mainMenu(){
     clearScreen();
     std::cout << "\t\t**Main Menu**\n\n";
+
     std::vector options = { "Discover the maximum number of trains that can simultaneously travel between two stations;",
                             "Determine which pairs of stations require the most amount of trains;",
                             "Discover the top-k municipalities and districts regarding their transportation needs;",
@@ -154,11 +218,13 @@ void Controller::mainMenu(){
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
+
     std::cout << "0. Exit.\n";
     unsigned int option;
     std::cout << "Select an option: ";
     std::cin >> option;
     std::string aux;
+
     switch (option) {
         case 0:
             return;
@@ -200,79 +266,6 @@ void Controller::mainMenu(){
             std::cin >> aux;
             mainMenu();
             return;
-
-    }
-}
-
-
-void Controller::readStations(const std::string& filename) {
-    std::ifstream ifs(filename);
-
-    if (!ifs.is_open()) {
-        std::cerr << "Error opening file " << filename << std::endl;
-        exit(1);
-    }
-
-    int id = 0;
-    std::string line;
-
-    std::getline(ifs, line);
-
-    while (std::getline(ifs, line)) {
-        std::istringstream iss(line);
-        std::string name, district, municipality, township, stationLine;
-
-        std::getline(iss, name, ',');
-        std::getline(iss, district, ',');
-        std::getline(iss, municipality, ',');
-        std::getline(iss, township, ',');
-        std::getline(iss, stationLine);
-
-        removeWhitespace(name);
-        removeWhitespace(district);
-        removeWhitespace(municipality);
-        removeWhitespace(township);
-        removeWhitespace(stationLine);
-
-        if (name.empty() && district.empty() && municipality.empty() && township.empty() && stationLine.empty())
-            continue;
-
-        if (stations.find(name) == stations.end()) {
-            stations.insert({name, id});
-            network.addVertex(id++, name, district, municipality, township, stationLine);
-        }
-    }
-
-}
-
-void Controller::readNetwork(const std::string& filename) {
-    std::ifstream ifs(filename);
-
-    if (!ifs.is_open()) {
-        std::cerr << "Error opening file " << filename << std::endl;
-        exit(1);
-    }
-
-    std::string line;
-    std::getline(ifs, line);
-
-    while (std::getline(ifs, line)) {
-        std::istringstream iss(line);
-        std::string stationA, stationB, capacity, service;
-
-        std::getline(iss, stationA, ',');
-        std::getline(iss, stationB, ',');
-        std::getline(iss, capacity, ',');
-        std::getline(iss, service);
-
-        removeWhitespace(stationA);
-        removeWhitespace(stationB);
-        replaceWhitespace(service,'-');
-
-        if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
-            continue;
-
-        network.addBidirectionalEdge(stations[stationA], stations[stationB], std::stod(capacity), service);
     }
 }
 
@@ -285,6 +278,7 @@ void Controller::maxFlowMenu() {
     std::cout << "Destination station: ";
     std::cin >> stationB;
     clearScreen();
+
     if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
         std::cout << "ERROR: Invalid station(s)!\n";
         std::cout << "(Press any key + Enter to continue)\n";
@@ -293,9 +287,11 @@ void Controller::maxFlowMenu() {
         maxFlowMenu();
         return;
     }
+
     double mf = network.edmondsKarp(stations[stationA], stations[stationB]);
-    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << "!\n";
+    if ( mf == 0 ) std::cout << "There is no path between " << stationA << " and " << stationB << "!\n";
     else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << mf << "\n";
+
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -307,12 +303,15 @@ void Controller::maxTrainsNeededMenu(){
     std::pair<int, std::vector<std::pair<std::string, std::string>>> res = network.maxTrainsNeeded();
     int maxFlow = res.first;
     std::vector<std::pair<std::string, std::string>> maxFlowStations = res.second;
+
     std::cout << "Max flow: " << maxFlow << std::endl;
     std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
+
     for (const auto &p : maxFlowStations) {
         std::cout << "(" << normalizeCamelCase(p.first) << ", " << normalizeCamelCase(p.second) << ")\n";
     }
     std::cout << std::endl;
+
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -321,10 +320,12 @@ void Controller::maxTrainsNeededMenu(){
 
 void Controller::topkTransportNeedsMenu(){
     std::cout << "\t\t**Top-k Municipalities and Districts Regarding their Transportation Needs**\n\n";
+
     int k;
     std::cout << "Enter the value of k: ";
     std::cin >> k;
     network.topkTransportNeeds(k);
+
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -361,6 +362,7 @@ void Controller::maxTrainsMinCostMenu(){
     std::cout << "Destination station: ";
     std::cin >> stationB;
     clearScreen();
+
     if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
         std::cout << "ERROR: Invalid station(s)!\n";
         std::cout << "(Press any key + Enter to continue)\n";
@@ -369,7 +371,9 @@ void Controller::maxTrainsMinCostMenu(){
         maxTrainsMinCostMenu();
         return;
     }
+
     network.maxTrainsMinCost(stationA, stationB);
+
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -386,6 +390,7 @@ void Controller::maxTrainsOneTypeMenu() {
     std::cout << "Service: ";
     std::cin >> service;
     clearScreen();
+
     if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
         std::cout << "ERROR: Invalid station(s)!\n";
         std::cout << "(Press any key + Enter to continue)\n";
@@ -394,6 +399,7 @@ void Controller::maxTrainsOneTypeMenu() {
         maxTrainsOneTypeMenu();
         return;
     }
+
     if (service!="STANDARD" && service!="ALFA-PENDULAR"){
         std::cout << "ERROR: Invalid service!\n";
         std::cout << "The service must be either STANDARD or ALFA-PENDULAR.\n";
@@ -403,9 +409,14 @@ void Controller::maxTrainsOneTypeMenu() {
         maxTrainsOneTypeMenu();
         return;
     }
+
     double mf = network.edmondsKarpService(stations[stationA], stations[stationB], service);
-    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << " using only the " << service << " service.\n";
-    else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << " using only the " << service << " service: "  << mf << "\n";
+
+    if ( mf == 0 )
+        std::cout << "There is no path between " << stationA << " and " << stationB << " using only the " << service << " service.\n";
+    else
+        std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << " using only the " << service << " service: "  << mf << "\n";
+
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

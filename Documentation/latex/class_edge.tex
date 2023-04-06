@@ -3,9 +3,8 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_edge_a7c1ccdc28a63e7d1ff2374138e72239f}\label{class_edge_a7c1ccdc28a63e7d1ff2374138e72239f}} 
-{\bfseries Edge} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$orig, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest, double w, std\+::string service)
-\item 
+\mbox{\hyperlink{class_edge_a7c1ccdc28a63e7d1ff2374138e72239f}{Edge}} (\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$orig, \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$dest, double w, std\+::string service)
+\begin{DoxyCompactList}\small\item\em Line between two stations. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{class_edge_a5cda44e9ba257b03963a1ac301371a59}\label{class_edge_a5cda44e9ba257b03963a1ac301371a59}} 
 \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries get\+Dest} () const
 \item 
@@ -75,6 +74,30 @@ std\+::string {\bfseries service}
 \mbox{\Hypertarget{class_edge_ad7099a9059c497bb6d6191b6257837cf}\label{class_edge_ad7099a9059c497bb6d6191b6257837cf}} 
 int {\bfseries cost}
 \end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_edge_a7c1ccdc28a63e7d1ff2374138e72239f}\label{class_edge_a7c1ccdc28a63e7d1ff2374138e72239f}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\doxysubsubsection{\texorpdfstring{Edge()}{Edge()}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{orig,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$}]{dest,  }\item[{double}]{w,  }\item[{std\+::string}]{service }\end{DoxyParamCaption})}
+
+
+
+Line between two stations. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em orig} & The station of the origin \\
+\hline
+{\em dest} & The station of destination \\
+\hline
+{\em w} & The capacity (weight) of the edge \\
+\hline
+{\em service} & The service type of the line \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

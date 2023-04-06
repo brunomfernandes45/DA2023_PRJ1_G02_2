@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['graph_0',['Graph',['../class_graph.html',1,'']]]
+  ['controller_0',['Controller',['../class_controller.html',1,'']]]
 ];
