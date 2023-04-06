@@ -80,7 +80,6 @@ void replaceWhitespace(std::string& str, char replacement) {
     }
 }
 
-
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";

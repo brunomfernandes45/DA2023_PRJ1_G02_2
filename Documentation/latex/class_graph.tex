@@ -1,0 +1,71 @@
+\hypertarget{class_graph}{}\doxysection{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a089f7fc73ea9976295d387846ad36c69}\label{class_graph_a089f7fc73ea9976295d387846ad36c69}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries find\+Vertex} (const int \&id) const
+\item 
+\mbox{\Hypertarget{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}\label{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}} 
+bool {\bfseries add\+Vertex} (const int \&id, std\+::string name, std\+::string district, std\+::string municipality, std\+::string township, std\+::string line)
+\item 
+\mbox{\Hypertarget{class_graph_a4ed31cd4f168849c347ab13236bb9443}\label{class_graph_a4ed31cd4f168849c347ab13236bb9443}} 
+bool {\bfseries add\+Edge} (const int \&source, const int \&dest, double w, std\+::string s)
+\item 
+\mbox{\Hypertarget{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}\label{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}} 
+bool {\bfseries add\+Bidirectional\+Edge} (const int \&source, const int \&dest, double w, std\+::string s)
+\item 
+\mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
+bool {\bfseries remove\+Vertex} (const int \&id)
+\item 
+\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries get\+Vertex\+Set} () const
+\item 
+\mbox{\Hypertarget{class_graph_addca30806740b33888a252739c09d87f}\label{class_graph_addca30806740b33888a252739c09d87f}} 
+double {\bfseries edmonds\+Karp} (const int \&source, const int \&dest)
+\item 
+\mbox{\Hypertarget{class_graph_aa5a0a544d71f09620f34505a2b2c0f2c}\label{class_graph_aa5a0a544d71f09620f34505a2b2c0f2c}} 
+bool {\bfseries bfs\+\_\+edmonds\+Karp} (\mbox{\hyperlink{class_vertex}{Vertex}} \&source, \mbox{\hyperlink{class_vertex}{Vertex}} \&dest)
+\item 
+\mbox{\Hypertarget{class_graph_a5e660c53a1c689eb609f1b6b50825ef5}\label{class_graph_a5e660c53a1c689eb609f1b6b50825ef5}} 
+void {\bfseries reset\+Flows} ()
+\item 
+\mbox{\Hypertarget{class_graph_a5628d9c6b374cd461b0c4e782554b1da}\label{class_graph_a5628d9c6b374cd461b0c4e782554b1da}} 
+std\+::pair$<$ int, std\+::vector$<$ std\+::pair$<$ std\+::string, std\+::string $>$ $>$ $>$ {\bfseries max\+Trains\+Needed} ()
+\item 
+\mbox{\Hypertarget{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}\label{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}} 
+void {\bfseries topk\+Transport\+Needs} (int k)
+\item 
+\mbox{\Hypertarget{class_graph_a0d94aed6df69037749ea1e2ddbdc81b7}\label{class_graph_a0d94aed6df69037749ea1e2ddbdc81b7}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries dijkstra} (const int \&origin, const int \&dest)
+\item 
+\mbox{\Hypertarget{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}\label{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}} 
+void {\bfseries max\+Simultaneous\+Trains} (std\+::string station\+Name)
+\item 
+\mbox{\Hypertarget{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}\label{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}} 
+\mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ {\bfseries find\+Vertex\+By\+Name} (const std\+::string \&name) const
+\item 
+\mbox{\Hypertarget{class_graph_a5bf1ed719a6a352f7650250122ac9d89}\label{class_graph_a5bf1ed719a6a352f7650250122ac9d89}} 
+void {\bfseries max\+Trains\+Min\+Cost} (const std\+::string \&src\+Name, const std\+::string \&dest\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_a7dfcef08a9286cf144902cd7e56940ee}\label{class_graph_a7dfcef08a9286cf144902cd7e56940ee}} 
+int {\bfseries find\+Vertex\+Idx} (const int \&id) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}\label{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}} 
+std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries vertex\+Set}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Graph.\+h\item 
+Graph.\+cpp\end{DoxyCompactItemize}

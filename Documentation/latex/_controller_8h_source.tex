@@ -1,0 +1,35 @@
+\hypertarget{_controller_8h_source}{}\doxysection{Controller.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef PROJETO\_CONTROLLER\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define PROJETO\_CONTROLLER\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include "{}Graph.h"{}}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <unordered\_map>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_controller}{Controller}} \{}
+\DoxyCodeLine{10 \textcolor{keyword}{public}:}
+\DoxyCodeLine{11     \textcolor{keywordtype}{void} readStations(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{12     \textcolor{keywordtype}{void} readNetwork(\textcolor{keyword}{const} std::string\& filename);}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     \textcolor{keywordtype}{void} startMenu();}
+\DoxyCodeLine{15     \textcolor{keywordtype}{void} mainMenu();}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     \textcolor{keywordtype}{void} maxFlowMenu();}
+\DoxyCodeLine{18     \textcolor{keywordtype}{void} maxTrainsNeededMenu();}
+\DoxyCodeLine{19     \textcolor{keywordtype}{void} topkTransportNeedsMenu();}
+\DoxyCodeLine{20     \textcolor{keywordtype}{void} maxSimultaneousTrainsMenu();}
+\DoxyCodeLine{21     \textcolor{keywordtype}{void} maxSimultaneousTrains(std::string targetStation);}
+\DoxyCodeLine{22     \textcolor{keywordtype}{void} maxTrainsMinCostMenu();}
+\DoxyCodeLine{23     }
+\DoxyCodeLine{24 \textcolor{keyword}{private}:}
+\DoxyCodeLine{25     std::unordered\_map<std::string, int> stations;}
+\DoxyCodeLine{26     \mbox{\hyperlink{class_graph}{Graph}} network;}
+\DoxyCodeLine{27 \};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//PROJETO\_CONTROLLER\_H}}
+
+\end{DoxyCode}
