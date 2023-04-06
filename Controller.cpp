@@ -174,6 +174,10 @@ void Controller::mainMenu(){
             maxTrainsMinCostMenu();
             return;
 
+        case 6:
+            clearScreen();
+            maxTrainsOneTypeMenu();
+            return;
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -274,8 +278,9 @@ void Controller::maxFlowMenu() {
         maxFlowMenu();
         return;
     }
-
-    std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << network.edmondsKarp(stations[stationA], stations[stationB]) << "\n";
+    double mf = network.edmondsKarp(stations[stationA], stations[stationB]);
+    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << "!\n";
+    else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << mf << "\n";
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -373,6 +378,42 @@ void Controller::maxTrainsMinCostMenu(){
         return;
     }
     network.maxTrainsMinCost(stationA, stationB);
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+void Controller::maxTrainsOneTypeMenu() {
+    std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Only One Type of Service**\n\n";
+    std::string stationA, stationB, service;
+    std::cout << "Source station: ";
+    std::cin >> stationA;
+    std::cout << "Destination station: ";
+    std::cin >> stationB;
+    std::cout << "Service: ";
+    std::cin >> service;
+    clearScreen();
+    if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxTrainsOneTypeMenu();
+        return;
+    }
+    if (service!="STANDARD" && service!="ALFA-PENDULAR"){
+        std::cout << "ERROR: Invalid service!\n";
+        std::cout << "The service must be either STANDARD or ALFA-PENDULAR.\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxTrainsOneTypeMenu();
+        return;
+    }
+    double mf = network.edmondsKarpService(stations[stationA], stations[stationB], service);
+    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << " using only the " << service << " service.\n";
+    else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << " using only the " << service << " service: "  << mf << "\n";
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
