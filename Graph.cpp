@@ -279,30 +279,17 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
         return;
     }
 
-    // Run Dijkstra's algorithm to find the shortest path between the two stations
     std::vector<Vertex*> path = dijkstra(s -> getId(), t -> getId());
     if (path.empty()) {
         std::cout << "No path found between source and destination stations\n";
         return;
     }
 
-    // Sort the edges based on cost per train
-    /*
-    std::sort(path.begin() + 1, path.end(), [](Vertex* a, Vertex* b) {
-        Edge* e1 = a->getPath();
-        Edge* e2 = b->getPath();
-        double cost_per_train_1 = e1->getCost() / e1->getCapacity();
-        double cost_per_train_2 = e2->getCost() / e2->getCapacity();
-        return cost_per_train_1 < cost_per_train_2;
-    });*/
-
-    // Find the maximum number of trains that can travel simultaneously with the minimum cost
     int max_trains = std::numeric_limits<int>::max();
     double cost = 0;
     for (auto v : path) {
         Edge* e = v->getPath();
         if (e == nullptr) {
-            // There is no path between the source and destination vertices
             std::cout << "No path found between source and destination stations\n";
             return;
         }
@@ -334,6 +321,59 @@ bool Graph::removeVertex(const int &id) {
         }
     }
     return false;
+}
+
+bool Graph::bfs_service(Vertex &s, Vertex &t, std::string service) {
+    for (Vertex* v : vertexSet) {
+        v->setVisited(false);
+        v->setDist(std::numeric_limits<double>::infinity());
+        v->setPath(nullptr);
+    }
+    s.setVisited(true);
+    s.setDist(0);
+    std::deque<Vertex *> q;
+    q.push_back(&s);
+    while (!q.empty()) {
+        Vertex *u = q.front();
+        q.pop_front();
+        for (Edge *e: u->getAdj()) {
+            Vertex *v = e->getDest();
+            if (!v->isVisited() && e->getCapacity() > e->getFlow() && e->getService() == service) {
+                v->setVisited(true);
+                v->setPath(e);
+                if (v == &t) return true;
+                q.push_back(v);
+            }
+        }
+    }
+    return false;
+}
+
+double Graph::edmondsKarpService(const int &source, const int &dest, std::string service) {
+    Vertex* s = findVertex(source);
+    Vertex* t = findVertex(dest);
+    if (s == nullptr || t == nullptr)
+        return 0;
+    resetFlows();
+    double maxFlow = 0;
+    while (bfs_service(*s, *t,service)) {
+        double pathFlow = INF;
+        Vertex* v = t;
+        while (v->getPath() != nullptr) {
+            Edge* e = v->getPath();
+            pathFlow = std::min(pathFlow, e->getCapacity() - e->getFlow());
+            v = e->getOrig();
+        }
+        v = t;
+        while (v->getPath() != nullptr) {
+            Edge* e = v->getPath();
+            e->setFlow(e->getFlow() + pathFlow);
+            e->getReverse()->setFlow(e->getReverse()->getFlow() - pathFlow);
+            v = e->getOrig();
+        }
+        maxFlow += pathFlow;
+    }
+    return maxFlow;
 }
 
 

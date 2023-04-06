@@ -20,7 +20,8 @@ public:
     void maxSimultaneousTrainsMenu();
     void maxSimultaneousTrains(std::string targetStation);
     void maxTrainsMinCostMenu();
-    
+    void maxTrainsOneTypeMenu();
+
 private:
     std::unordered_map<std::string, int> stations;
     Graph network;

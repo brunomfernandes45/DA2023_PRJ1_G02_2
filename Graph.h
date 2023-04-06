@@ -21,7 +21,9 @@ public:
     std::vector<Vertex *> getVertexSet() const;
 
     double edmondsKarp(const int &source, const int &dest);
-    bool bfs_edmondsKarp(Vertex& source, Vertex& dest);
+    double edmondsKarpService(const int &source, const int &dest, std::string service);
+    bool bfs_edmondsKarp(Vertex& s, Vertex& t);
+    bool bfs_service(Vertex& source, Vertex& dest, std::string service);
     void resetFlows();
 
     std::pair<int, std::vector<std::pair<std::string, std::string>>> maxTrainsNeeded();
