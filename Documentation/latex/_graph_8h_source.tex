@@ -12,36 +12,51 @@
 \DoxyCodeLine{9 \textcolor{keyword}{public}:}
 \DoxyCodeLine{10     \textcolor{comment}{// \string~Graph();}}
 \DoxyCodeLine{11 }
-\DoxyCodeLine{12     \mbox{\hyperlink{class_vertex}{Vertex}} *findVertex(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id})\textcolor{keyword}{const};}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14     \textcolor{keywordtype}{bool} addVertex(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}, std::string name, std::string district, std::string municipality, std::string township, std::string line);}
-\DoxyCodeLine{15 }
-\DoxyCodeLine{16     \textcolor{keywordtype}{bool} addEdge(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string s);}
-\DoxyCodeLine{17     \textcolor{keywordtype}{bool} addBidirectionalEdge(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string s);}
-\DoxyCodeLine{18     \textcolor{keywordtype}{bool} removeVertex(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20     \textcolor{keywordtype}{int} getNumVertex() \textcolor{keyword}{const};}
-\DoxyCodeLine{21     std::vector<Vertex *> getVertexSet() \textcolor{keyword}{const};}
-\DoxyCodeLine{22 }
-\DoxyCodeLine{23     \textcolor{keywordtype}{double} edmondsKarp(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest);}
-\DoxyCodeLine{24     \textcolor{keywordtype}{bool} bfs\_edmondsKarp(\mbox{\hyperlink{class_vertex}{Vertex}}\& source, \mbox{\hyperlink{class_vertex}{Vertex}}\& dest);}
-\DoxyCodeLine{25     \textcolor{keywordtype}{void} resetFlows();}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     std::pair<int, std::vector<std::pair<std::string, std::string>>> maxTrainsNeeded();}
-\DoxyCodeLine{28 }
-\DoxyCodeLine{29     \textcolor{keywordtype}{void} topkTransportNeeds(\textcolor{keywordtype}{int} k);}
-\DoxyCodeLine{30 }
-\DoxyCodeLine{31     std::vector<Vertex*> dijkstra(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&origin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest);}
-\DoxyCodeLine{32     \textcolor{keywordtype}{void} maxSimultaneousTrains(std::string stationName);}
-\DoxyCodeLine{33 }
-\DoxyCodeLine{34     \mbox{\hyperlink{class_vertex}{Vertex}}* findVertexByName(\textcolor{keyword}{const} std::string\& name) \textcolor{keyword}{const};}
-\DoxyCodeLine{35 }
-\DoxyCodeLine{36 }
-\DoxyCodeLine{37     \textcolor{keywordtype}{void} maxTrainsMinCost(\textcolor{keyword}{const} std::string\& srcName, \textcolor{keyword}{const} std::string\& destName);}
-\DoxyCodeLine{38 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{39     std::vector<Vertex *> vertexSet;}
-\DoxyCodeLine{40     \textcolor{keywordtype}{int} findVertexIdx(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
-\DoxyCodeLine{41 \};}
-\DoxyCodeLine{42 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA2023\_PRJ1\_G02\_2\_GRAPH\_H}}
+\DoxyCodeLine{15     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{getNumVertex}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{20     std::vector<Vertex *> \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{getVertexSet}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{26     \mbox{\hyperlink{class_vertex}{Vertex}} *\mbox{\hyperlink{class_graph_a089f7fc73ea9976295d387846ad36c69}{findVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id})\textcolor{keyword}{const};}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{37     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}{addVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}, std::string name, std::string district, std::string municipality, std::string township, std::string line);}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} addEdge(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string s);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{48     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}{addBidirectionalEdge}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, \textcolor{keywordtype}{double} w, std::string s);}
+\DoxyCodeLine{49 }
+\DoxyCodeLine{50 }
+\DoxyCodeLine{56     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_addca30806740b33888a252739c09d87f}{edmondsKarp}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest);}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{63     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a3e68eb313142a67c796c05e65e79d7e6}{bfs\_edmondsKarp}}(\mbox{\hyperlink{class_vertex}{Vertex}}\& s, \mbox{\hyperlink{class_vertex}{Vertex}}\& t);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{67     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a5e660c53a1c689eb609f1b6b50825ef5}{resetFlows}}();}
+\DoxyCodeLine{68 }
+\DoxyCodeLine{72     std::pair<int, std::vector<std::pair<std::string, std::string>>> \mbox{\hyperlink{class_graph_a5628d9c6b374cd461b0c4e782554b1da}{maxTrainsNeeded}}();}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{78     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}{topkTransportNeeds}}(\textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80 }
+\DoxyCodeLine{86     std::vector<Vertex*> \mbox{\hyperlink{class_graph_a0d94aed6df69037749ea1e2ddbdc81b7}{dijkstra}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&origin, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest);}
+\DoxyCodeLine{87 }
+\DoxyCodeLine{92     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{removeVertex}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id});}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{97     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}{maxSimultaneousTrains}}(std::string stationName);}
+\DoxyCodeLine{98 }
+\DoxyCodeLine{99 }
+\DoxyCodeLine{104     \mbox{\hyperlink{class_vertex}{Vertex}}* \mbox{\hyperlink{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}{findVertexByName}}(\textcolor{keyword}{const} std::string\& name) \textcolor{keyword}{const};}
+\DoxyCodeLine{105 }
+\DoxyCodeLine{111     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_graph_a5bf1ed719a6a352f7650250122ac9d89}{maxTrainsMinCost}}(\textcolor{keyword}{const} std::string\& srcName, \textcolor{keyword}{const} std::string\& destName);}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 }
+\DoxyCodeLine{120     \textcolor{keywordtype}{double} \mbox{\hyperlink{class_graph_a5524220a30306dd859a4a00ce2b7a288}{edmondsKarpService}}(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&source, \textcolor{keyword}{const} \textcolor{keywordtype}{int} \&dest, std::string service);}
+\DoxyCodeLine{121 }
+\DoxyCodeLine{128     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_graph_a0d4def9dc8a86eed2aaee95af57f03e6}{bfs\_service}}(\mbox{\hyperlink{class_vertex}{Vertex}}\& source, \mbox{\hyperlink{class_vertex}{Vertex}}\& dest, std::string service);}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{132     std::vector<Vertex *> \mbox{\hyperlink{class_graph_aa9b0a6d8ad43c5eabaca5a7140bcc8b6}{vertexSet}};}
+\DoxyCodeLine{133     \textcolor{keywordtype}{int} findVertexIdx(\textcolor{keyword}{const} \textcolor{keywordtype}{int} \&\textcolor{keywordtype}{id}) \textcolor{keyword}{const};}
+\DoxyCodeLine{134 \};}
+\DoxyCodeLine{135 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA2023\_PRJ1\_G02\_2\_GRAPH\_H}}
 
 \end{DoxyCode}

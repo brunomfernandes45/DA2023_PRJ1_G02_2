@@ -15,8 +15,15 @@ class Edge;
 
 class Vertex: public Station{
 public:
+    ///@brief A station in the network.
+    ///@param id The id of the station
+    ///@param name The name of the station
+    ///@param district The district of the station
+    ///@param municipality The municipality of the station
+    ///@param township The township of the station
+    ///@param line The line of the station
     Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
-    bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
+    bool operator<(Vertex & vertex) const;
 
     int getId() const;
     std::vector<Edge *> getAdj() const;
@@ -33,25 +40,22 @@ public:
     void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge *path);
+
     Edge * addEdge(Vertex *dest, double w, std::string s);
     bool removeEdge(int destID);
 
     friend class MutablePriorityQueue<Vertex>;
 
 protected:
-    int id;                // identifier
-    std::vector<Edge *> adj;  // outgoing edges
-
-    // auxiliary fields
-    bool visited = false; // used by DFS, BFS, Prim ...
-    bool processing = false; // used by isDAG (in addition to the visited attribute)
-    unsigned int indegree; // used by topsort
+    int id;
+    std::vector<Edge *> adj;
+    bool visited = false;
+    bool processing = false;
+    unsigned int indegree;
     double dist = 0;
     Edge *path = nullptr;
-
-    std::vector<Edge *> incoming; // incoming edges
-
-    int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
+    std::vector<Edge *> incoming;
+    int queueIndex = 0;
 
 };
 
@@ -59,6 +63,11 @@ protected:
 
 class Edge {
 public:
+    ///@brief Line between two stations.
+    ///@param orig The station of the origin
+    ///@param dest The station of destination
+    ///@param w The capacity (weight) of the edge
+    ///@param service The service type of the line
     Edge(Vertex *orig, Vertex *dest, double w, std::string service);
 
     Vertex * getDest() const;
@@ -77,21 +86,16 @@ public:
     void setIsReverse(bool c);
 
 protected:
-    Vertex * dest; // destination vertex
-    double capacity; // edge capacity, can also be used for capacity
-
-    // auxiliary fields
+    Vertex * dest;
+    double capacity;
     bool selected = false;
-
-    // used for bidirectional edges
     Vertex *orig;
     Edge *reverse = nullptr;
     bool isreverse;
-    double flow; // for flow-related problems
+    double flow;
     std::string service;
     int cost;
 };
-
 
 
 #endif //DA2023_PRJ1_G02_2_VERTEXEDGE_H
