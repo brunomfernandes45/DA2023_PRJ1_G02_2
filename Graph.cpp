@@ -5,7 +5,7 @@
 #include <vector>
 #include <limits>
 #include <queue>
-#include <cmath>
+
 
 int Graph::getNumVertex() const {
     return vertexSet.size();
@@ -277,17 +277,13 @@ Vertex* Graph::findVertexByName(const std::string& name) const {
 }
 
 
-void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) const {
+void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) {
     // Find the source and destination vertices
     Vertex* s = findVertexByName(srcName);
     Vertex* t = findVertexByName(destName);
-    if (s == nullptr || t == nullptr) {
-        std::cout << "Invalid source or destination station\n";
-        return;
-    }
 
     // Run Dijkstra's algorithm to find the shortest path between the two stations
-    std::vector<Vertex*> path = dijkstra(s, t);
+    std::vector<Vertex *> path = dijkstra(s->getId(), t->getId());
     if (path.empty()) {
         std::cout << "No path found between source and destination stations\n";
         return;
@@ -336,8 +332,7 @@ void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& dest
 
     std::cout << "The maximum number of trains that can travel simultaneously between " << srcName << " and " << destName << " is: " << max_trains << std::endl;
     std::cout << "The minimum cost for the company while maintaining the same level of service is: " << min_cost << "€\n";
-}
-
+ }
 
 
 void deleteMatrix(int **m, int n) {

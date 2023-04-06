@@ -18,15 +18,30 @@ void clearScreen() {
 }
 
 void removeWhitespace(std::string& str) {
-    auto it = find_if(str.begin(), str.end(), [](char c) {
-        return isspace(c);
-    });
-
+    static const std::unordered_map<std::string, std::string> accents = {
+            {"À", "A"}, {"Á", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ç", "C"}, {"È", "E"},
+            {"É", "E"}, {"Ê", "E"}, {"Ì", "I"}, {"Í", "I"}, {"Î", "I"}, {"Ò", "O"},
+            {"Ó", "O"}, {"Ô", "O"}, {"Õ", "O"}, {"Ù", "U"}, {"Ú", "U"}, {"à", "a"},
+            {"á", "a"}, {"â", "a"}, {"ã", "a"}, {"ç", "c"}, {"è", "e"}, {"é", "e"},
+            {"ê", "e"}, {"ì", "i"}, {"í", "i"}, {"î", "i"}, {"ò", "o"}, {"ó", "o"},
+            {"ô", "o"}, {"õ", "o"}, {"ù", "u"}, {"ú", "u"}
+    };
+    auto it = str.begin();
     while (it != str.end()) {
-        it = str.erase(it);
-        it = find_if(it, str.end(), [](char c) {
-            return isspace(c);
-        });
+        if (isspace(*it) && (it == str.begin() || isspace(*(it - 1)))) {
+            it = str.erase(it);
+            it--;
+        } else {
+            std::string c;
+            c += *it;
+            auto pos = accents.find(c);
+            if (pos != accents.end()) {
+                str.replace(it, it + 1, pos->second);
+                it += pos->second.length();
+            } else {
+                ++it;
+            }
+        }
     }
 }
 
@@ -91,7 +106,7 @@ void Controller::mainMenu(){
                             "Discover the top-k municipalities and districts regarding their transportation needs;",
                             "Discover the maximum number of trains that can simultaneously arrive at a station;",
                             "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;",
-                            "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of train;",
+                            "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of service;",
                             "Discover the top-k most affected stations for each segment."
     };
     for(int i=1;i<=options.size();i++){

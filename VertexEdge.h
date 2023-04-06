@@ -13,7 +13,7 @@
 
 class Edge;
 
-class Vertex: public Station {
+class Vertex: public Station{
 public:
     Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
     bool operator<(Vertex & vertex) const; // // required by MutablePriorityQueue
@@ -37,6 +37,7 @@ public:
     bool removeEdge(int destID);
 
     friend class MutablePriorityQueue<Vertex>;
+
 protected:
     int id;                // identifier
     std::vector<Edge *> adj;  // outgoing edges
