@@ -6,18 +6,19 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <cstdlib>
+
 
 void clearScreen() {
-#ifdef _WIN32
-    std::system("cls");
-#else
-    // Assume POSIX
-    std::system("clear");
-#endif
+    #ifdef _WIN32
+        std::system("cls");
+    #else
+        // Assume POSIX
+        std::system("clear");
+    #endif
 }
 
-std::string normalizeCamelCase(const std::string& str) {
+
+std::string Controller::normalizeCamelCase(const std::string& str) {
     // Create a new string to store the normalized result
     std::string result;
 
@@ -38,8 +39,7 @@ std::string normalizeCamelCase(const std::string& str) {
     return result;
 }
 
-
-void removeWhitespace(std::string& str) {
+void Controller::removeWhitespace(std::string& str) {
     static const std::unordered_map<std::string, std::string> accents = {
             {"À", "A"}, {"Á", "A"}, {"Â", "A"}, {"Ã", "A"}, {"Ç", "C"}, {"È", "E"},
             {"É", "E"}, {"Ê", "E"}, {"Ì", "I"}, {"Í", "I"}, {"Î", "I"}, {"Ò", "O"},
@@ -67,7 +67,7 @@ void removeWhitespace(std::string& str) {
     }
 }
 
-void replaceWhitespace(std::string& str, char replacement) {
+void Controller::replaceWhitespace(std::string& str, char replacement) {
     auto it = find_if(str.begin(), str.end(), [](char c) {
         return isspace(c);
     });
@@ -79,6 +79,7 @@ void replaceWhitespace(std::string& str, char replacement) {
         });
     }
 }
+
 
 void Controller::startMenu() {
     clearScreen();
@@ -139,7 +140,6 @@ void Controller::startMenu() {
     }
 }
 
-
 void Controller::mainMenu(){
     clearScreen();
     std::cout << "\t\t**Main Menu**\n\n";
@@ -187,7 +187,10 @@ void Controller::mainMenu(){
             clearScreen();
             maxTrainsMinCostMenu();
             return;
-
+        case 6:
+            clearScreen();
+            maxTrainsOneTypeMenu();
+            return;
 
         default:
             clearScreen();
@@ -200,6 +203,7 @@ void Controller::mainMenu(){
 
     }
 }
+
 
 void Controller::readStations(const std::string& filename) {
     std::ifstream ifs(filename);
@@ -289,14 +293,14 @@ void Controller::maxFlowMenu() {
         maxFlowMenu();
         return;
     }
-
-    std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << network.edmondsKarp(stations[stationA], stations[stationB]) << "\n";
+    double mf = network.edmondsKarp(stations[stationA], stations[stationB]);
+    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << "!\n";
+    else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << ": " << mf << "\n";
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
     mainMenu();
 }
-
 
 void Controller::maxTrainsNeededMenu(){
     std::cout << "\t\t**Pairs of Stations that Require the Most Amount of Trains**\n\n";
@@ -315,7 +319,6 @@ void Controller::maxTrainsNeededMenu(){
     mainMenu();
 }
 
-
 void Controller::topkTransportNeedsMenu(){
     std::cout << "\t\t**Top-k Municipalities and Districts Regarding their Transportation Needs**\n\n";
     int k;
@@ -327,7 +330,6 @@ void Controller::topkTransportNeedsMenu(){
     std::cin >> aux;
     mainMenu();
 }
-
 
 void Controller::maxSimultaneousTrainsMenu() {
     std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Arrive at a Station**\n\n";
@@ -343,32 +345,12 @@ void Controller::maxSimultaneousTrainsMenu() {
         maxSimultaneousTrainsMenu();
         return;
     }
-    else maxSimultaneousTrains(stationName);
+    else network.maxSimultaneousTrains(stationName);
 
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
     mainMenu();
-}
-
-void Controller::maxSimultaneousTrains(std::string targetStation){
-    if(stations.find(targetStation) == stations.end()){
-        std::cout << "ERROR: Invalid station(s)!\n";
-        std::cout << "(Press any key + Enter to continue)\n";
-        std::string aux;
-        std::cin >> aux;
-        maxSimultaneousTrainsMenu();
-        return;
-    }
-    network.addVertex(-1,"ss","ss","ss","ss","ss");
-    for(Vertex *v: network.getVertexSet()){
-        if(v->getId() != stations[targetStation] && v->getId() != -1 && v->getAdj().size()==1){
-            network.addBidirectionalEdge(-1,v->getId(),INF,"ss");
-        }
-    }
-    double res=network.edmondsKarp(-1,stations[targetStation]);
-    network.removeVertex(-1);
-    std::cout << "Maximum amount of trains that can simultaneously arrive at " << targetStation << ": " << res << std::endl;
 }
 
 void Controller::maxTrainsMinCostMenu(){
@@ -388,6 +370,42 @@ void Controller::maxTrainsMinCostMenu(){
         return;
     }
     network.maxTrainsMinCost(stationA, stationB);
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+void Controller::maxTrainsOneTypeMenu() {
+    std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Only One Type of Service**\n\n";
+    std::string stationA, stationB, service;
+    std::cout << "Source station: ";
+    std::cin >> stationA;
+    std::cout << "Destination station: ";
+    std::cin >> stationB;
+    std::cout << "Service: ";
+    std::cin >> service;
+    clearScreen();
+    if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxTrainsOneTypeMenu();
+        return;
+    }
+    if (service!="STANDARD" && service!="ALFA-PENDULAR"){
+        std::cout << "ERROR: Invalid service!\n";
+        std::cout << "The service must be either STANDARD or ALFA-PENDULAR.\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxTrainsOneTypeMenu();
+        return;
+    }
+    double mf = network.edmondsKarpService(stations[stationA], stations[stationB], service);
+    if(mf==0) std::cout << "There is no path between " << stationA << " and " << stationB << " using only the " << service << " service.\n";
+    else std::cout << "Maximum amount of trains between " << stationA << " and " << stationB << " using only the " << service << " service: "  << mf << "\n";
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

@@ -8,6 +8,11 @@
 
 class Controller {
 public:
+
+    std::string normalizeCamelCase(const std::string& str);
+    void removeWhitespace(std::string& str);
+    void replaceWhitespace(std::string& str, char replacement);
+
     void readStations(const std::string& filename);
     void readNetwork(const std::string& filename);
 
@@ -18,9 +23,9 @@ public:
     void maxTrainsNeededMenu();
     void topkTransportNeedsMenu();
     void maxSimultaneousTrainsMenu();
-    void maxSimultaneousTrains(std::string targetStation);
     void maxTrainsMinCostMenu();
-    
+    void maxTrainsOneTypeMenu();
+
 private:
     std::unordered_map<std::string, int> stations;
     Graph network;
