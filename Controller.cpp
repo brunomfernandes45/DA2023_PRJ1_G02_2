@@ -13,9 +13,31 @@ void clearScreen() {
     std::system("cls");
 #else
     // Assume POSIX
-    std::system ("clear");
+    std::system("clear");
 #endif
 }
+
+std::string normalizeCamelCase(const std::string& str) {
+    // Create a new string to store the normalized result
+    std::string result;
+
+    // Append the first character to the result string
+    result += str[0];
+
+    // Iterate through the rest of the string
+    for (int i = 1; i < str.length(); i++) {
+        // If the current character is uppercase, insert a space before it
+        if (std::isupper(str[i])) {
+            result += ' '; // Insert a space
+        }
+        // Append the current character to the result string
+        result += str[i];
+    }
+
+    // Copy the normalized result back to the original string
+    return result;
+}
+
 
 void removeWhitespace(std::string& str) {
     static const std::unordered_map<std::string, std::string> accents = {
@@ -45,11 +67,24 @@ void removeWhitespace(std::string& str) {
     }
 }
 
+void replaceWhitespace(std::string& str, char replacement) {
+    auto it = find_if(str.begin(), str.end(), [](char c) {
+        return isspace(c);
+    });
+
+    while (it != str.end()) {
+        *it = replacement;
+        it = find_if(it, str.end(), [](char c) {
+            return isspace(c);
+        });
+    }
+}
+
 
 void Controller::startMenu() {
     clearScreen();
     std::cout << "\t\t*RAILWAY NETWORK*\n\n";
-    std::vector options = { "Read standard files", "Read other files" };
+    std::vector options = { "Read standard files", "Read other files", "Read demo files" };
     for(int i = 1; i <= options.size(); i++){
         std::cout << i << ". " << options[i - 1] << "\n";
     }
@@ -64,9 +99,9 @@ void Controller::startMenu() {
 
         case 1:
             clearScreen();
-            stationsFile += "stations.csv"; // tem que ser assim
-            networkFile += "network.csv"; // porque o path é em relação ao executável
-            readStations(stationsFile); // e o executável está na pasta cmake-build-debug
+            stationsFile += "stations.csv";
+            networkFile += "network.csv";
+            readStations(stationsFile);
             readNetwork(networkFile);
             mainMenu();
             return;
@@ -85,6 +120,14 @@ void Controller::startMenu() {
             mainMenu();
             return;
 
+        case 3:
+            clearScreen();
+            stationsFile += "demoStations.csv";
+            networkFile += "demoNetwork.csv";
+            readStations(stationsFile);
+            readNetwork(networkFile);
+            mainMenu();
+            return;
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -143,8 +186,9 @@ void Controller::mainMenu(){
 
         case 5:
             clearScreen();
-            MaxTrainsMinCostMenu();
+            maxTrainsMinCostMenu();
             return;
+
 
         default:
             clearScreen();
@@ -220,7 +264,7 @@ void Controller::readNetwork(const std::string& filename) {
 
         removeWhitespace(stationA);
         removeWhitespace(stationB);
-        removeWhitespace(service);
+        replaceWhitespace(service,'-');
 
         if (stationA.empty() || stationB.empty() || capacity.empty() || service.empty() || stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end())
             continue;
@@ -256,8 +300,16 @@ void Controller::maxFlowMenu() {
 
 
 void Controller::maxTrainsNeededMenu(){
-    std::cout << "\t\t**Pairs of Stations taht Require the Most Amount of Trains**\n\n";
-    network.maxTrainsNeeded();
+    std::cout << "\t\t**Pairs of Stations that Require the Most Amount of Trains**\n\n";
+    std::pair<int, std::vector<std::pair<std::string, std::string>>> res = network.maxTrainsNeeded();
+    int maxFlow = res.first;
+    std::vector<std::pair<std::string, std::string>> maxFlowStations = res.second;
+    std::cout << "Max flow: " << maxFlow << std::endl;
+    std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
+    for (const auto &p : maxFlowStations) {
+        std::cout << "(" << normalizeCamelCase(p.first) << ", " << normalizeCamelCase(p.second) << ")\n";
+    }
+    std::cout << std::endl;
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
@@ -292,7 +344,7 @@ void Controller::maxSimultaneousTrainsMenu() {
         maxSimultaneousTrainsMenu();
         return;
     }
-    else network.maxSimultaneousTrains(stationName);
+    else maxSimultaneousTrains(stationName);
 
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
@@ -300,8 +352,27 @@ void Controller::maxSimultaneousTrainsMenu() {
     mainMenu();
 }
 
+void Controller::maxSimultaneousTrains(std::string targetStation){
+    if(stations.find(targetStation) == stations.end()){
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        maxSimultaneousTrainsMenu();
+        return;
+    }
+    network.addVertex(-1,"ss","ss","ss","ss","ss");
+    for(Vertex *v: network.getVertexSet()){
+        if(v->getId() != stations[targetStation] && v->getId() != -1 && v->getAdj().size()==1){
+            network.addBidirectionalEdge(-1,v->getId(),INF,"ss");
+        }
+    }
+    double res=network.edmondsKarp(-1,stations[targetStation]);
+    network.removeVertex(-1);
+    std::cout << "Maximum amount of trains that can simultaneously arrive at " << targetStation << ": " << res << std::endl;
+}
 
-void Controller::MaxTrainsMinCostMenu(){
+void Controller::maxTrainsMinCostMenu(){
     std::cout << "\t\t**Maximum Amount of Trains that can Simultaneously Travel Between two Stations with Minimum Cost**\n\n";
     std::string stationA, stationB;
     std::cout << "Source station: ";
@@ -314,10 +385,10 @@ void Controller::MaxTrainsMinCostMenu(){
         std::cout << "(Press any key + Enter to continue)\n";
         std::string aux;
         std::cin >> aux;
-        MaxTrainsMinCostMenu();
+        maxTrainsMinCostMenu();
         return;
     }
-    network.MaxTrainsMinCost(stationA, stationB);
+    network.maxTrainsMinCost(stationA, stationB);
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;

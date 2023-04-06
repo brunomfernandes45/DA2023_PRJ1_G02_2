@@ -15,6 +15,7 @@ public:
 
     bool addEdge(const int &source, const int &dest, double w, std::string s);
     bool addBidirectionalEdge(const int &source, const int &dest, double w, std::string s);
+    bool removeVertex(const int &id);
 
     int getNumVertex() const;
     std::vector<Vertex *> getVertexSet() const;
@@ -23,7 +24,7 @@ public:
     bool bfs_edmondsKarp(Vertex& source, Vertex& dest);
     void resetFlows();
 
-    void maxTrainsNeeded();
+    std::pair<int, std::vector<std::pair<std::string, std::string>>> maxTrainsNeeded();
 
     void topkTransportNeeds(int k);
 
@@ -31,8 +32,9 @@ public:
     void maxSimultaneousTrains(std::string stationName);
 
     Vertex* findVertexByName(const std::string& name) const;
-    void MaxTrainsMinCost(const std::string& srcName, const std::string& destName);
-    
+
+
+    void maxTrainsMinCost(const std::string& srcName, const std::string& destName);
 protected:
     std::vector<Vertex *> vertexSet;
     int findVertexIdx(const int &id) const;

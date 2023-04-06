@@ -62,13 +62,14 @@ public:
     Edge(Vertex *orig, Vertex *dest, double w, std::string service);
 
     Vertex * getDest() const;
-    double getWeight() const;
+    double getCapacity() const;
     bool isSelected() const;
     Vertex * getOrig() const;
     Edge *getReverse() const;
     double getFlow() const;
     std::string getService() const;
     bool isReverse() const;
+    int getCost() const;
 
     void setSelected(bool selected);
     void setReverse(Edge *reverse);
@@ -77,7 +78,7 @@ public:
 
 protected:
     Vertex * dest; // destination vertex
-    double weight; // edge weight, can also be used for capacity
+    double capacity; // edge capacity, can also be used for capacity
 
     // auxiliary fields
     bool selected = false;
@@ -88,6 +89,7 @@ protected:
     bool isreverse;
     double flow; // for flow-related problems
     std::string service;
+    int cost;
 };
 
 

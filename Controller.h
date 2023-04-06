@@ -18,7 +18,8 @@ public:
     void maxTrainsNeededMenu();
     void topkTransportNeedsMenu();
     void maxSimultaneousTrainsMenu();
-    void MaxTrainsMinCostMenu();
+    void maxSimultaneousTrains(std::string targetStation);
+    void maxTrainsMinCostMenu();
     
 private:
     std::unordered_map<std::string, int> stations;

@@ -47,7 +47,7 @@ bool Graph::addVertex(const int &id, std::string name, std::string district, std
 
 /*
  * Adds an edge to a graph (this), given the contents of the source and
- * destination vertices and the edge weight (w).
+ * destination vertices and the edge capacity (w).
  * Returns true if successful, and false if the source or destination vertex does not exist.
  */
 bool Graph::addEdge(const int &source, const int &dest, double w, std::string s) {
@@ -89,7 +89,7 @@ double Graph::edmondsKarp(const int& source, const int& dest) {
         Vertex* v = t;
         while (v->getPath() != nullptr) {
             Edge* e = v->getPath();
-            pathFlow = std::min(pathFlow, e->getWeight() - e->getFlow());
+            pathFlow = std::min(pathFlow, e->getCapacity() - e->getFlow());
             v = e->getOrig();
         }
         v = t;
@@ -119,7 +119,7 @@ bool Graph::bfs_edmondsKarp(Vertex& s, Vertex& t) {
         q.pop_front();
         for (Edge *e: u->getAdj()) {
             Vertex *v = e->getDest();
-            if (!v->isVisited() && e->getWeight() > e->getFlow()) {
+            if (!v->isVisited() && e->getCapacity() > e->getFlow()) {
                 v->setVisited(true);
                 v->setPath(e);
                 if (v == &t) return true;
@@ -140,11 +140,11 @@ void Graph::resetFlows() {
 
 
 
-void Graph::maxTrainsNeeded() {
+std::pair<int, std::vector<std::pair<std::string, std::string>>> Graph::maxTrainsNeeded() {
     double maxFlow = 0;
     std::unordered_set<int> checkedStations;
 
-    std::vector<std::pair<int, int>> maxFlowStations;
+    std::vector<std::pair<std::string, std::string>> maxFlowStations;
     for (Vertex *s : vertexSet) {
         for (Vertex *t : vertexSet) {
             if (s == t || checkedStations.find(t -> getId()) != checkedStations.end()) continue;
@@ -152,22 +152,14 @@ void Graph::maxTrainsNeeded() {
             if (flow > maxFlow) {
                 maxFlow = flow;
                 maxFlowStations.clear();
-                maxFlowStations.emplace_back(s->getId(), t->getId());
+                maxFlowStations.emplace_back(s->getName(), t->getName());
             } else if (flow == maxFlow) {
-                maxFlowStations.emplace_back(s->getId(), t->getId());
+                maxFlowStations.emplace_back(s->getName(), t->getName());
             }
         }
         checkedStations.insert(s -> getId());
     }
-
-    std::cout << "Max flow: " << maxFlow << std::endl;
-    std::cout << maxFlowStations.size() << " stations with max flow:" << std::endl;
-    for (const auto &p : maxFlowStations) {
-        auto s = findVertex(p.first);
-        auto t = findVertex(p.second);
-        std::cout << "(" << s -> getName() << ", " << t -> getName() << ")\n";
-    }
-    std::cout << std::endl;
+    return {maxFlow, maxFlowStations};
 }
 
 
@@ -182,7 +174,7 @@ void Graph::topkTransportNeeds(int k) {
         std::string municipality = vertex->getMunicipality();
         double weight = 0.0;
         for (auto edge : vertex->getAdj()) {
-            weight += edge->getWeight();
+            weight += edge->getCapacity();
         }
         districtTransportationNeeds[district] += weight;
         municipalityTransportationNeeds[municipality] += weight;
@@ -228,7 +220,7 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
         Vertex *v = q.extractMin();
         if (v == t) break;
         for (Edge *e : v->getAdj()) {
-            double newDist = v->getDist() + e->getWeight();
+            double newDist = v->getDist() + e->getCost();
             if (newDist < e->getDest()->getDist()) {
                 e->getDest()->setDist(newDist);
                 e->getDest()->setPath(e);
@@ -240,9 +232,10 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
         }
     }
     if (t->getPath() == nullptr) return res; // t is not reachable from s
-    for (Vertex *v = t; v != nullptr; v = v->getPath()->getOrig())
+    for (Vertex *v = t; v->getPath() != nullptr; v = v->getPath()->getOrig()) {
         res.push_back(v);
-    reverse(res.begin(), res.end());
+    }
+    std::reverse(res.begin(), res.end());
     return res;
 }
 
@@ -252,7 +245,7 @@ void Graph::maxSimultaneousTrains(std::string stationName) {
         if (vertex->getName() == stationName) {
             int count = 0;
             for (auto edge : vertex->getAdj()) {
-                count += edge->getWeight();
+                count += edge->getCapacity();
             }
             if (count > maxTrains) {
                 maxTrains = count;
@@ -277,35 +270,35 @@ Vertex* Graph::findVertexByName(const std::string& name) const {
 }
 
 
-void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& destName) {
+void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& destName) {
     // Find the source and destination vertices
     Vertex* s = findVertexByName(srcName);
     Vertex* t = findVertexByName(destName);
+    if (s == nullptr || t == nullptr) {
+        std::cout << "Invalid source or destination station\n";
+        return;
+    }
 
     // Run Dijkstra's algorithm to find the shortest path between the two stations
-    std::vector<Vertex *> path = dijkstra(s->getId(), t->getId());
+    std::vector<Vertex*> path = dijkstra(s -> getId(), t -> getId());
     if (path.empty()) {
         std::cout << "No path found between source and destination stations\n";
         return;
     }
 
     // Sort the edges based on cost per train
+    /*
     std::sort(path.begin() + 1, path.end(), [](Vertex* a, Vertex* b) {
         Edge* e1 = a->getPath();
         Edge* e2 = b->getPath();
-        double cost1, cost2;
-        if (e1->getService() == "STANDARD") cost1 = 2.0;
-        else cost1 = 4.0;
-        if (e2->getService() == "STANDARD") cost2 = 2.0;
-        else cost1 = 4.0;
-        double cost_per_train_1 = cost1 / e1->getWeight();
-        double cost_per_train_2 = cost2 / e2->getWeight();
+        double cost_per_train_1 = e1->getCost() / e1->getCapacity();
+        double cost_per_train_2 = e2->getCost() / e2->getCapacity();
         return cost_per_train_1 < cost_per_train_2;
-    });
+    });*/
 
     // Find the maximum number of trains that can travel simultaneously with the minimum cost
     int max_trains = std::numeric_limits<int>::max();
-    double min_cost = std::numeric_limits<double>::infinity();
+    double cost = 0;
     for (auto v : path) {
         Edge* e = v->getPath();
         if (e == nullptr) {
@@ -313,26 +306,37 @@ void Graph::MaxTrainsMinCost(const std::string& srcName, const std::string& dest
             std::cout << "No path found between source and destination stations\n";
             return;
         }
-        double cost = 0.0;
-        if (e->getService() == "STANDARD") {
-            cost = 2.0 * e->getWeight();
-        } else if (e->getService() == "ALFA PENDULAR") {
-            cost = 4.0 * e->getWeight();
-        }
-        double cost_per_train = cost / e->getWeight();
-        if (e->getWeight() < max_trains) {
-            max_trains = e->getWeight();
-            min_cost = cost;
-        } else if (cost_per_train <= min_cost / max_trains) {
-            min_cost = cost_per_train * max_trains;
-        } else {
-            break;
+        cost += e->getCost();
+        if(e->getCapacity()<max_trains){
+            max_trains = e->getCapacity();
         }
     }
 
     std::cout << "The maximum number of trains that can travel simultaneously between " << srcName << " and " << destName << " is: " << max_trains << std::endl;
-    std::cout << "The minimum cost for the company while maintaining the same level of service is: " << min_cost << "€\n";
- }
+    std::cout << "The path is: " << std::endl;
+    std::cout << srcName << " -> " << (*path.begin())->getName() << std::endl;
+    for(auto it = path.begin(); it != path.end() - 1; it++){
+        std::cout << (*it)->getName() << " -> " << (*(it+1))->getName() << std::endl;
+    }
+
+    std::cout << "The minimum cost for the company while maintaining the same level of service is: " << (cost*max_trains) << " euros.\n";
+}
+
+
+bool Graph::removeVertex(const int &id) {
+    for(std::vector<Vertex*>::iterator v = vertexSet.begin(); v != vertexSet.end(); ++v){
+        if((*v)->getId() == id){
+            for(Edge *e: (*v)->getAdj()){
+                (*v)->removeEdge(e->getDest()->getId());
+                e->getDest()->removeEdge((*v)->getId());
+            }
+            vertexSet.erase(v);
+            return true;
+        }
+    }
+    return false;
+}
+
 
 
 void deleteMatrix(int **m, int n) {

@@ -4,7 +4,7 @@ Vertex::Vertex(int id, std::string name, std::string district, std::string munic
 
 /*
  * Auxiliary function to add an outgoing edge to a vertex (this),
- * with a given destination vertex (d) and edge weight (w).
+ * with a given destination vertex (d) and edge capacity (w).
  */
 Edge * Vertex::addEdge(Vertex *d, double w, std::string s) {
     auto newEdge = new Edge(this, d, w, s);
@@ -106,16 +106,21 @@ void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
+
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), weight(w), service(s){}
+Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(s){
+    cost=0;
+    if(service=="STANDARD")cost=2;
+    else if(service=="ALFA-PENDULAR")cost=4;
+}
 
 Vertex * Edge::getDest() const {
     return this->dest;
 }
 
-double Edge::getWeight() const {
-    return this->weight;
+double Edge::getCapacity() const {
+    return this->capacity;
 }
 
 Vertex * Edge::getOrig() const {
@@ -157,4 +162,8 @@ bool Edge::isReverse() const {
 
 void Edge::setIsReverse(bool c) {
     isreverse=c;
+}
+
+int Edge::getCost() const {
+    return cost;
 }
