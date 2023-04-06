@@ -164,23 +164,21 @@ std::pair<int, std::vector<std::pair<std::string, std::string>>> Graph::maxTrain
 
 
 void Graph::topkTransportNeeds(int k) {
-    // Create unordered maps to store the total transportation needs for each district and municipality
+
     std::unordered_map<std::string, double> districtTransportationNeeds;
     std::unordered_map<std::string, double> municipalityTransportationNeeds;
 
-    // Calculate the total transportation needs for each district and municipality
     for (auto vertex : vertexSet) {
         std::string district = vertex->getDistrict();
         std::string municipality = vertex->getMunicipality();
-        double weight = 0.0;
+        double amount = 0.0;
         for (auto edge : vertex->getAdj()) {
-            weight += edge->getCapacity();
+            amount += edge->getCost() * edge->getCapacity();
         }
-        districtTransportationNeeds[district] += weight;
-        municipalityTransportationNeeds[municipality] += weight;
+        districtTransportationNeeds[district] += amount;
+        municipalityTransportationNeeds[municipality] += amount;
     }
 
-    // Sort the maps in descending order of transportation needs
     std::vector<std::pair<std::string, double>> sortedDistricts(districtTransportationNeeds.begin(), districtTransportationNeeds.end());
     std::sort(sortedDistricts.begin(), sortedDistricts.end(), [](auto &left, auto &right) {
         return left.second > right.second;
@@ -191,7 +189,6 @@ void Graph::topkTransportNeeds(int k) {
         return left.second > right.second;
     });
 
-    // Print the top-k districts and municipalities by transportation needs
     std::cout << "Top " << k << " districts by transportation needs:" << std::endl;
     for (int i = 0; i < k && i < sortedDistricts.size(); i++) {
         std::cout << sortedDistricts[i].first << ": " << sortedDistricts[i].second << std::endl;
