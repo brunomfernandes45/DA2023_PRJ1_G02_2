@@ -67,6 +67,8 @@ public:
     ///@note Time complexity: O(E log V), where V is the number of vertices and E is the number of edges in the graph
     void maxTrainsMinCostMenu();
 
+    void topkAffectedStationsMenu();
+
     ///@brief Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type.
     ///@note Time complexity: O(E^2 * V), where E is the number of edges and V is the number of vertices in the graph
     void maxTrainsOneTypeMenu();

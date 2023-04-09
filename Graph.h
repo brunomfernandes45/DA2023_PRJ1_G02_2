@@ -127,6 +127,8 @@ public:
     ///@note Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph
     bool bfs_service(Vertex& source, Vertex& dest, std::string service);
 
+    void topkAffectedStations(int k);
+
 protected:
     ///@brief A vector of pointers to the vertices of the graph. Each Vertex object represents a station in the railway network.
     std::vector<Vertex *> vertexSet;
