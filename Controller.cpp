@@ -273,6 +273,7 @@ void Controller::mainMenu(){
         case 9:
             clearScreen();
             topkAffectedStationsMenu();
+            return;
 
         default:
             clearScreen();
