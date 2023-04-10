@@ -3,12 +3,6 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::string \mbox{\hyperlink{class_controller_a59174c30b2b0c7d72204769e8cb3266e}{normalize\+Camel\+Case}} (const std\+::string \&str)
-\begin{DoxyCompactList}\small\item\em This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_controller_af65d62bd77565df2b6017a21657ee5ef}{remove\+Whitespace\+And\+Accents}} (std\+::string \&str)
-\begin{DoxyCompactList}\small\item\em Removes whitespace and accents from a string. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}{replace\+Whitespace}} (std\+::string \&str, char replacement)
-\begin{DoxyCompactList}\small\item\em Replaces all whitespace characters in a string with a given character. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_controller_af0dc0ae28716e67627b54bebc6b8db61}{read\+Stations}} (const std\+::string \&filename)
 \begin{DoxyCompactList}\small\item\em This function reads a CSV file with information about railway stations and populates the \textquotesingle{}stations\textquotesingle{} and \textquotesingle{}network\textquotesingle{} data structures. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_controller_a3d79582d469f1db2d0a95dc455e7cb35}{read\+Network}} (const std\+::string \&filename)
@@ -19,6 +13,12 @@ void {\bfseries start\+Menu} ()
 \mbox{\Hypertarget{class_controller_a07ecd51cea1200ec1cbe53b105829e74}\label{class_controller_a07ecd51cea1200ec1cbe53b105829e74}} 
 void {\bfseries main\+Menu} ()
 \begin{DoxyCompactList}\small\item\em Displays the main menu of the program and allows the user to select an option to execute a specific functionality. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_abd20cd97c71240a3d60b03b58a47fc90}{display\+All\+Stations\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the name, district and line of all the stations in the network. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a77f7e32356efcdcaaaefb799c77ca1ab}{browse\+Station\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Asks the user to input the name of a station and checks if it is a valid station in the network. If the station is not valid, prints an error message and returns to the browse station menu. If the station is valid, calls browse\+Specific\+Station\+Menu function with the station name as a parameter. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a040f4fe25bd8f9be1e6a2d63cfce5230}{browse\+Specific\+Station\+Menu}} (const std\+::string \&station\+Name)
+\begin{DoxyCompactList}\small\item\em Displays the name, municipality, district, township, and line o a specific station in the network. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}{max\+Flow\+Menu}} ()
 \begin{DoxyCompactList}\small\item\em Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_controller_a341a8a424b7bbbebac9278c9704a3d7d}{max\+Trains\+Needed\+Menu}} ()
@@ -30,10 +30,65 @@ void \mbox{\hyperlink{class_controller_ab34ee9e911a4b8a2f78cb7b44a6156f6}{max\+S
 void \mbox{\hyperlink{class_controller_aaa9e47824ecccbbfb00e9e689674d289}{max\+Trains\+Min\+Cost\+Menu}} ()
 \begin{DoxyCompactList}\small\item\em Prompts the user to input the source and destination stations for finding the maximum amount of trains that can simultaneously travel between the two with minimum cost. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_controller_acbf6c3a17b5e2fc9d718f7eaf0677915}{max\+Trains\+One\+Type\+Menu}} ()
-\begin{DoxyCompactList}\small\item\em Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_controller_a52205ea4853a91dca702702e3e95bd7a}{topk\+Affected\+Stations\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Displays the top-\/k most affected stations for a segment defined by two stations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::string \mbox{\hyperlink{class_controller_a59174c30b2b0c7d72204769e8cb3266e}{normalize\+Camel\+Case}} (const std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_controller_af65d62bd77565df2b6017a21657ee5ef}{remove\+Whitespace\+And\+Accents}} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Removes whitespace and accents from a string. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_controller_a25832ee3081b1e832d3c91d3aeceffb7}{replace\+Whitespace}} (std\+::string \&str, char replacement)
+\begin{DoxyCompactList}\small\item\em Replaces all whitespace characters in a string with a given character. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_controller_a040f4fe25bd8f9be1e6a2d63cfce5230}\label{class_controller_a040f4fe25bd8f9be1e6a2d63cfce5230}} 
+\index{Controller@{Controller}!browseSpecificStationMenu@{browseSpecificStationMenu}}
+\index{browseSpecificStationMenu@{browseSpecificStationMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{browseSpecificStationMenu()}{browseSpecificStationMenu()}}
+{\footnotesize\ttfamily void Controller\+::browse\+Specific\+Station\+Menu (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{station\+Name }\end{DoxyParamCaption})}
+
+
+
+Displays the name, municipality, district, township, and line o a specific station in the network. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em station\+Name} & The name of the station to browse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V), where V is the number of vertices in the network 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a77f7e32356efcdcaaaefb799c77ca1ab}\label{class_controller_a77f7e32356efcdcaaaefb799c77ca1ab}} 
+\index{Controller@{Controller}!browseStationMenu@{browseStationMenu}}
+\index{browseStationMenu@{browseStationMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{browseStationMenu()}{browseStationMenu()}}
+{\footnotesize\ttfamily void Controller\+::browse\+Station\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Asks the user to input the name of a station and checks if it is a valid station in the network. If the station is not valid, prints an error message and returns to the browse station menu. If the station is valid, calls browse\+Specific\+Station\+Menu function with the station name as a parameter. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V), where V is the number of vertices in the network 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_abd20cd97c71240a3d60b03b58a47fc90}\label{class_controller_abd20cd97c71240a3d60b03b58a47fc90}} 
+\index{Controller@{Controller}!displayAllStationsMenu@{displayAllStationsMenu}}
+\index{displayAllStationsMenu@{displayAllStationsMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{displayAllStationsMenu()}{displayAllStationsMenu()}}
+{\footnotesize\ttfamily void Controller\+::display\+All\+Stations\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the name, district and line of all the stations in the network. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V), where V is the number of vertices (stations) in the network 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}\label{class_controller_a9ade852cc9f78f944cef8f865faa3d9a}} 
 \index{Controller@{Controller}!maxFlowMenu@{maxFlowMenu}}
 \index{maxFlowMenu@{maxFlowMenu}!Controller@{Controller}}
@@ -103,7 +158,7 @@ Time complexity\+: O(\+E$^\wedge$2 $\ast$ V), where E is the number of edges and
 \index{Controller@{Controller}!normalizeCamelCase@{normalizeCamelCase}}
 \index{normalizeCamelCase@{normalizeCamelCase}!Controller@{Controller}}
 \doxysubsubsection{\texorpdfstring{normalizeCamelCase()}{normalizeCamelCase()}}
-{\footnotesize\ttfamily std\+::string Controller\+::normalize\+Camel\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::string Controller\+::normalize\+Camel\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -136,7 +191,7 @@ This function reads a CSV file with information about railway connections betwee
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(n), where n is the number of lines in the CSV file 
+Time complexity\+: O(n), where n is the number of lines in the input file 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_controller_af0dc0ae28716e67627b54bebc6b8db61}\label{class_controller_af0dc0ae28716e67627b54bebc6b8db61}} 
 \index{Controller@{Controller}!readStations@{readStations}}
@@ -160,7 +215,7 @@ Time complexity\+: O(n), where n is the number of stations in the input file
 \index{Controller@{Controller}!removeWhitespaceAndAccents@{removeWhitespaceAndAccents}}
 \index{removeWhitespaceAndAccents@{removeWhitespaceAndAccents}!Controller@{Controller}}
 \doxysubsubsection{\texorpdfstring{removeWhitespaceAndAccents()}{removeWhitespaceAndAccents()}}
-{\footnotesize\ttfamily void Controller\+::remove\+Whitespace\+And\+Accents (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Controller\+::remove\+Whitespace\+And\+Accents (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -178,7 +233,7 @@ Time complexity\+: O(n), where n is the length of the input string
 \index{Controller@{Controller}!replaceWhitespace@{replaceWhitespace}}
 \index{replaceWhitespace@{replaceWhitespace}!Controller@{Controller}}
 \doxysubsubsection{\texorpdfstring{replaceWhitespace()}{replaceWhitespace()}}
-{\footnotesize\ttfamily void Controller\+::replace\+Whitespace (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{char}]{replacement }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Controller\+::replace\+Whitespace (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str,  }\item[{char}]{replacement }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
 
 
 
@@ -193,6 +248,19 @@ Replaces all whitespace characters in a string with a given character.
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
 Time complexity\+: O(n), where n is the length of the input string 
+\end{DoxyNote}
+\mbox{\Hypertarget{class_controller_a52205ea4853a91dca702702e3e95bd7a}\label{class_controller_a52205ea4853a91dca702702e3e95bd7a}} 
+\index{Controller@{Controller}!topkAffectedStationsMenu@{topkAffectedStationsMenu}}
+\index{topkAffectedStationsMenu@{topkAffectedStationsMenu}!Controller@{Controller}}
+\doxysubsubsection{\texorpdfstring{topkAffectedStationsMenu()}{topkAffectedStationsMenu()}}
+{\footnotesize\ttfamily void Controller\+::topk\+Affected\+Stations\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Displays the top-\/k most affected stations for a segment defined by two stations. 
+
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V$^\wedge$2 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_controller_af5aea15b36c4a8eb6ed14570699b5596}\label{class_controller_af5aea15b36c4a8eb6ed14570699b5596}} 
 \index{Controller@{Controller}!topkTransportNeedsMenu@{topkTransportNeedsMenu}}
@@ -211,5 +279,5 @@ Time complexity\+: O(VlogV + E), where V is the number of vertices and E is the 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Controller.\+h\item 
-Controller.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/diana/\+Desktop/\+DA2023\+\_\+\+PRJ1\+\_\+\+G02\+\_\+2/Controller.\+h\item 
+C\+:/\+Users/diana/\+Desktop/\+DA2023\+\_\+\+PRJ1\+\_\+\+G02\+\_\+2/Controller.\+cpp\end{DoxyCompactItemize}

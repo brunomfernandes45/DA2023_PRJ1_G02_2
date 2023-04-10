@@ -29,23 +29,3 @@ std::string Station::getTownship() {
 std::string Station::getLine() {
     return line;
 }
-
-void Station::setName(std::string name) {
-    this -> name = std::move(name);
-}
-
-void Station::setDistrict(std::string district) {
-    this -> district = std::move(district);
-}
-
-void Station::setMunicipality(std::string municipality) {
-    this -> municipality = std::move(municipality);
-}
-
-void Station::setTownship(std::string township) {
-    this -> township = std::move(township);
-}
-
-void Station::setLine(std::string line) {
-    this -> line = std::move(line);
-}

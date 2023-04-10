@@ -72,7 +72,6 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_graph-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Graph Class Reference</div></div>
@@ -81,9 +80,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abb5e0517e2979c54eebdafc2a9875e8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#abb5e0517e2979c54eebdafc2a9875e8f">getNumVertex</a> () const</td></tr>
-<tr class="memdesc:abb5e0517e2979c54eebdafc2a9875e8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the number of vertices in the graph.  <a href="class_graph.html#abb5e0517e2979c54eebdafc2a9875e8f">More...</a><br /></td></tr>
-<tr class="separator:abb5e0517e2979c54eebdafc2a9875e8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a619ac583094079134074658e29463c0e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a619ac583094079134074658e29463c0e">getVertexSet</a> () const</td></tr>
 <tr class="memdesc:a619ac583094079134074658e29463c0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the vector of vertices in the graph.  <a href="class_graph.html#a619ac583094079134074658e29463c0e">More...</a><br /></td></tr>
 <tr class="separator:a619ac583094079134074658e29463c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,12 +89,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a81ed0f6f2e21298bd6034f0b85a13907"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a81ed0f6f2e21298bd6034f0b85a13907">addVertex</a> (const int &amp;id, std::string name, std::string district, std::string municipality, std::string township, std::string line)</td></tr>
 <tr class="memdesc:a81ed0f6f2e21298bd6034f0b85a13907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a vertex with the given information to the graph.  <a href="class_graph.html#a81ed0f6f2e21298bd6034f0b85a13907">More...</a><br /></td></tr>
 <tr class="separator:a81ed0f6f2e21298bd6034f0b85a13907"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ed31cd4f168849c347ab13236bb9443"><td class="memItemLeft" align="right" valign="top"><a id="a4ed31cd4f168849c347ab13236bb9443" name="a4ed31cd4f168849c347ab13236bb9443"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (const int &amp;source, const int &amp;dest, double w, std::string s)</td></tr>
-<tr class="separator:a4ed31cd4f168849c347ab13236bb9443"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2864ed1ea70778a5f26b989e9e88d51"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ac2864ed1ea70778a5f26b989e9e88d51">addBidirectionalEdge</a> (const int &amp;source, const int &amp;dest, double w, std::string s)</td></tr>
-<tr class="memdesc:ac2864ed1ea70778a5f26b989e9e88d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a bidirectional edge between two vertices with the given weight and label.  <a href="class_graph.html#ac2864ed1ea70778a5f26b989e9e88d51">More...</a><br /></td></tr>
-<tr class="separator:ac2864ed1ea70778a5f26b989e9e88d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d2c51d586bb698467feaf90d2bd045"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a73d2c51d586bb698467feaf90d2bd045">addBidirectionalEdge</a> (const int &amp;source, const int &amp;dest, double w, const std::string &amp;s) const</td></tr>
+<tr class="memdesc:a73d2c51d586bb698467feaf90d2bd045"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a bidirectional edge between two vertices with the given weight and label.  <a href="class_graph.html#a73d2c51d586bb698467feaf90d2bd045">More...</a><br /></td></tr>
+<tr class="separator:a73d2c51d586bb698467feaf90d2bd045"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addca30806740b33888a252739c09d87f"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#addca30806740b33888a252739c09d87f">edmondsKarp</a> (const int &amp;source, const int &amp;dest)</td></tr>
 <tr class="memdesc:addca30806740b33888a252739c09d87f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementation of the Edmonds-Karp algorithm to find the maximum flow in a network flow graph.  <a href="class_graph.html#addca30806740b33888a252739c09d87f">More...</a><br /></td></tr>
 <tr class="separator:addca30806740b33888a252739c09d87f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,27 +113,27 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (const in
 <tr class="memitem:a697561b2a2c1b25147b1750b250c1fdf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a697561b2a2c1b25147b1750b250c1fdf">removeVertex</a> (const int &amp;id)</td></tr>
 <tr class="memdesc:a697561b2a2c1b25147b1750b250c1fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a vertex with the specified ID from the graph, as well as all edges connected to it.  <a href="class_graph.html#a697561b2a2c1b25147b1750b250c1fdf">More...</a><br /></td></tr>
 <tr class="separator:a697561b2a2c1b25147b1750b250c1fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f4d83efb8ac348ce4fab8ba217a0617"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a8f4d83efb8ac348ce4fab8ba217a0617">maxSimultaneousTrains</a> (std::string stationName)</td></tr>
-<tr class="memdesc:a8f4d83efb8ac348ce4fab8ba217a0617"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the maximum number of trains that can simultaneously arrive at a given station.  <a href="class_graph.html#a8f4d83efb8ac348ce4fab8ba217a0617">More...</a><br /></td></tr>
-<tr class="separator:a8f4d83efb8ac348ce4fab8ba217a0617"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c315840535b6c8d80a10c4a3f388216"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5c315840535b6c8d80a10c4a3f388216">maxSimultaneousTrains</a> (const std::string &amp;stationName)</td></tr>
+<tr class="memdesc:a5c315840535b6c8d80a10c4a3f388216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the maximum number of trains that can simultaneously arrive at a given station.  <a href="class_graph.html#a5c315840535b6c8d80a10c4a3f388216">More...</a><br /></td></tr>
+<tr class="separator:a5c315840535b6c8d80a10c4a3f388216"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec12f2c28cb2db308f88958a3c85d3eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#aec12f2c28cb2db308f88958a3c85d3eb">findVertexByName</a> (const std::string &amp;name) const</td></tr>
 <tr class="memdesc:aec12f2c28cb2db308f88958a3c85d3eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a vertex in the graph given its name.  <a href="class_graph.html#aec12f2c28cb2db308f88958a3c85d3eb">More...</a><br /></td></tr>
 <tr class="separator:aec12f2c28cb2db308f88958a3c85d3eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bf1ed719a6a352f7650250122ac9d89"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5bf1ed719a6a352f7650250122ac9d89">maxTrainsMinCost</a> (const std::string &amp;srcName, const std::string &amp;destName)</td></tr>
 <tr class="memdesc:a5bf1ed719a6a352f7650250122ac9d89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the maximum number of trains that can travel simultaneously between two given stations with minimum cost.  <a href="class_graph.html#a5bf1ed719a6a352f7650250122ac9d89">More...</a><br /></td></tr>
 <tr class="separator:a5bf1ed719a6a352f7650250122ac9d89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5524220a30306dd859a4a00ce2b7a288"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a5524220a30306dd859a4a00ce2b7a288">edmondsKarpService</a> (const int &amp;source, const int &amp;dest, std::string service)</td></tr>
-<tr class="memdesc:a5524220a30306dd859a4a00ce2b7a288"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the maximum flow that can be achieved for a specific service between two vertices using the Edmonds-Karp algorithm.  <a href="class_graph.html#a5524220a30306dd859a4a00ce2b7a288">More...</a><br /></td></tr>
-<tr class="separator:a5524220a30306dd859a4a00ce2b7a288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d4def9dc8a86eed2aaee95af57f03e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a0d4def9dc8a86eed2aaee95af57f03e6">bfs_service</a> (<a class="el" href="class_vertex.html">Vertex</a> &amp;source, <a class="el" href="class_vertex.html">Vertex</a> &amp;dest, std::string service)</td></tr>
-<tr class="memdesc:a0d4def9dc8a86eed2aaee95af57f03e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Breadth-first search algorithm to find a path between two vertices that satisfies a certain service condition.  <a href="class_graph.html#a0d4def9dc8a86eed2aaee95af57f03e6">More...</a><br /></td></tr>
-<tr class="separator:a0d4def9dc8a86eed2aaee95af57f03e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a7dfcef08a9286cf144902cd7e56940ee"><td class="memItemLeft" align="right" valign="top"><a id="a7dfcef08a9286cf144902cd7e56940ee" name="a7dfcef08a9286cf144902cd7e56940ee"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>findVertexIdx</b> (const int &amp;id) const</td></tr>
-<tr class="separator:a7dfcef08a9286cf144902cd7e56940ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5948f6843bd6e3b8f41ab21c577bd76"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ad5948f6843bd6e3b8f41ab21c577bd76">edmondsKarpService</a> (const int &amp;source, const int &amp;dest, const std::string &amp;service)</td></tr>
+<tr class="memdesc:ad5948f6843bd6e3b8f41ab21c577bd76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the maximum flow that can be achieved for a specific service between two vertices using the Edmonds-Karp algorithm.  <a href="class_graph.html#ad5948f6843bd6e3b8f41ab21c577bd76">More...</a><br /></td></tr>
+<tr class="separator:ad5948f6843bd6e3b8f41ab21c577bd76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dcca61851a96a25f13adccad98b781a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a9dcca61851a96a25f13adccad98b781a">bfs_service</a> (<a class="el" href="class_vertex.html">Vertex</a> &amp;source, <a class="el" href="class_vertex.html">Vertex</a> &amp;dest, const std::string &amp;service)</td></tr>
+<tr class="memdesc:a9dcca61851a96a25f13adccad98b781a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Breadth-first search algorithm to find a path between two vertices that satisfies a certain service condition.  <a href="class_graph.html#a9dcca61851a96a25f13adccad98b781a">More...</a><br /></td></tr>
+<tr class="separator:a9dcca61851a96a25f13adccad98b781a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb796c40ae8c75db3b9bf31ba7084607"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#acb796c40ae8c75db3b9bf31ba7084607">vertexMaxTrains</a> (int id, int idA, int idB)</td></tr>
+<tr class="memdesc:acb796c40ae8c75db3b9bf31ba7084607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the maximum number of trains that can pass through a target vertex, given two cut vertices.  <a href="class_graph.html#acb796c40ae8c75db3b9bf31ba7084607">More...</a><br /></td></tr>
+<tr class="separator:acb796c40ae8c75db3b9bf31ba7084607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6f2563e7d471eb87944366d46320a6c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#af6f2563e7d471eb87944366d46320a6c">topkAffectedStations</a> (int k, int stA, int stB)</td></tr>
+<tr class="memdesc:af6f2563e7d471eb87944366d46320a6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find the top-k most affected stations for a segment defined by two vertices, based on the decay of the maximum number of simultaneous trains passing through each station.  <a href="class_graph.html#af6f2563e7d471eb87944366d46320a6c">More...</a><br /></td></tr>
+<tr class="separator:af6f2563e7d471eb87944366d46320a6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -150,8 +143,8 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 <tr class="separator:aa9b0a6d8ad43c5eabaca5a7140bcc8b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ac2864ed1ea70778a5f26b989e9e88d51" name="ac2864ed1ea70778a5f26b989e9e88d51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2864ed1ea70778a5f26b989e9e88d51">&#9670;&#160;</a></span>addBidirectionalEdge()</h2>
+<a id="a73d2c51d586bb698467feaf90d2bd045" name="a73d2c51d586bb698467feaf90d2bd045"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d2c51d586bb698467feaf90d2bd045">&#9670;&#160;</a></span>addBidirectionalEdge()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -177,13 +170,13 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>s</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td>
+          <td></td><td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -309,8 +302,8 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
-<a id="a0d4def9dc8a86eed2aaee95af57f03e6" name="a0d4def9dc8a86eed2aaee95af57f03e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0d4def9dc8a86eed2aaee95af57f03e6">&#9670;&#160;</a></span>bfs_service()</h2>
+<a id="a9dcca61851a96a25f13adccad98b781a" name="a9dcca61851a96a25f13adccad98b781a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dcca61851a96a25f13adccad98b781a">&#9670;&#160;</a></span>bfs_service()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -330,7 +323,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>service</em>&#160;</td>
         </tr>
         <tr>
@@ -433,8 +426,8 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
-<a id="a5524220a30306dd859a4a00ce2b7a288" name="a5524220a30306dd859a4a00ce2b7a288"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5524220a30306dd859a4a00ce2b7a288">&#9670;&#160;</a></span>edmondsKarpService()</h2>
+<a id="ad5948f6843bd6e3b8f41ab21c577bd76" name="ad5948f6843bd6e3b8f41ab21c577bd76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5948f6843bd6e3b8f41ab21c577bd76">&#9670;&#160;</a></span>edmondsKarpService()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,7 +447,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>service</em>&#160;</td>
         </tr>
         <tr>
@@ -535,27 +528,6 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
-<a id="abb5e0517e2979c54eebdafc2a9875e8f" name="abb5e0517e2979c54eebdafc2a9875e8f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb5e0517e2979c54eebdafc2a9875e8f">&#9670;&#160;</a></span>getNumVertex()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Graph::getNumVertex </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the number of vertices in the graph. </p>
-<dl class="section return"><dt>Returns</dt><dd>An integer representing the number of vertices in the graph. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1) </dd></dl>
-
-</div>
-</div>
 <a id="a619ac583094079134074658e29463c0e" name="a619ac583094079134074658e29463c0e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a619ac583094079134074658e29463c0e">&#9670;&#160;</a></span>getVertexSet()</h2>
 
@@ -577,8 +549,8 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
-<a id="a8f4d83efb8ac348ce4fab8ba217a0617" name="a8f4d83efb8ac348ce4fab8ba217a0617"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8f4d83efb8ac348ce4fab8ba217a0617">&#9670;&#160;</a></span>maxSimultaneousTrains()</h2>
+<a id="a5c315840535b6c8d80a10c4a3f388216" name="a5c315840535b6c8d80a10c4a3f388216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c315840535b6c8d80a10c4a3f388216">&#9670;&#160;</a></span>maxSimultaneousTrains()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -586,7 +558,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
         <tr>
           <td class="memname">void Graph::maxSimultaneousTrains </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>stationName</em></td><td>)</td>
           <td></td>
         </tr>
@@ -712,6 +684,51 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
+<a id="af6f2563e7d471eb87944366d46320a6c" name="af6f2563e7d471eb87944366d46320a6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6f2563e7d471eb87944366d46320a6c">&#9670;&#160;</a></span>topkAffectedStations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::topkAffectedStations </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>k</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the top-k most affected stations for a segment defined by two vertices, based on the decay of the maximum number of simultaneous trains passing through each station. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">k</td><td>The number of stations to return </td></tr>
+    <tr><td class="paramname">stA</td><td>The ID of the first station defining the segment </td></tr>
+    <tr><td class="paramname">stB</td><td>The ID of the second station defining the segment </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+
+</div>
+</div>
 <a id="a697ab9dbda10a630f4a8a6f5b996db05" name="a697ab9dbda10a630f4a8a6f5b996db05"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a697ab9dbda10a630f4a8a6f5b996db05">&#9670;&#160;</a></span>topkTransportNeeds()</h2>
 
@@ -739,9 +756,55 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 </div>
 </div>
+<a id="acb796c40ae8c75db3b9bf31ba7084607" name="acb796c40ae8c75db3b9bf31ba7084607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb796c40ae8c75db3b9bf31ba7084607">&#9670;&#160;</a></span>vertexMaxTrains()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::vertexMaxTrains </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>idB</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find the maximum number of trains that can pass through a target vertex, given two cut vertices. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>The ID of the target vertex </td></tr>
+    <tr><td class="paramname">idA</td><td>The ID of the first cut vertex </td></tr>
+    <tr><td class="paramname">idB</td><td>The ID of the second cut vertex </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The maximum number of trains that can pass through the target vertex or -1 if any of the vertices are not found in the graph. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_graph_8h_source.html">Graph.h</a></li>
-<li>Graph.cpp</li>
+<li>C:/Users/diana/Desktop/DA2023_PRJ1_G02_2/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
+<li>C:/Users/diana/Desktop/DA2023_PRJ1_G02_2/Graph.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

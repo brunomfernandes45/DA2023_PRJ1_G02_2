@@ -69,7 +69,7 @@ void MutablePriorityQueue<T>::heapifyDown(unsigned i) {
         unsigned k = leftChild(i);
         if (k >= H.size()) break;
         if (k+1 < H.size() && *H[k+1] < *H[k]) ++k;
-        if ( ! (*H[k] < *x) ) break;
+        if (*H[k] >= *x) break;
         set(i, H[k]);
         i = k;
     }

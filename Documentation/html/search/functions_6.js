@@ -2,7 +2,7 @@ var searchData=
 [
   ['mainmenu_0',['mainMenu',['../class_controller.html#a07ecd51cea1200ec1cbe53b105829e74',1,'Controller']]],
   ['maxflowmenu_1',['maxFlowMenu',['../class_controller.html#a9ade852cc9f78f944cef8f865faa3d9a',1,'Controller']]],
-  ['maxsimultaneoustrains_2',['maxSimultaneousTrains',['../class_graph.html#a8f4d83efb8ac348ce4fab8ba217a0617',1,'Graph']]],
+  ['maxsimultaneoustrains_2',['maxSimultaneousTrains',['../class_graph.html#a5c315840535b6c8d80a10c4a3f388216',1,'Graph']]],
   ['maxsimultaneoustrainsmenu_3',['maxSimultaneousTrainsMenu',['../class_controller.html#ab34ee9e911a4b8a2f78cb7b44a6156f6',1,'Controller']]],
   ['maxtrainsmincost_4',['maxTrainsMinCost',['../class_graph.html#a5bf1ed719a6a352f7650250122ac9d89',1,'Graph']]],
   ['maxtrainsmincostmenu_5',['maxTrainsMinCostMenu',['../class_controller.html#aaa9e47824ecccbbfb00e9e689674d289',1,'Controller']]],

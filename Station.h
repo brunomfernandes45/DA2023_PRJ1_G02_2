@@ -13,12 +13,6 @@ public:
     std::string getTownship();
     std::string getLine();
 
-    void setName(std::string name);
-    void setDistrict(std::string district);
-    void setMunicipality(std::string municipality);
-    void setTownship(std::string township);
-    void setLine(std::string line);
-
 private:
     std::string name;
     std::string district;

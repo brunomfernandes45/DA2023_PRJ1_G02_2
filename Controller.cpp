@@ -216,8 +216,8 @@ void Controller::mainMenu(){
                             "Discover the maximum amount of trains that can simultaneously travel between two stations with minimum cost;",
                             "Discover the maximum number of trains that can simultaneously travel between two stations with just 1 type of service;",
                             "Discover the top-k most affected stations for each segment;"
-
     };
+
     for(int i=1;i<=options.size();i++){
         std::cout << i << ". " << options[i-1] << "\n";
     }
@@ -236,6 +236,7 @@ void Controller::mainMenu(){
             clearScreen();
             displayAllStationsMenu();
             return;
+
         case 2:
             clearScreen();
             browseStationMenu();
@@ -265,6 +266,7 @@ void Controller::mainMenu(){
             clearScreen();
             maxTrainsMinCostMenu();
             return;
+
         case 8:
             clearScreen();
             maxTrainsOneTypeMenu();
@@ -286,6 +288,84 @@ void Controller::mainMenu(){
     }
 }
 
+
+void Controller::displayAllStationsMenu() {
+    std::cout << "\t\t**Display All Stations**\n\n";
+    std::cout << "Name, District, Line\n";
+
+    for (const auto &s : network.getVertexSet()) {
+        std::cout << s->getName() << ", " << s->getDistrict() << ", " << s->getLine() << "\n";
+    }
+    std::cout << std::endl;
+
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
+}
+
+void Controller::browseStationMenu() {
+    std::cout << "\t\t**Browse Station**\n\n";
+    std::string stationName;
+    std::cout << "Enter the name of the station: ";
+    std::cin >> stationName;
+
+    if(stations.find(stationName) == stations.end()){
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        browseStationMenu();
+        return;
+    }
+    else {
+        browseSpecificStationMenu(stationName);
+        return;
+    }
+}
+
+void Controller::browseSpecificStationMenu(const std::string& stationName) {
+    auto stationId = stations[stationName];
+    auto station = network.findVertex(stationId);
+
+    std::cout << "\t\t**Station**\n\n";
+    std::cout << "Name: " << station->getName() << "\n";
+    std::cout << "Municipality: " << station->getMunicipality() << "\n";
+    std::cout << "District: " << station->getDistrict() << "\n";
+    std::cout << "Township: " << station->getTownship() << "\n";
+    std::cout << "Line: " << station->getLine() << "\n";
+
+    std::cout << "\n1. Display Connections;\n";
+    std::cout << "0. Exit.\n";
+    unsigned int option;
+    std::cout << "Select an option: ";
+    std::cin >> option;
+    std::string aux;
+
+    switch (option) {
+        case 1:
+            clearScreen();
+            std::cout << "\t\t**" << station->getName() << "' Connections**\n\n";
+            for(auto e: station->getAdj()){
+                std::cout << e->getDest()->getName() << " (" << e->getCapacity() << " Trains, " << e->getService() << ")\n";
+            }
+            std::cout << "\n(Press any key + Enter to continue)\n";
+            std::cin >> aux;
+            browseSpecificStationMenu(stationName);
+            return;
+
+        case 0:
+            mainMenu();
+            return;
+
+        default:
+            std::cout << "ERROR: Invalid option!\n";
+            std::cout << "(Press any key + Enter to continue)\n";
+            std::cin >> aux;
+            browseSpecificStationMenu(stationName);
+            return;
+    }
+}
 
 void Controller::maxFlowMenu() {
     std::cout << "\t\t**Maximum Amount of Trains Between Two Stations**\n\n";
@@ -341,6 +421,18 @@ void Controller::topkTransportNeedsMenu(){
     int k;
     std::cout << "Enter the number of stations to display: ";
     std::cin >> k;
+
+    if (std::cin.fail() || k < 0 || k > stations.size()) {
+        std::cout << "ERROR: Invalid value for k!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::getline(std::cin, aux);
+        topkTransportNeedsMenu();
+        return;
+    }
+
     network.topkTransportNeeds(k);
 
     std::cout << "(Press any key + Enter to continue)\n";
@@ -440,92 +532,40 @@ void Controller::maxTrainsOneTypeMenu() {
     mainMenu();
 }
 
-void Controller::displayAllStationsMenu() {
-    std::cout << "\t\t**Display All Stations**\n\n";
-    std::cout << "Name, District, Line\n";
-    for (const auto &s : network.getVertexSet()) {
-        std::cout << s->getName() << ", " << s->getDistrict() << ", " << s->getLine() << "\n";
-    }
-    std::cout << std::endl;
-
-    std::cout << "(Press any key + Enter to continue)\n";
-    std::string aux;
-    std::cin >> aux;
-    mainMenu();
-}
-
-void Controller::browseStationMenu() {
-    std::cout << "\t\t**Browse Station**\n\n";
-    std::string stationName;
-    std::cout << "Enter the name of the station: ";
-    std::cin >> stationName;
-
-    if(stations.find(stationName) == stations.end()){
-        std::cout << "ERROR: Invalid station(s)!\n";
-        std::cout << "(Press any key + Enter to continue)\n";
-        std::string aux;
-        std::cin >> aux;
-        browseStationMenu();
-        return;
-    }
-    else {
-        browseSpecificStationMenu(stationName);
-        return;
-    }
-
-}
-void Controller::browseSpecificStationMenu(std::string stationName) {
-    auto stationId = stations[stationName];
-    auto station = network.findVertex(stationId);
-    std::cout << "\t\t**Station**\n\n";
-    std::cout << "Name: " << station->getName() << "\n";
-    std::cout << "Municipality: " << station->getMunicipality() << "\n";
-    std::cout << "District: " << station->getDistrict() << "\n";
-    std::cout << "Township: " << station->getTownship() << "\n";
-    std::cout << "Line: " << station->getLine() << "\n";
-
-    std::cout << "\n1. Display Connections;\n";
-    std::cout << "0. Exit.\n";
-    unsigned int option;
-    std::cout << "Select an option: ";
-    std::cin >> option;
-    std::string aux;
-    switch (option) {
-        case 1:
-            clearScreen();
-            std::cout << "\t\t**" << station->getName() << "' Connections**\n\n";
-            for(auto e: station->getAdj()){
-                std::cout << e->getDest()->getName() << " (" << e->getCapacity() << " Trains, " << e->getService() << ")\n";
-            }
-            std::cout << "\n(Press any key + Enter to continue)\n";
-            std::cin >> aux;
-            browseSpecificStationMenu(stationName);
-            return;
-        case 0:
-            mainMenu();
-            return;
-        default:
-            std::cout << "ERROR: Invalid option!\n";
-            std::cout << "(Press any key + Enter to continue)\n";
-            std::cin >> aux;
-            browseSpecificStationMenu(stationName);
-            return;
-    }
-
-}
-
 void Controller::topkAffectedStationsMenu() {
     std::cout << "\t\t**Top k Affected Stations**\n\n";
+
     unsigned int k;
     std::cout << "Enter the number of stations to display: ";
     std::cin >> k;
+
+    if (std::cin.fail() || k < 0 || k > stations.size()) {
+        std::cout << "ERROR: Invalid value for k!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::getline(std::cin, aux);
+        topkAffectedStationsMenu();
+        return;
+    }
+
     std::cout << "\nWhich connection do you want to remove?\n";
-    std::string stationA,stationB;
+    std::string stationA, stationB;
     std::cout << "Station A: ";
     std::cin >> stationA;
     std::cout << "Station B: ";
     std::cin >> stationB;
     clearScreen();
+
+    if (stations.find(stationA) == stations.end() || stations.find(stationB) == stations.end()) {
+        std::cout << "ERROR: Invalid station(s)!\n";
+        std::cout << "(Press any key + Enter to continue)\n";
+        std::string aux;
+        std::cin >> aux;
+        topkAffectedStationsMenu();
+        return;
+    }
 
     std::cout << "\t\t**Top " << k << " Affected Stations**\n\n";
     network.topkAffectedStations(k, stations[stationA], stations[stationB]);
@@ -534,7 +574,6 @@ void Controller::topkAffectedStationsMenu() {
     std::string aux;
     std::cin >> aux;
     mainMenu();
-    return;
 }
 
 

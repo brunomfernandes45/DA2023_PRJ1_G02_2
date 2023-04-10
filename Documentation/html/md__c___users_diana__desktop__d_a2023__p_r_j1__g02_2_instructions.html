@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Railway Network: MutablePriorityQueue&lt; T &gt; Class Template Reference</title>
+<title>Railway Network: &lt;strong&gt;Instructions&lt;/strong&gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -69,36 +69,41 @@ $(function() {
 </div>
 
 </div><!-- top -->
-<div class="header">
-  <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="class_mutable_priority_queue-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">MutablePriorityQueue&lt; T &gt; Class Template Reference</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title"><b>Instructions</b> </div></div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a058fc182052af82e10cc3719e448b62d"><td class="memItemLeft" align="right" valign="top"><a id="a058fc182052af82e10cc3719e448b62d" name="a058fc182052af82e10cc3719e448b62d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>insert</b> (T *x)</td></tr>
-<tr class="separator:a058fc182052af82e10cc3719e448b62d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3880874d7364279ac0d6d31302b28853"><td class="memItemLeft" align="right" valign="top"><a id="a3880874d7364279ac0d6d31302b28853" name="a3880874d7364279ac0d6d31302b28853"></a>
-T *&#160;</td><td class="memItemRight" valign="bottom"><b>extractMin</b> ()</td></tr>
-<tr class="separator:a3880874d7364279ac0d6d31302b28853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0878839cc1d2dba2b8ab2e589ecc6405"><td class="memItemLeft" align="right" valign="top"><a id="a0878839cc1d2dba2b8ab2e589ecc6405" name="a0878839cc1d2dba2b8ab2e589ecc6405"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>decreaseKey</b> (T *x)</td></tr>
-<tr class="separator:a0878839cc1d2dba2b8ab2e589ecc6405"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2edbb1f4a6fa3ff735700dfcebebe8d4"><td class="memItemLeft" align="right" valign="top"><a id="a2edbb1f4a6fa3ff735700dfcebebe8d4" name="a2edbb1f4a6fa3ff735700dfcebebe8d4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>empty</b> ()</td></tr>
-<tr class="separator:a2edbb1f4a6fa3ff735700dfcebebe8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2da20977851b1e57ad9193eb0cef905"><td class="memItemLeft" align="right" valign="top"><a id="ad2da20977851b1e57ad9193eb0cef905" name="ad2da20977851b1e57ad9193eb0cef905"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>inQueue</b> (T *elem) const</td></tr>
-<tr class="separator:ad2da20977851b1e57ad9193eb0cef905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/diana/Desktop/DA2023_PRJ1_G02_2/<a class="el" href="_mutable_priority_queue_8h_source.html">MutablePriorityQueue.h</a></li>
-</ul>
-</div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="autotoc_md1"></a>
+&lt;strong&gt;Usage&lt;/strong&gt;</h1>
+<p >To use this project follow the steps below:</p>
+<ol type="1">
+<li>Clone the repository to your computer.</li>
+<li>Open the project directory in an IDE (preferably CLion because our project uses CMake).</li>
+<li>Run the program simply by clicking the button 'Run' on the top of the screen (CLion).</li>
+<li>Select the input file you want to use. The data files must be '.csv'. The format of the files should be the following:<ol type="a">
+<li>For the stations file, the data should be in this order: Name,District,Municipality,Township,Line.</li>
+<li>For the network file, the data should be in this order: Station_A,Station_B,Capacity,Service.</li>
+</ol>
+</li>
+<li>Every input (except the files) must be in CamelCase (ex. LisboaOriente).</li>
+<li>If you're using Windows operating system, you may run into some problems with some characters like 'à', 'ç' or 'ã'. In that case consider using files that don't have those types of characters.</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2"></a>
+&lt;strong&gt;Features&lt;/strong&gt;</h1>
+<p >In the main menu there are 10 options, one of them being the exit option. The other 9, in the respective order, do the following:</p>
+<ol type="1">
+<li>Displays every station's name, district and line.</li>
+<li>Displays all the information of a chosen station, including its connections.</li>
+<li>Calculates the maximum number of trains that can simultaneously travel between two stations (Max Flow).</li>
+<li>Calculates the pairs that require the most amount of trains (Max Flow).</li>
+<li>Calculates the transportation needs of each municipality and district and displays the top-k.</li>
+<li>Calculates the maximum number of trains that can simultaneously arrive at a station (Max Flow).</li>
+<li>Calculates the maximum amount of trains that can simultaneously travel through the minimum cost path between two stations (Min Cost).</li>
+<li>Calculates the maximum number of trains that can simultaneously travel between two stations with just 1 type of service (Max Flow).</li>
+<li>Calculates the difference in every station's maximum number of trains that can simultaneously arrive at it after blocking one connection (Max Flow). </li>
+</ol>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5

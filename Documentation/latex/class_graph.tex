@@ -3,18 +3,13 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}{get\+Num\+Vertex}} () const
-\begin{DoxyCompactList}\small\item\em Returns the number of vertices in the graph. \end{DoxyCompactList}\item 
 std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyperlink{class_graph_a619ac583094079134074658e29463c0e}{get\+Vertex\+Set}} () const
 \begin{DoxyCompactList}\small\item\em Returns the vector of vertices in the graph. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_graph_a089f7fc73ea9976295d387846ad36c69}{find\+Vertex}} (const int \&id) const
 \begin{DoxyCompactList}\small\item\em Finds a vertex in the graph with a given ID. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}{add\+Vertex}} (const int \&id, std\+::string name, std\+::string district, std\+::string municipality, std\+::string township, std\+::string line)
 \begin{DoxyCompactList}\small\item\em Adds a vertex with the given information to the graph. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{class_graph_a4ed31cd4f168849c347ab13236bb9443}\label{class_graph_a4ed31cd4f168849c347ab13236bb9443}} 
-bool {\bfseries add\+Edge} (const int \&source, const int \&dest, double w, std\+::string s)
-\item 
-bool \mbox{\hyperlink{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}{add\+Bidirectional\+Edge}} (const int \&source, const int \&dest, double w, std\+::string s)
+bool \mbox{\hyperlink{class_graph_a73d2c51d586bb698467feaf90d2bd045}{add\+Bidirectional\+Edge}} (const int \&source, const int \&dest, double w, const std\+::string \&s) const
 \begin{DoxyCompactList}\small\item\em Adds a bidirectional edge between two vertices with the given weight and label. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_graph_addca30806740b33888a252739c09d87f}{edmonds\+Karp}} (const int \&source, const int \&dest)
 \begin{DoxyCompactList}\small\item\em Implementation of the Edmonds-\/\+Karp algorithm to find the maximum flow in a network flow graph. \end{DoxyCompactList}\item 
@@ -30,22 +25,20 @@ std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ \mbox{\hyper
 \begin{DoxyCompactList}\small\item\em Applies Dijkstra\textquotesingle{}s algorithm to find the shortest path between two vertices in the graph. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_graph_a697561b2a2c1b25147b1750b250c1fdf}{remove\+Vertex}} (const int \&id)
 \begin{DoxyCompactList}\small\item\em Removes a vertex with the specified ID from the graph, as well as all edges connected to it. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}{max\+Simultaneous\+Trains}} (std\+::string station\+Name)
+void \mbox{\hyperlink{class_graph_a5c315840535b6c8d80a10c4a3f388216}{max\+Simultaneous\+Trains}} (const std\+::string \&station\+Name)
 \begin{DoxyCompactList}\small\item\em Calculates the maximum number of trains that can simultaneously arrive at a given station. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ \mbox{\hyperlink{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}{find\+Vertex\+By\+Name}} (const std\+::string \&name) const
 \begin{DoxyCompactList}\small\item\em Finds a vertex in the graph given its name. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_graph_a5bf1ed719a6a352f7650250122ac9d89}{max\+Trains\+Min\+Cost}} (const std\+::string \&src\+Name, const std\+::string \&dest\+Name)
 \begin{DoxyCompactList}\small\item\em Computes the maximum number of trains that can travel simultaneously between two given stations with minimum cost. \end{DoxyCompactList}\item 
-double \mbox{\hyperlink{class_graph_a5524220a30306dd859a4a00ce2b7a288}{edmonds\+Karp\+Service}} (const int \&source, const int \&dest, std\+::string service)
+double \mbox{\hyperlink{class_graph_ad5948f6843bd6e3b8f41ab21c577bd76}{edmonds\+Karp\+Service}} (const int \&source, const int \&dest, const std\+::string \&service)
 \begin{DoxyCompactList}\small\item\em Calculates the maximum flow that can be achieved for a specific service between two vertices using the Edmonds-\/\+Karp algorithm. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{class_graph_a0d4def9dc8a86eed2aaee95af57f03e6}{bfs\+\_\+service}} (\mbox{\hyperlink{class_vertex}{Vertex}} \&source, \mbox{\hyperlink{class_vertex}{Vertex}} \&dest, std\+::string service)
-\begin{DoxyCompactList}\small\item\em Breadth-\/first search algorithm to find a path between two vertices that satisfies a certain service condition. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Protected Member Functions}
-\begin{DoxyCompactItemize}
-\item 
-\mbox{\Hypertarget{class_graph_a7dfcef08a9286cf144902cd7e56940ee}\label{class_graph_a7dfcef08a9286cf144902cd7e56940ee}} 
-int {\bfseries find\+Vertex\+Idx} (const int \&id) const
-\end{DoxyCompactItemize}
+bool \mbox{\hyperlink{class_graph_a9dcca61851a96a25f13adccad98b781a}{bfs\+\_\+service}} (\mbox{\hyperlink{class_vertex}{Vertex}} \&source, \mbox{\hyperlink{class_vertex}{Vertex}} \&dest, const std\+::string \&service)
+\begin{DoxyCompactList}\small\item\em Breadth-\/first search algorithm to find a path between two vertices that satisfies a certain service condition. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_acb796c40ae8c75db3b9bf31ba7084607}{vertex\+Max\+Trains}} (int id, int idA, int idB)
+\begin{DoxyCompactList}\small\item\em Find the maximum number of trains that can pass through a target vertex, given two cut vertices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_af6f2563e7d471eb87944366d46320a6c}{topk\+Affected\+Stations}} (int k, int stA, int stB)
+\begin{DoxyCompactList}\small\item\em Find the top-\/k most affected stations for a segment defined by two vertices, based on the decay of the maximum number of simultaneous trains passing through each station. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -55,11 +48,11 @@ std\+::vector$<$ \mbox{\hyperlink{class_vertex}{Vertex}} $\ast$ $>$ {\bfseries v
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}\label{class_graph_ac2864ed1ea70778a5f26b989e9e88d51}} 
+\mbox{\Hypertarget{class_graph_a73d2c51d586bb698467feaf90d2bd045}\label{class_graph_a73d2c51d586bb698467feaf90d2bd045}} 
 \index{Graph@{Graph}!addBidirectionalEdge@{addBidirectionalEdge}}
 \index{addBidirectionalEdge@{addBidirectionalEdge}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{addBidirectionalEdge()}{addBidirectionalEdge()}}
-{\footnotesize\ttfamily bool Graph\+::add\+Bidirectional\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{const int \&}]{dest,  }\item[{double}]{w,  }\item[{std\+::string}]{s }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Graph\+::add\+Bidirectional\+Edge (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{const int \&}]{dest,  }\item[{double}]{w,  }\item[{const std\+::string \&}]{s }\end{DoxyParamCaption}) const}
 
 
 
@@ -136,11 +129,11 @@ True if a path between s and t was found, false otherwise.
 \begin{DoxyNote}{Note}
 Time complexity\+: O(V+E), where V is the number of vertices and E is the number of edges in the graph 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_graph_a0d4def9dc8a86eed2aaee95af57f03e6}\label{class_graph_a0d4def9dc8a86eed2aaee95af57f03e6}} 
+\mbox{\Hypertarget{class_graph_a9dcca61851a96a25f13adccad98b781a}\label{class_graph_a9dcca61851a96a25f13adccad98b781a}} 
 \index{Graph@{Graph}!bfs\_service@{bfs\_service}}
 \index{bfs\_service@{bfs\_service}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{bfs\_service()}{bfs\_service()}}
-{\footnotesize\ttfamily bool Graph\+::bfs\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} \&}]{source,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} \&}]{dest,  }\item[{std\+::string}]{service }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Graph\+::bfs\+\_\+service (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vertex}{Vertex}} \&}]{source,  }\item[{\mbox{\hyperlink{class_vertex}{Vertex}} \&}]{dest,  }\item[{const std\+::string \&}]{service }\end{DoxyParamCaption})}
 
 
 
@@ -207,11 +200,11 @@ The maximum flow from the source to the destination.
 \begin{DoxyNote}{Note}
 Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_graph_a5524220a30306dd859a4a00ce2b7a288}\label{class_graph_a5524220a30306dd859a4a00ce2b7a288}} 
+\mbox{\Hypertarget{class_graph_ad5948f6843bd6e3b8f41ab21c577bd76}\label{class_graph_ad5948f6843bd6e3b8f41ab21c577bd76}} 
 \index{Graph@{Graph}!edmondsKarpService@{edmondsKarpService}}
 \index{edmondsKarpService@{edmondsKarpService}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{edmondsKarpService()}{edmondsKarpService()}}
-{\footnotesize\ttfamily double Graph\+::edmonds\+Karp\+Service (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{const int \&}]{dest,  }\item[{std\+::string}]{service }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily double Graph\+::edmonds\+Karp\+Service (\begin{DoxyParamCaption}\item[{const int \&}]{source,  }\item[{const int \&}]{dest,  }\item[{const std\+::string \&}]{service }\end{DoxyParamCaption})}
 
 
 
@@ -274,22 +267,6 @@ A pointer to the vertex if found, or nullptr if not found.
 \begin{DoxyNote}{Note}
 Time complexity\+: O(\+V), where V is the number of vertices in the graph 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}\label{class_graph_abb5e0517e2979c54eebdafc2a9875e8f}} 
-\index{Graph@{Graph}!getNumVertex@{getNumVertex}}
-\index{getNumVertex@{getNumVertex}!Graph@{Graph}}
-\doxysubsubsection{\texorpdfstring{getNumVertex()}{getNumVertex()}}
-{\footnotesize\ttfamily int Graph\+::get\+Num\+Vertex (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
-
-
-
-Returns the number of vertices in the graph. 
-
-\begin{DoxyReturn}{Returns}
-An integer representing the number of vertices in the graph. 
-\end{DoxyReturn}
-\begin{DoxyNote}{Note}
-Time complexity\+: O(1) 
-\end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
 \index{Graph@{Graph}!getVertexSet@{getVertexSet}}
 \index{getVertexSet@{getVertexSet}!Graph@{Graph}}
@@ -306,11 +283,11 @@ The vector of vertices in the graph.
 \begin{DoxyNote}{Note}
 Time complexity\+: O(1) 
 \end{DoxyNote}
-\mbox{\Hypertarget{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}\label{class_graph_a8f4d83efb8ac348ce4fab8ba217a0617}} 
+\mbox{\Hypertarget{class_graph_a5c315840535b6c8d80a10c4a3f388216}\label{class_graph_a5c315840535b6c8d80a10c4a3f388216}} 
 \index{Graph@{Graph}!maxSimultaneousTrains@{maxSimultaneousTrains}}
 \index{maxSimultaneousTrains@{maxSimultaneousTrains}!Graph@{Graph}}
 \doxysubsubsection{\texorpdfstring{maxSimultaneousTrains()}{maxSimultaneousTrains()}}
-{\footnotesize\ttfamily void Graph\+::max\+Simultaneous\+Trains (\begin{DoxyParamCaption}\item[{std\+::string}]{station\+Name }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Graph\+::max\+Simultaneous\+Trains (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{station\+Name }\end{DoxyParamCaption})}
 
 
 
@@ -397,6 +374,28 @@ Resets the flow of all edges in the graph to zero.
 \begin{DoxyNote}{Note}
 Time complexity\+: O(V+E), where n is the number of vertices and m is the number of edges in the graph 
 \end{DoxyNote}
+\mbox{\Hypertarget{class_graph_af6f2563e7d471eb87944366d46320a6c}\label{class_graph_af6f2563e7d471eb87944366d46320a6c}} 
+\index{Graph@{Graph}!topkAffectedStations@{topkAffectedStations}}
+\index{topkAffectedStations@{topkAffectedStations}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{topkAffectedStations()}{topkAffectedStations()}}
+{\footnotesize\ttfamily void Graph\+::topk\+Affected\+Stations (\begin{DoxyParamCaption}\item[{int}]{k,  }\item[{int}]{stA,  }\item[{int}]{stB }\end{DoxyParamCaption})}
+
+
+
+Find the top-\/k most affected stations for a segment defined by two vertices, based on the decay of the maximum number of simultaneous trains passing through each station. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em k} & The number of stations to return \\
+\hline
+{\em stA} & The ID of the first station defining the segment \\
+\hline
+{\em stB} & The ID of the second station defining the segment \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V$^\wedge$2 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}\label{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}} 
 \index{Graph@{Graph}!topkTransportNeeds@{topkTransportNeeds}}
 \index{topkTransportNeeds@{topkTransportNeeds}!Graph@{Graph}}
@@ -415,9 +414,34 @@ Computes and displays the top-\/k districts and municipalities by transportation
 \begin{DoxyNote}{Note}
 Time complexity\+: O(VlogV + E), where V is the number of vertices and E is the number of edges in the graph 
 \end{DoxyNote}
+\mbox{\Hypertarget{class_graph_acb796c40ae8c75db3b9bf31ba7084607}\label{class_graph_acb796c40ae8c75db3b9bf31ba7084607}} 
+\index{Graph@{Graph}!vertexMaxTrains@{vertexMaxTrains}}
+\index{vertexMaxTrains@{vertexMaxTrains}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{vertexMaxTrains()}{vertexMaxTrains()}}
+{\footnotesize\ttfamily int Graph\+::vertex\+Max\+Trains (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{idA,  }\item[{int}]{idB }\end{DoxyParamCaption})}
+
+
+
+Find the maximum number of trains that can pass through a target vertex, given two cut vertices. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The ID of the target vertex \\
+\hline
+{\em idA} & The ID of the first cut vertex \\
+\hline
+{\em idB} & The ID of the second cut vertex \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The maximum number of trains that can pass through the target vertex or -\/1 if any of the vertices are not found in the graph. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
+\end{DoxyNote}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Graph.\+h\item 
-Graph.\+cpp\end{DoxyCompactItemize}
+C\+:/\+Users/diana/\+Desktop/\+DA2023\+\_\+\+PRJ1\+\_\+\+G02\+\_\+2/Graph.\+h\item 
+C\+:/\+Users/diana/\+Desktop/\+DA2023\+\_\+\+PRJ1\+\_\+\+G02\+\_\+2/Graph.\+cpp\end{DoxyCompactItemize}

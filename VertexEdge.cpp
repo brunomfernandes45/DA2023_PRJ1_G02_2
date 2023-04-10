@@ -1,9 +1,11 @@
 #include "VertexEdge.h"
 
-Vertex::Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line) : id(id), Station(name, district, municipality, township, line) {}
+#include <utility>
+
+Vertex::Vertex(int id, std::string name, std::string district, std::string municipality, std::string township, std::string line) : id(id), Station(std::move(name), std::move(district), std::move(municipality), std::move(township), std::move(line)) {}
 
 Edge * Vertex::addEdge(Vertex *d, double w, std::string s) {
-    auto newEdge = new Edge(this, d, w, s);
+    auto newEdge = new Edge(this, d, w, std::move(s));
     adj.push_back(newEdge);
     d->incoming.push_back(newEdge);
     return newEdge;
@@ -53,14 +55,6 @@ bool Vertex::isVisited() const {
     return this->visited;
 }
 
-bool Vertex::isProcessing() const {
-    return this->processing;
-}
-
-unsigned int Vertex::getIndegree() const {
-    return this->indegree;
-}
-
 double Vertex::getDist() const {
     return this->dist;
 }
@@ -69,24 +63,8 @@ Edge *Vertex::getPath() const {
     return this->path;
 }
 
-std::vector<Edge *> Vertex::getIncoming() const {
-    return this->incoming;
-}
-
-void Vertex::setId(int id) {
-    this->id = id;
-}
-
 void Vertex::setVisited(bool visited) {
     this->visited = visited;
-}
-
-void Vertex::setProcesssing(bool processing) {
-    this->processing = processing;
-}
-
-void Vertex::setIndegree(unsigned int indegree) {
-    this->indegree = indegree;
 }
 
 void Vertex::setDist(double dist) {
@@ -100,7 +78,7 @@ void Vertex::setPath(Edge *path) {
 
 /********************** Edge  ****************************/
 
-Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(s){
+Edge::Edge(Vertex *orig, Vertex *dest, double w, std::string s): orig(orig), dest(dest), capacity(w), service(std::move(s)){
     cost = 0;
     if (service == "STANDARD") cost=2;
     else if (service == "ALFA-PENDULAR") cost=4;
@@ -122,10 +100,6 @@ Edge *Edge::getReverse() const {
     return this->reverse;
 }
 
-bool Edge::isSelected() const {
-    return this->selected;
-}
-
 double Edge::getFlow() const {
     return flow;
 }
@@ -134,20 +108,12 @@ std::string Edge::getService() const {
     return this->service;
 }
 
-void Edge::setSelected(bool selected) {
-    this->selected = selected;
-}
-
 void Edge::setReverse(Edge *reverse) {
     this->reverse = reverse;
 }
 
 void Edge::setFlow(double flow) {
     this->flow = flow;
-}
-
-bool Edge::isReverse() const {
-    return isreverse;
 }
 
 void Edge::setIsReverse(bool c) {

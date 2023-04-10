@@ -72,6 +72,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_controller-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Controller Class Reference</div></div>
 </div><!--header-->
@@ -79,15 +80,6 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a59174c30b2b0c7d72204769e8cb3266e"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a59174c30b2b0c7d72204769e8cb3266e">normalizeCamelCase</a> (const std::string &amp;str)</td></tr>
-<tr class="memdesc:a59174c30b2b0c7d72204769e8cb3266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter.  <a href="class_controller.html#a59174c30b2b0c7d72204769e8cb3266e">More...</a><br /></td></tr>
-<tr class="separator:a59174c30b2b0c7d72204769e8cb3266e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af65d62bd77565df2b6017a21657ee5ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#af65d62bd77565df2b6017a21657ee5ef">removeWhitespaceAndAccents</a> (std::string &amp;str)</td></tr>
-<tr class="memdesc:af65d62bd77565df2b6017a21657ee5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes whitespace and accents from a string.  <a href="class_controller.html#af65d62bd77565df2b6017a21657ee5ef">More...</a><br /></td></tr>
-<tr class="separator:af65d62bd77565df2b6017a21657ee5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25832ee3081b1e832d3c91d3aeceffb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a25832ee3081b1e832d3c91d3aeceffb7">replaceWhitespace</a> (std::string &amp;str, char replacement)</td></tr>
-<tr class="memdesc:a25832ee3081b1e832d3c91d3aeceffb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all whitespace characters in a string with a given character.  <a href="class_controller.html#a25832ee3081b1e832d3c91d3aeceffb7">More...</a><br /></td></tr>
-<tr class="separator:a25832ee3081b1e832d3c91d3aeceffb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0dc0ae28716e67627b54bebc6b8db61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#af0dc0ae28716e67627b54bebc6b8db61">readStations</a> (const std::string &amp;filename)</td></tr>
 <tr class="memdesc:af0dc0ae28716e67627b54bebc6b8db61"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function reads a CSV file with information about railway stations and populates the 'stations' and 'network' data structures.  <a href="class_controller.html#af0dc0ae28716e67627b54bebc6b8db61">More...</a><br /></td></tr>
 <tr class="separator:af0dc0ae28716e67627b54bebc6b8db61"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,6 +94,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>startMenu</b> ()</td>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td></tr>
 <tr class="memdesc:a07ecd51cea1200ec1cbe53b105829e74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the main menu of the program and allows the user to select an option to execute a specific functionality. <br /></td></tr>
 <tr class="separator:a07ecd51cea1200ec1cbe53b105829e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd20cd97c71240a3d60b03b58a47fc90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#abd20cd97c71240a3d60b03b58a47fc90">displayAllStationsMenu</a> ()</td></tr>
+<tr class="memdesc:abd20cd97c71240a3d60b03b58a47fc90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the name, district and line of all the stations in the network.  <a href="class_controller.html#abd20cd97c71240a3d60b03b58a47fc90">More...</a><br /></td></tr>
+<tr class="separator:abd20cd97c71240a3d60b03b58a47fc90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77f7e32356efcdcaaaefb799c77ca1ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a77f7e32356efcdcaaaefb799c77ca1ab">browseStationMenu</a> ()</td></tr>
+<tr class="memdesc:a77f7e32356efcdcaaaefb799c77ca1ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Asks the user to input the name of a station and checks if it is a valid station in the network. If the station is not valid, prints an error message and returns to the browse station menu. If the station is valid, calls browseSpecificStationMenu function with the station name as a parameter.  <a href="class_controller.html#a77f7e32356efcdcaaaefb799c77ca1ab">More...</a><br /></td></tr>
+<tr class="separator:a77f7e32356efcdcaaaefb799c77ca1ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a040f4fe25bd8f9be1e6a2d63cfce5230"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a040f4fe25bd8f9be1e6a2d63cfce5230">browseSpecificStationMenu</a> (const std::string &amp;stationName)</td></tr>
+<tr class="memdesc:a040f4fe25bd8f9be1e6a2d63cfce5230"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the name, municipality, district, township, and line o a specific station in the network.  <a href="class_controller.html#a040f4fe25bd8f9be1e6a2d63cfce5230">More...</a><br /></td></tr>
+<tr class="separator:a040f4fe25bd8f9be1e6a2d63cfce5230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ade852cc9f78f944cef8f865faa3d9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a9ade852cc9f78f944cef8f865faa3d9a">maxFlowMenu</a> ()</td></tr>
 <tr class="memdesc:a9ade852cc9f78f944cef8f865faa3d9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-Karp algorithm.  <a href="class_controller.html#a9ade852cc9f78f944cef8f865faa3d9a">More...</a><br /></td></tr>
 <tr class="separator:a9ade852cc9f78f944cef8f865faa3d9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,8 +121,90 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
 <tr class="memitem:acbf6c3a17b5e2fc9d718f7eaf0677915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#acbf6c3a17b5e2fc9d718f7eaf0677915">maxTrainsOneTypeMenu</a> ()</td></tr>
 <tr class="memdesc:acbf6c3a17b5e2fc9d718f7eaf0677915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type.  <a href="class_controller.html#acbf6c3a17b5e2fc9d718f7eaf0677915">More...</a><br /></td></tr>
 <tr class="separator:acbf6c3a17b5e2fc9d718f7eaf0677915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52205ea4853a91dca702702e3e95bd7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a52205ea4853a91dca702702e3e95bd7a">topkAffectedStationsMenu</a> ()</td></tr>
+<tr class="memdesc:a52205ea4853a91dca702702e3e95bd7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the top-k most affected stations for a segment defined by two stations.  <a href="class_controller.html#a52205ea4853a91dca702702e3e95bd7a">More...</a><br /></td></tr>
+<tr class="separator:a52205ea4853a91dca702702e3e95bd7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a59174c30b2b0c7d72204769e8cb3266e"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a59174c30b2b0c7d72204769e8cb3266e">normalizeCamelCase</a> (const std::string &amp;str)</td></tr>
+<tr class="memdesc:a59174c30b2b0c7d72204769e8cb3266e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter.  <a href="class_controller.html#a59174c30b2b0c7d72204769e8cb3266e">More...</a><br /></td></tr>
+<tr class="separator:a59174c30b2b0c7d72204769e8cb3266e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af65d62bd77565df2b6017a21657ee5ef"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#af65d62bd77565df2b6017a21657ee5ef">removeWhitespaceAndAccents</a> (std::string &amp;str)</td></tr>
+<tr class="memdesc:af65d62bd77565df2b6017a21657ee5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes whitespace and accents from a string.  <a href="class_controller.html#af65d62bd77565df2b6017a21657ee5ef">More...</a><br /></td></tr>
+<tr class="separator:af65d62bd77565df2b6017a21657ee5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25832ee3081b1e832d3c91d3aeceffb7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_controller.html#a25832ee3081b1e832d3c91d3aeceffb7">replaceWhitespace</a> (std::string &amp;str, char replacement)</td></tr>
+<tr class="memdesc:a25832ee3081b1e832d3c91d3aeceffb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces all whitespace characters in a string with a given character.  <a href="class_controller.html#a25832ee3081b1e832d3c91d3aeceffb7">More...</a><br /></td></tr>
+<tr class="separator:a25832ee3081b1e832d3c91d3aeceffb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a040f4fe25bd8f9be1e6a2d63cfce5230" name="a040f4fe25bd8f9be1e6a2d63cfce5230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a040f4fe25bd8f9be1e6a2d63cfce5230">&#9670;&#160;</a></span>browseSpecificStationMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Controller::browseSpecificStationMenu </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>stationName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the name, municipality, district, township, and line o a specific station in the network. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stationName</td><td>The name of the station to browse </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V), where V is the number of vertices in the network </dd></dl>
+
+</div>
+</div>
+<a id="a77f7e32356efcdcaaaefb799c77ca1ab" name="a77f7e32356efcdcaaaefb799c77ca1ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77f7e32356efcdcaaaefb799c77ca1ab">&#9670;&#160;</a></span>browseStationMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Controller::browseStationMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Asks the user to input the name of a station and checks if it is a valid station in the network. If the station is not valid, prints an error message and returns to the browse station menu. If the station is valid, calls browseSpecificStationMenu function with the station name as a parameter. </p>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V), where V is the number of vertices in the network </dd></dl>
+
+</div>
+</div>
+<a id="abd20cd97c71240a3d60b03b58a47fc90" name="abd20cd97c71240a3d60b03b58a47fc90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd20cd97c71240a3d60b03b58a47fc90">&#9670;&#160;</a></span>displayAllStationsMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Controller::displayAllStationsMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the name, district and line of all the stations in the network. </p>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V), where V is the number of vertices (stations) in the network </dd></dl>
+
+</div>
+</div>
 <a id="a9ade852cc9f78f944cef8f865faa3d9a" name="a9ade852cc9f78f944cef8f865faa3d9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ade852cc9f78f944cef8f865faa3d9a">&#9670;&#160;</a></span>maxFlowMenu()</h2>
 
@@ -227,6 +310,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">std::string Controller::normalizeCamelCase </td>
@@ -236,6 +322,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>This function normalizes a string in camel case by inserting spaces before each uppercase letter, except for the first letter. </p>
@@ -273,7 +364,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(n), where n is the number of lines in the CSV file </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(n), where n is the number of lines in the input file </dd></dl>
 
 </div>
 </div>
@@ -309,6 +400,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Controller::removeWhitespaceAndAccents </td>
@@ -318,6 +412,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Removes whitespace and accents from a string. </p>
@@ -336,6 +435,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Controller::replaceWhitespace </td>
@@ -355,6 +457,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Replaces all whitespace characters in a string with a given character. </p>
@@ -366,6 +473,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>Time complexity: O(n), where n is the length of the input string </dd></dl>
+
+</div>
+</div>
+<a id="a52205ea4853a91dca702702e3e95bd7a" name="a52205ea4853a91dca702702e3e95bd7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52205ea4853a91dca702702e3e95bd7a">&#9670;&#160;</a></span>topkAffectedStationsMenu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Controller::topkAffectedStationsMenu </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Displays the top-k most affected stations for a segment defined by two stations. </p>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
 
 </div>
 </div>
@@ -390,8 +517,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mainMenu</b> ()</td><
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li><a class="el" href="_controller_8h_source.html">Controller.h</a></li>
-<li>Controller.cpp</li>
+<li>C:/Users/diana/Desktop/DA2023_PRJ1_G02_2/<a class="el" href="_controller_8h_source.html">Controller.h</a></li>
+<li>C:/Users/diana/Desktop/DA2023_PRJ1_G02_2/Controller.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

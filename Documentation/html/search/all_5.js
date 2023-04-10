@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['findvertex_0',['findVertex',['../class_graph.html#a089f7fc73ea9976295d387846ad36c69',1,'Graph']]],
-  ['findvertexbyname_1',['findVertexByName',['../class_graph.html#aec12f2c28cb2db308f88958a3c85d3eb',1,'Graph']]]
+  ['edge_0',['Edge',['../class_edge.html',1,'Edge'],['../class_edge.html#a7c1ccdc28a63e7d1ff2374138e72239f',1,'Edge::Edge()']]],
+  ['edmondskarp_1',['edmondsKarp',['../class_graph.html#addca30806740b33888a252739c09d87f',1,'Graph']]],
+  ['edmondskarpservice_2',['edmondsKarpService',['../class_graph.html#ad5948f6843bd6e3b8f41ab21c577bd76',1,'Graph']]]
 ];

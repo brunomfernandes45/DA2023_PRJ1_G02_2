@@ -28,16 +28,10 @@ public:
     int getId() const;
     std::vector<Edge *> getAdj() const;
     bool isVisited() const;
-    bool isProcessing() const;
-    unsigned int getIndegree() const;
     double getDist() const;
     Edge *getPath() const;
-    std::vector<Edge *> getIncoming() const;
 
-    void setId(int info);
     void setVisited(bool visited);
-    void setProcesssing(bool processing);
-    void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge *path);
 
@@ -50,8 +44,6 @@ protected:
     int id;
     std::vector<Edge *> adj;
     bool visited = false;
-    bool processing = false;
-    unsigned int indegree;
     double dist = 0;
     Edge *path = nullptr;
     std::vector<Edge *> incoming;
@@ -72,15 +64,12 @@ public:
 
     Vertex * getDest() const;
     double getCapacity() const;
-    bool isSelected() const;
     Vertex * getOrig() const;
     Edge *getReverse() const;
     double getFlow() const;
     std::string getService() const;
-    bool isReverse() const;
     int getCost() const;
 
-    void setSelected(bool selected);
     void setReverse(Edge *reverse);
     void setFlow(double flow);
     void setIsReverse(bool c);
@@ -88,7 +77,6 @@ public:
 protected:
     Vertex * dest;
     double capacity;
-    bool selected = false;
     Vertex *orig;
     Edge *reverse = nullptr;
     bool isreverse;

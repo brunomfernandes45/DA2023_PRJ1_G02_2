@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['edge_0',['Edge',['../class_edge.html',1,'Edge'],['../class_edge.html#a7c1ccdc28a63e7d1ff2374138e72239f',1,'Edge::Edge()']]],
-  ['edmondskarp_1',['edmondsKarp',['../class_graph.html#addca30806740b33888a252739c09d87f',1,'Graph']]],
-  ['edmondskarpservice_2',['edmondsKarpService',['../class_graph.html#a5524220a30306dd859a4a00ce2b7a288',1,'Graph']]]
+  ['dijkstra_0',['dijkstra',['../class_graph.html#a0d94aed6df69037749ea1e2ddbdc81b7',1,'Graph']]],
+  ['displayallstationsmenu_1',['displayAllStationsMenu',['../class_controller.html#abd20cd97c71240a3d60b03b58a47fc90',1,'Controller']]]
 ];

@@ -2,14 +2,10 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <iostream>
+#include <utility>
 #include <vector>
 #include <limits>
 #include <queue>
-
-
-int Graph::getNumVertex() const {
-    return vertexSet.size();
-}
 
 std::vector<Vertex *> Graph::getVertexSet() const {
     return vertexSet;
@@ -21,31 +17,13 @@ Vertex * Graph::findVertex(const int &id) const {
     return nullptr;
 }
 
-int Graph::findVertexIdx(const int &id) const {
-    for (unsigned i = 0; i < vertexSet.size(); i++)
-        if (vertexSet[i]->getId() == id)
-            return i;
-    return -1;
-}
-
 bool Graph::addVertex(const int &id, std::string name, std::string district, std::string municipality, std::string township, std::string line) {
     if (findVertex(id) != nullptr) return false;
-    vertexSet.push_back(new Vertex(id, name, district, municipality, township, line));
+    vertexSet.push_back(new Vertex(id, std::move(name), std::move(district), std::move(municipality), std::move(township), std::move(line)));
     return true;
 }
 
-bool Graph::addEdge(const int &source, const int &dest, double w, std::string s) {
-    auto v1 = findVertex(source);
-    auto v2 = findVertex(dest);
-    if (v1 == nullptr || v2 == nullptr) return false;
-    for (auto edge : v1 -> getAdj()) {
-        if (edge -> getDest() -> getId() == v2 -> getId()) return false;
-    }
-    v1 -> addEdge(v2, w, s);
-    return true;
-}
-
-bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w, std::string s) {
+bool Graph::addBidirectionalEdge(const int &source, const int &dest, double w, const std::string& s) const {
     auto v1 = findVertex(source);
     auto v2 = findVertex(dest);
     if (v1 == nullptr || v2 == nullptr) return false;
@@ -227,7 +205,7 @@ std::vector<Vertex *> Graph::dijkstra(const int &origin, const int &dest) {
 }
 
 bool Graph::removeVertex(const int &id) {
-    for(std::vector<Vertex*>::iterator v = vertexSet.begin(); v != vertexSet.end(); ++v){
+    for(auto v = vertexSet.begin(); v != vertexSet.end(); ++v){
         if((*v)->getId() == id){
             for(Edge *e: (*v)->getAdj()){
                 (*v)->removeEdge(e->getDest()->getId());
@@ -240,7 +218,7 @@ bool Graph::removeVertex(const int &id) {
     return false;
 }
 
-void Graph::maxSimultaneousTrains(std::string targetStation){
+void Graph::maxSimultaneousTrains(const std::string& targetStation){
     bool found = false;
     Vertex* targetVertex = nullptr;
 
@@ -320,7 +298,7 @@ void Graph::maxTrainsMinCost(const std::string& srcName, const std::string& dest
 }
 
 
-double Graph::edmondsKarpService(const int &source, const int &dest, std::string service) {
+double Graph::edmondsKarpService(const int &source, const int &dest, const std::string& service) {
     Vertex* s = findVertex(source);
     Vertex* t = findVertex(dest);
     if (s == nullptr || t == nullptr) return 0;
@@ -348,7 +326,7 @@ double Graph::edmondsKarpService(const int &source, const int &dest, std::string
     return maxFlow;
 }
 
-bool Graph::bfs_service(Vertex &s, Vertex &t, std::string service) {
+bool Graph::bfs_service(Vertex &s, Vertex &t, const std::string& service) {
     for (Vertex* v : vertexSet) {
         v->setVisited(false);
         v->setDist(std::numeric_limits<double>::infinity());
@@ -376,13 +354,14 @@ bool Graph::bfs_service(Vertex &s, Vertex &t, std::string service) {
     return false;
 }
 
+
 int Graph::vertexMaxTrains(const int id ,const int idA, const int idB){
     Vertex *targetVertex = findVertex(id);
     Vertex *cutVertexA = findVertex(idA);
     Vertex *cutVertexB = findVertex(idB);
-    if(targetVertex == nullptr || cutVertexA == nullptr || cutVertexB == nullptr){
-        return -1;
-    }
+
+    if (targetVertex == nullptr || cutVertexA == nullptr || cutVertexB == nullptr) return -1;
+
     for(Vertex* v : vertexSet){
         v->setVisited(false);
         v->setDist(0);
@@ -440,14 +419,3 @@ void Graph::topkAffectedStations(int k,int stA, int stB){
     }
     addBidirectionalEdge(stA, stB, w,s);
 }
-
-
-void deleteMatrix(int **m, int n) {
-    if (m != nullptr) {
-        for (int i = 0; i < n; i++)
-            if (m[i] != nullptr)
-                delete [] m[i];
-        delete [] m;
-    }
-}
-

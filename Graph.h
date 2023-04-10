@@ -8,11 +8,6 @@
 class Graph {
 public:
 
-    ///@brief Returns the number of vertices in the graph.
-    ///@return An integer representing the number of vertices in the graph.
-    ///@note Time complexity: O(1)
-    int getNumVertex() const;
-
     ///@brief Returns the vector of vertices in the graph.
     ///@return The vector of vertices in the graph.
     ///@note Time complexity: O(1)
@@ -35,8 +30,6 @@ public:
     ///@note Time complexity: O(1)
     bool addVertex(const int &id, std::string name, std::string district, std::string municipality, std::string township, std::string line);
 
-    bool addEdge(const int &source, const int &dest, double w, std::string s);
-
     ///@brief Adds a bidirectional edge between two vertices with the given weight and label.
     ///@param source The ID of the source vertex
     ///@param dest The ID of the destination vertex
@@ -44,7 +37,7 @@ public:
     ///@param s The label (service) of the edge
     ///@return True if the edge was added successfully, false otherwise
     ///@note Time complexity: O(1)
-    bool addBidirectionalEdge(const int &source, const int &dest, double w, std::string s);
+    bool addBidirectionalEdge(const int &source, const int &dest, double w, const std::string& s) const;
 
 
     ///@brief Implementation of the Edmonds-Karp algorithm to find the maximum flow in a network flow graph.
@@ -93,7 +86,7 @@ public:
     ///@brief Calculates the maximum number of trains that can simultaneously arrive at a given station.
     ///@param stationName The name of the target station
     ///@note Time complexity: O(V * E * logV), where V is the number of vertices and E is the number of edges in the graph
-    void maxSimultaneousTrains(std::string stationName);
+    void maxSimultaneousTrains(const std::string& stationName);
 
 
     ///@brief Finds a vertex in the graph given its name.
@@ -116,7 +109,7 @@ public:
     ///@param service The service for which the maximum flow will be calculated
     ///@return The maximum flow that can be achieved for the given service between the source and destination vertices.
     ///@note Time complexity: O(E^2 * V), where E is the number of edges and V is the number of vertices in the graph
-    double edmondsKarpService(const int &source, const int &dest, std::string service);
+    double edmondsKarpService(const int &source, const int &dest, const std::string& service);
 
     ///@brief Breadth-first search algorithm to find a path between two vertices that satisfies a certain service condition.
     ///@param source The source vertex
@@ -124,16 +117,26 @@ public:
     ///@param service The service condition that the path must satisfy
     ///@return True if a path between s and t was found that satisfies the service condition, false otherwise.
     ///@note Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph
-    bool bfs_service(Vertex& source, Vertex& dest, std::string service);
+    bool bfs_service(Vertex& source, Vertex& dest, const std::string& service);
 
+
+    ///@brief Find the maximum number of trains that can pass through a target vertex, given two cut vertices.
+    ///@param id The ID of the target vertex
+    ///@param idA The ID of the first cut vertex
+    ///@param idB The ID of the second cut vertex
+    ///@return The maximum number of trains that can pass through the target vertex or -1 if any of the vertices are not found in the graph.
+    ///@note Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph
+    int vertexMaxTrains(int id, int idA, int idB);
+
+    ///@brief Find the top-k most affected stations for a segment defined by two vertices, based on the decay of the maximum number of simultaneous trains passing through each station.
+    ///@param k The number of stations to return
+    ///@param stA The ID of the first station defining the segment
+    ///@param stB The ID of the second station defining the segment
+    ///@note Time complexity: O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph
     void topkAffectedStations(int k,int stA, int stB);
-    int vertexMaxTrains(const int id, const int idA, const int idB);
 
 protected:
     ///@brief A vector of pointers to the vertices of the graph. Each Vertex object represents a station in the railway network.
     std::vector<Vertex *> vertexSet;
-    int findVertexIdx(const int &id) const;
-
-
 };
 #endif //DA2023_PRJ1_G02_2_GRAPH_H
