@@ -33,7 +33,7 @@ public:
 
     ///@brief This function reads a CSV file with information about railway connections between stations and populates the 'network' data structure.
     ///@param filename The name of the CSV file to read
-    ///@note Time complexity: O(n), where n is the number of lines in the CSV file
+    ///@note Time complexity: O(n), where n is the number of lines in the input file
     void readNetwork(const std::string& filename);
 
 
