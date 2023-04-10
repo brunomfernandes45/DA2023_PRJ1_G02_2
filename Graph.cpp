@@ -109,8 +109,12 @@ std::pair<int, std::vector<std::pair<std::string, std::string>>> Graph::maxTrain
     std::vector<std::pair<std::string, std::string>> maxFlowStations;
 
     for (Vertex *s : vertexSet) {
+        if (s -> maxIncomingCapacity() < maxFlow) {
+            checkedStations.insert(s -> getId());
+            continue;
+        }
         for (Vertex *t : vertexSet) {
-            if (s == t || checkedStations.find(t -> getId()) != checkedStations.end()) continue;
+            if (s == t || checkedStations.find(t -> getId()) != checkedStations.end() || t -> maxIncomingCapacity() < maxFlow) continue;
             double flow = edmondsKarp(s->getId(), t->getId());
 
             if (flow > maxFlow) {

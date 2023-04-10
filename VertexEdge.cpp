@@ -75,6 +75,14 @@ void Vertex::setPath(Edge *path) {
     this->path = path;
 }
 
+int Vertex::maxIncomingCapacity() {
+    int res = 0;
+    for (auto & i : incoming) {
+        res += i -> getCapacity();
+    }
+    return res;
+}
+
 
 /********************** Edge  ****************************/
 

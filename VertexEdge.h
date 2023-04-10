@@ -38,6 +38,8 @@ public:
     Edge * addEdge(Vertex *dest, double w, std::string s);
     bool removeEdge(int destID);
 
+    int maxIncomingCapacity();
+
     friend class MutablePriorityQueue<Vertex>;
 
 protected:
