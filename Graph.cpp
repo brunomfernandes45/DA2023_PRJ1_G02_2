@@ -383,7 +383,7 @@ int Graph::vertexMaxTrains(const int id ,const int idA, const int idB){
     return res;
 }
 
-void Graph::topkAffectedStations(int k,int stA, int stB){
+void Graph::topkAffectedStations(int k, int stA, int stB){
     std::vector<std::pair<int,int>> flowdiffs(vertexSet.size());
 
     for (Vertex* v : vertexSet) {
@@ -421,5 +421,5 @@ void Graph::topkAffectedStations(int k,int stA, int stB){
     for(int i = 0; i < k; i++){
         std::cout << findVertex(flowdiffs[i].first)->getName()<< " Decay of Max Simultaneous Trains: " << flowdiffs[i].second << std::endl;
     }
-    addBidirectionalEdge(stA, stB, w,s);
+    addBidirectionalEdge(stA, stB, w, s);
 }

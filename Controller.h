@@ -56,7 +56,7 @@ public:
 
     ///@brief Displays the name, municipality, district, township, and line o a specific station in the network.
     ///@param stationName The name of the station to browse
-    ///@note Time complexity: O(V), where V is the number of vertices in the network
+    ///@note Time complexity: O(V + E), where V is the number of vertices in the network and E is the number of edges in the network
     void browseSpecificStationMenu(const std::string& stationName);
 
     ///@brief Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-Karp algorithm.
