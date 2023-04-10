@@ -43,6 +43,9 @@ public:
     ///@brief Displays the main menu of the program and allows the user to select an option to execute a specific functionality.
     void mainMenu();
 
+    void displayAllStationsMenu();
+    void browseStationMenu();
+    void browseSpecificStationMenu(std::string stationName);
 
     ///@brief Prompts the user for two station names and calculates the maximum amount of trains that can travel between them using the Edmonds-Karp algorithm.
     ///@note Time complexity: O(V * E^2), where E is the number of edges and V is the number of vertices in the network
@@ -63,6 +66,8 @@ public:
     ///@brief Prompts the user to input the source and destination stations for finding the maximum amount of trains that can simultaneously travel between the two with minimum cost.
     ///@note Time complexity: O(E log V), where V is the number of vertices and E is the number of edges in the graph
     void maxTrainsMinCostMenu();
+
+    void topkAffectedStationsMenu();
 
     ///@brief Prompts the user to input the source and destination stations and a service type, and finds the maximum amount of trains that can simultaneously travel between the two stations with only the specified service type.
     ///@note Time complexity: O(E^2 * V), where E is the number of edges and V is the number of vertices in the graph
