@@ -519,16 +519,22 @@ void Controller::topkAffectedStationsMenu() {
     unsigned int k;
     std::cout << "Enter the number of stations to display: ";
     std::cin >> k;
+    std::cout << "\nWhich connection do you want to remove?\n";
+    std::string stationA,stationB;
+    std::cout << "Station A: ";
+    std::cin >> stationA;
+    std::cout << "Station B: ";
+    std::cin >> stationB;
     clearScreen();
 
     std::cout << "\t\t**Top " << k << " Affected Stations**\n\n";
-    std::cout << "Name, Affected Trains\n";
-    network.topkAffectedStations(k);
+    network.topkAffectedStations(k, stations[stationA], stations[stationB]);
 
     std::cout << "(Press any key + Enter to continue)\n";
     std::string aux;
     std::cin >> aux;
     mainMenu();
+    return;
 }
 
 
