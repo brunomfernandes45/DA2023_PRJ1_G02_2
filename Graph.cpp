@@ -212,8 +212,8 @@ bool Graph::removeVertex(const int &id) {
     for(auto v = vertexSet.begin(); v != vertexSet.end(); ++v){
         if((*v)->getId() == id){
             for(Edge *e: (*v)->getAdj()){
-                (*v)->removeEdge(e->getDest()->getId());
                 e->getDest()->removeEdge((*v)->getId());
+                (*v)->removeEdge(e->getDest()->getId());
             }
             vertexSet.erase(v);
             return true;

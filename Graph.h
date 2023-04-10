@@ -60,7 +60,7 @@ public:
 
     ///@brief Computes the maximum number of trains needed to transport passengers from any station to any other station.
     ///@return A pair containing the maximum number of trains needed and a vector with pairs of station names.
-    ///@note Time complexity: O(V^3 (V + E)), where V is the number of vertices and E is the number of edges in the graph
+    ///@note Time complexity: O(V^3 * E^2), where V is the number of vertices and E is the number of edges in the graph
     std::pair<int, std::vector<std::pair<std::string, std::string>>> maxTrainsNeeded();
 
 
