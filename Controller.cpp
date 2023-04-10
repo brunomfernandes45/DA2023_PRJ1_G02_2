@@ -270,6 +270,11 @@ void Controller::mainMenu(){
             maxTrainsOneTypeMenu();
             return;
 
+        case 9:
+            clearScreen();
+            topkAffectedStationsMenu();
+            return;
+
         default:
             clearScreen();
             std::cout << "\t\t**Start Menu**\n\n";
@@ -334,7 +339,7 @@ void Controller::topkTransportNeedsMenu(){
     std::cout << "\t\t**Top-k Municipalities and Districts Regarding their Transportation Needs**\n\n";
 
     int k;
-    std::cout << "Enter the value of k: ";
+    std::cout << "Enter the number of stations to display: ";
     std::cin >> k;
     network.topkTransportNeeds(k);
 
@@ -468,11 +473,6 @@ void Controller::browseStationMenu() {
         return;
     }
 
-    std::cout << "(Press any key + Enter to continue)\n";
-    std::string aux;
-    std::cin >> aux;
-    mainMenu();
-    return;
 }
 void Controller::browseSpecificStationMenu(std::string stationName) {
     auto stationId = stations[stationName];
@@ -512,6 +512,23 @@ void Controller::browseSpecificStationMenu(std::string stationName) {
             return;
     }
 
+}
+
+void Controller::topkAffectedStationsMenu() {
+    std::cout << "\t\t**Top k Affected Stations**\n\n";
+    unsigned int k;
+    std::cout << "Enter the number of stations to display: ";
+    std::cin >> k;
+    clearScreen();
+
+    std::cout << "\t\t**Top " << k << " Affected Stations**\n\n";
+    std::cout << "Name, Affected Trains\n";
+    network.topkAffectedStations(k);
+
+    std::cout << "(Press any key + Enter to continue)\n";
+    std::string aux;
+    std::cin >> aux;
+    mainMenu();
 }
 
 

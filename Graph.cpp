@@ -376,7 +376,9 @@ bool Graph::bfs_service(Vertex &s, Vertex &t, std::string service) {
     return false;
 }
 
+void Graph::topkAffectedStations(int k) {
 
+}
 
 
 void deleteMatrix(int **m, int n) {
