@@ -34,49 +34,51 @@
 \DoxyCodeLine{38     \mbox{\hyperlink{class_edge}{Edge}} * addEdge(\mbox{\hyperlink{class_vertex}{Vertex}} *dest, \textcolor{keywordtype}{double} w, std::string s);}
 \DoxyCodeLine{39     \textcolor{keywordtype}{bool} removeEdge(\textcolor{keywordtype}{int} destID);}
 \DoxyCodeLine{40 }
-\DoxyCodeLine{41     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue}}<\mbox{\hyperlink{class_vertex}{Vertex}}>;}
+\DoxyCodeLine{41     \textcolor{keywordtype}{int} maxIncomingCapacity();}
 \DoxyCodeLine{42 }
-\DoxyCodeLine{43 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{44     \textcolor{keywordtype}{int} id;}
-\DoxyCodeLine{45     std::vector<Edge *> adj;}
-\DoxyCodeLine{46     \textcolor{keywordtype}{bool} visited = \textcolor{keyword}{false};}
-\DoxyCodeLine{47     \textcolor{keywordtype}{double} dist = 0;}
-\DoxyCodeLine{48     \mbox{\hyperlink{class_edge}{Edge}} *path = \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{49     std::vector<Edge *> incoming;}
-\DoxyCodeLine{50     \textcolor{keywordtype}{int} queueIndex = 0;}
-\DoxyCodeLine{51 }
-\DoxyCodeLine{52 \};}
+\DoxyCodeLine{43     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{class_mutable_priority_queue}{MutablePriorityQueue}}<\mbox{\hyperlink{class_vertex}{Vertex}}>;}
+\DoxyCodeLine{44 }
+\DoxyCodeLine{45 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{46     \textcolor{keywordtype}{int} id;}
+\DoxyCodeLine{47     std::vector<Edge *> adj;}
+\DoxyCodeLine{48     \textcolor{keywordtype}{bool} visited = \textcolor{keyword}{false};}
+\DoxyCodeLine{49     \textcolor{keywordtype}{double} dist = 0;}
+\DoxyCodeLine{50     \mbox{\hyperlink{class_edge}{Edge}} *path = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{51     std::vector<Edge *> incoming;}
+\DoxyCodeLine{52     \textcolor{keywordtype}{int} queueIndex = 0;}
 \DoxyCodeLine{53 }
-\DoxyCodeLine{54 \textcolor{comment}{/********************** Edge  ****************************/}}
+\DoxyCodeLine{54 \};}
 \DoxyCodeLine{55 }
-\DoxyCodeLine{56 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}} \{}
-\DoxyCodeLine{57 \textcolor{keyword}{public}:}
-\DoxyCodeLine{63     \mbox{\hyperlink{class_edge}{Edge}}(\mbox{\hyperlink{class_vertex}{Vertex}} *orig, \mbox{\hyperlink{class_vertex}{Vertex}} *dest, \textcolor{keywordtype}{double} w, std::string service);}
-\DoxyCodeLine{64 }
-\DoxyCodeLine{65     \mbox{\hyperlink{class_vertex}{Vertex}} * getDest() \textcolor{keyword}{const};}
-\DoxyCodeLine{66     \textcolor{keywordtype}{double} getCapacity() \textcolor{keyword}{const};}
-\DoxyCodeLine{67     \mbox{\hyperlink{class_vertex}{Vertex}} * getOrig() \textcolor{keyword}{const};}
-\DoxyCodeLine{68     \mbox{\hyperlink{class_edge}{Edge}} *getReverse() \textcolor{keyword}{const};}
-\DoxyCodeLine{69     \textcolor{keywordtype}{double} getFlow() \textcolor{keyword}{const};}
-\DoxyCodeLine{70     std::string getService() \textcolor{keyword}{const};}
-\DoxyCodeLine{71     \textcolor{keywordtype}{int} getCost() \textcolor{keyword}{const};}
-\DoxyCodeLine{72 }
-\DoxyCodeLine{73     \textcolor{keywordtype}{void} setReverse(\mbox{\hyperlink{class_edge}{Edge}} *reverse);}
-\DoxyCodeLine{74     \textcolor{keywordtype}{void} setFlow(\textcolor{keywordtype}{double} flow);}
-\DoxyCodeLine{75     \textcolor{keywordtype}{void} setIsReverse(\textcolor{keywordtype}{bool} c);}
-\DoxyCodeLine{76 }
-\DoxyCodeLine{77 \textcolor{keyword}{protected}:}
-\DoxyCodeLine{78     \mbox{\hyperlink{class_vertex}{Vertex}} * dest;}
-\DoxyCodeLine{79     \textcolor{keywordtype}{double} capacity;}
-\DoxyCodeLine{80     \mbox{\hyperlink{class_vertex}{Vertex}} *orig;}
-\DoxyCodeLine{81     \mbox{\hyperlink{class_edge}{Edge}} *reverse = \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{82     \textcolor{keywordtype}{bool} isreverse;}
-\DoxyCodeLine{83     \textcolor{keywordtype}{double} flow;}
-\DoxyCodeLine{84     std::string service;}
-\DoxyCodeLine{85     \textcolor{keywordtype}{int} cost;}
-\DoxyCodeLine{86 \};}
-\DoxyCodeLine{87 }
-\DoxyCodeLine{88 }
-\DoxyCodeLine{89 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA2023\_PRJ1\_G02\_2\_VERTEXEDGE\_H}}
+\DoxyCodeLine{56 \textcolor{comment}{/********************** Edge  ****************************/}}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{class }\mbox{\hyperlink{class_edge}{Edge}} \{}
+\DoxyCodeLine{59 \textcolor{keyword}{public}:}
+\DoxyCodeLine{65     \mbox{\hyperlink{class_edge}{Edge}}(\mbox{\hyperlink{class_vertex}{Vertex}} *orig, \mbox{\hyperlink{class_vertex}{Vertex}} *dest, \textcolor{keywordtype}{double} w, std::string service);}
+\DoxyCodeLine{66 }
+\DoxyCodeLine{67     \mbox{\hyperlink{class_vertex}{Vertex}} * getDest() \textcolor{keyword}{const};}
+\DoxyCodeLine{68     \textcolor{keywordtype}{double} getCapacity() \textcolor{keyword}{const};}
+\DoxyCodeLine{69     \mbox{\hyperlink{class_vertex}{Vertex}} * getOrig() \textcolor{keyword}{const};}
+\DoxyCodeLine{70     \mbox{\hyperlink{class_edge}{Edge}} *getReverse() \textcolor{keyword}{const};}
+\DoxyCodeLine{71     \textcolor{keywordtype}{double} getFlow() \textcolor{keyword}{const};}
+\DoxyCodeLine{72     std::string getService() \textcolor{keyword}{const};}
+\DoxyCodeLine{73     \textcolor{keywordtype}{int} getCost() \textcolor{keyword}{const};}
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} setReverse(\mbox{\hyperlink{class_edge}{Edge}} *reverse);}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} setFlow(\textcolor{keywordtype}{double} flow);}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} setIsReverse(\textcolor{keywordtype}{bool} c);}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{80     \mbox{\hyperlink{class_vertex}{Vertex}} * dest;}
+\DoxyCodeLine{81     \textcolor{keywordtype}{double} capacity;}
+\DoxyCodeLine{82     \mbox{\hyperlink{class_vertex}{Vertex}} *orig;}
+\DoxyCodeLine{83     \mbox{\hyperlink{class_edge}{Edge}} *reverse = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{84     \textcolor{keywordtype}{bool} isreverse;}
+\DoxyCodeLine{85     \textcolor{keywordtype}{double} flow;}
+\DoxyCodeLine{86     std::string service;}
+\DoxyCodeLine{87     \textcolor{keywordtype}{int} cost;}
+\DoxyCodeLine{88 \};}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90 }
+\DoxyCodeLine{91 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//DA2023\_PRJ1\_G02\_2\_VERTEXEDGE\_H}}
 
 \end{DoxyCode}

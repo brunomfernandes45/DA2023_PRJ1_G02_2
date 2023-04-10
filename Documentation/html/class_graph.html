@@ -192,7 +192,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the edge was added successfully, false otherwise </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1). </dd></dl>
 
 </div>
 </div>
@@ -259,7 +259,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the vertex was successfully added, false otherwise </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1). </dd></dl>
 
 </div>
 </div>
@@ -298,7 +298,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a path between s and t was found, false otherwise. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -344,7 +344,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True if a path between s and t was found that satisfies the service condition, false otherwise. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -383,7 +383,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of pointers to the vertices in the shortest path from origin to dest. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O((V+E)logV), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O((V + E) * logV), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -422,7 +422,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The maximum flow from the source to the destination. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The maximum flow that can be achieved for the given service between the source and destination vertices. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(E^2 * V), where E is the number of edges and V is the number of vertices in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -496,7 +496,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the vertex with the given ID, or nullptr if not found. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(n), where n is the number of vertices in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(n), where n is the number of vertices in the graph. </dd></dl>
 
 </div>
 </div>
@@ -524,7 +524,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to the vertex if found, or nullptr if not found. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V), where V is the number of vertices in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V), where V is the number of vertices in the graph. </dd></dl>
 
 </div>
 </div>
@@ -545,7 +545,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 <p>Returns the vector of vertices in the graph. </p>
 <dl class="section return"><dt>Returns</dt><dd>The vector of vertices in the graph. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1) </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(1). </dd></dl>
 
 </div>
 </div>
@@ -572,7 +572,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E * logV), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -611,7 +611,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pair containing the maximum number of trains that can travel simultaneously and the path followed by the trains. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(E log V), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(E * log V), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -632,7 +632,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 
 <p>Computes the maximum number of trains needed to transport passengers from any station to any other station. </p>
 <dl class="section return"><dt>Returns</dt><dd>A pair containing the maximum number of trains needed and a vector with pairs of station names. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^3 (V + E)), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^3 * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -660,7 +660,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if a vertex with the specified ID was found and removed, false otherwise. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V+E), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V + E), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -680,7 +680,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
 </div><div class="memdoc">
 
 <p>Resets the flow of all edges in the graph to zero. </p>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V+E), where n is the number of vertices and m is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V + E), where n is the number of vertices and m is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -725,7 +725,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V^2 * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -752,7 +752,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(VlogV + E), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * logV + E), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>
@@ -798,7 +798,7 @@ std::vector&lt; <a class="el" href="class_vertex.html">Vertex</a> * &gt;&#160;</
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The maximum number of trains that can pass through the target vertex or -1 if any of the vertices are not found in the graph. </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Time complexity: O(V * E^2), where V is the number of vertices and E is the number of edges in the graph. </dd></dl>
 
 </div>
 </div>

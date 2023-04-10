@@ -72,7 +72,7 @@
 \DoxyCodeLine{69         \textcolor{keywordtype}{unsigned} k = leftChild(i);}
 \DoxyCodeLine{70         \textcolor{keywordflow}{if} (k >= H.size()) \textcolor{keywordflow}{break};}
 \DoxyCodeLine{71         \textcolor{keywordflow}{if} (k+1 < H.size() \&\& *H[k+1] < *H[k]) ++k;}
-\DoxyCodeLine{72         \textcolor{keywordflow}{if} (*H[k] >= *x) \textcolor{keywordflow}{break};}
+\DoxyCodeLine{72         \textcolor{keywordflow}{if} ( !(*H[k] < *x) ) \textcolor{keywordflow}{break};}
 \DoxyCodeLine{73         set(i, H[k]);}
 \DoxyCodeLine{74         i = k;}
 \DoxyCodeLine{75     \}}

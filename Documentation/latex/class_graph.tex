@@ -73,7 +73,7 @@ Adds a bidirectional edge between two vertices with the given weight and label.
 True if the edge was added successfully, false otherwise 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(1) 
+Time complexity\+: O(1). 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}\label{class_graph_a81ed0f6f2e21298bd6034f0b85a13907}} 
 \index{Graph@{Graph}!addVertex@{addVertex}}
@@ -104,7 +104,7 @@ Adds a vertex with the given information to the graph.
 True if the vertex was successfully added, false otherwise 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(1) 
+Time complexity\+: O(1). 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a3e68eb313142a67c796c05e65e79d7e6}\label{class_graph_a3e68eb313142a67c796c05e65e79d7e6}} 
 \index{Graph@{Graph}!bfs\_edmondsKarp@{bfs\_edmondsKarp}}
@@ -127,7 +127,7 @@ Breadth-\/first search algorithm to find a path between two vertices for the Edm
 True if a path between s and t was found, false otherwise. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(V+E), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(V + E), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a9dcca61851a96a25f13adccad98b781a}\label{class_graph_a9dcca61851a96a25f13adccad98b781a}} 
 \index{Graph@{Graph}!bfs\_service@{bfs\_service}}
@@ -152,7 +152,7 @@ Breadth-\/first search algorithm to find a path between two vertices that satisf
 True if a path between s and t was found that satisfies the service condition, false otherwise. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(V+E), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(V + E), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a0d94aed6df69037749ea1e2ddbdc81b7}\label{class_graph_a0d94aed6df69037749ea1e2ddbdc81b7}} 
 \index{Graph@{Graph}!dijkstra@{dijkstra}}
@@ -175,7 +175,7 @@ Applies Dijkstra\textquotesingle{}s algorithm to find the shortest path between 
 A vector of pointers to the vertices in the shortest path from origin to dest. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O((V+E)logV), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O((V + E) $\ast$ logV), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_addca30806740b33888a252739c09d87f}\label{class_graph_addca30806740b33888a252739c09d87f}} 
 \index{Graph@{Graph}!edmondsKarp@{edmondsKarp}}
@@ -198,7 +198,7 @@ Implementation of the Edmonds-\/\+Karp algorithm to find the maximum flow in a n
 The maximum flow from the source to the destination. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_ad5948f6843bd6e3b8f41ab21c577bd76}\label{class_graph_ad5948f6843bd6e3b8f41ab21c577bd76}} 
 \index{Graph@{Graph}!edmondsKarpService@{edmondsKarpService}}
@@ -223,7 +223,7 @@ Calculates the maximum flow that can be achieved for a specific service between 
 The maximum flow that can be achieved for the given service between the source and destination vertices. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+E$^\wedge$2 $\ast$ V), where E is the number of edges and V is the number of vertices in the graph 
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a089f7fc73ea9976295d387846ad36c69}\label{class_graph_a089f7fc73ea9976295d387846ad36c69}} 
 \index{Graph@{Graph}!findVertex@{findVertex}}
@@ -244,7 +244,7 @@ Finds a vertex in the graph with a given ID.
 A pointer to the vertex with the given ID, or nullptr if not found. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(n), where n is the number of vertices in the graph 
+Time complexity\+: O(n), where n is the number of vertices in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}\label{class_graph_aec12f2c28cb2db308f88958a3c85d3eb}} 
 \index{Graph@{Graph}!findVertexByName@{findVertexByName}}
@@ -265,7 +265,7 @@ Finds a vertex in the graph given its name.
 A pointer to the vertex if found, or nullptr if not found. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+V), where V is the number of vertices in the graph 
+Time complexity\+: O(\+V), where V is the number of vertices in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a619ac583094079134074658e29463c0e}\label{class_graph_a619ac583094079134074658e29463c0e}} 
 \index{Graph@{Graph}!getVertexSet@{getVertexSet}}
@@ -281,7 +281,7 @@ Returns the vector of vertices in the graph.
 The vector of vertices in the graph. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(1) 
+Time complexity\+: O(1). 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a5c315840535b6c8d80a10c4a3f388216}\label{class_graph_a5c315840535b6c8d80a10c4a3f388216}} 
 \index{Graph@{Graph}!maxSimultaneousTrains@{maxSimultaneousTrains}}
@@ -299,7 +299,7 @@ Calculates the maximum number of trains that can simultaneously arrive at a give
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+V $\ast$ E $\ast$ log\+V), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a5bf1ed719a6a352f7650250122ac9d89}\label{class_graph_a5bf1ed719a6a352f7650250122ac9d89}} 
 \index{Graph@{Graph}!maxTrainsMinCost@{maxTrainsMinCost}}
@@ -322,7 +322,7 @@ Computes the maximum number of trains that can travel simultaneously between two
 A pair containing the maximum number of trains that can travel simultaneously and the path followed by the trains. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+E log V), where V is the number of vertices and E is the number of edges in the graph. 
+Time complexity\+: O(\+E $\ast$ log V), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a5628d9c6b374cd461b0c4e782554b1da}\label{class_graph_a5628d9c6b374cd461b0c4e782554b1da}} 
 \index{Graph@{Graph}!maxTrainsNeeded@{maxTrainsNeeded}}
@@ -338,7 +338,7 @@ Computes the maximum number of trains needed to transport passengers from any st
 A pair containing the maximum number of trains needed and a vector with pairs of station names. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(V$^\wedge$3 (V + E)), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(\+V$^\wedge$3 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a697561b2a2c1b25147b1750b250c1fdf}\label{class_graph_a697561b2a2c1b25147b1750b250c1fdf}} 
 \index{Graph@{Graph}!removeVertex@{removeVertex}}
@@ -359,7 +359,7 @@ Removes a vertex with the specified ID from the graph, as well as all edges conn
 true if a vertex with the specified ID was found and removed, false otherwise. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(V+E), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(V + E), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a5e660c53a1c689eb609f1b6b50825ef5}\label{class_graph_a5e660c53a1c689eb609f1b6b50825ef5}} 
 \index{Graph@{Graph}!resetFlows@{resetFlows}}
@@ -372,7 +372,7 @@ Time complexity\+: O(V+E), where V is the number of vertices and E is the number
 Resets the flow of all edges in the graph to zero. 
 
 \begin{DoxyNote}{Note}
-Time complexity\+: O(V+E), where n is the number of vertices and m is the number of edges in the graph 
+Time complexity\+: O(V + E), where n is the number of vertices and m is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_af6f2563e7d471eb87944366d46320a6c}\label{class_graph_af6f2563e7d471eb87944366d46320a6c}} 
 \index{Graph@{Graph}!topkAffectedStations@{topkAffectedStations}}
@@ -394,7 +394,7 @@ Find the top-\/k most affected stations for a segment defined by two vertices, b
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+V$^\wedge$2 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(\+V$^\wedge$2 $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}\label{class_graph_a697ab9dbda10a630f4a8a6f5b996db05}} 
 \index{Graph@{Graph}!topkTransportNeeds@{topkTransportNeeds}}
@@ -412,7 +412,7 @@ Computes and displays the top-\/k districts and municipalities by transportation
 \hline
 \end{DoxyParams}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(VlogV + E), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(V $\ast$ logV + E), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 \mbox{\Hypertarget{class_graph_acb796c40ae8c75db3b9bf31ba7084607}\label{class_graph_acb796c40ae8c75db3b9bf31ba7084607}} 
 \index{Graph@{Graph}!vertexMaxTrains@{vertexMaxTrains}}
@@ -437,7 +437,7 @@ Find the maximum number of trains that can pass through a target vertex, given t
 The maximum number of trains that can pass through the target vertex or -\/1 if any of the vertices are not found in the graph. 
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph 
+Time complexity\+: O(\+V $\ast$ E$^\wedge$2), where V is the number of vertices and E is the number of edges in the graph. 
 \end{DoxyNote}
 
 
