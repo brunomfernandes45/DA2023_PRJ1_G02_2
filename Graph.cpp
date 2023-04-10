@@ -376,8 +376,69 @@ bool Graph::bfs_service(Vertex &s, Vertex &t, std::string service) {
     return false;
 }
 
-void Graph::topkAffectedStations(int k) {
+int Graph::vertexMaxTrains(const int id ,const int idA, const int idB){
+    Vertex *targetVertex = findVertex(id);
+    Vertex *cutVertexA = findVertex(idA);
+    Vertex *cutVertexB = findVertex(idB);
+    if(targetVertex == nullptr || cutVertexA == nullptr || cutVertexB == nullptr){
+        return -1;
+    }
+    for(Vertex* v : vertexSet){
+        v->setVisited(false);
+        v->setDist(0);
+    }
+    addVertex(-1, "ss", "ss", "ss", "ss", "ss");
 
+    for (Vertex* v : vertexSet) {
+        if (v != targetVertex && v->getId() != -1 && v->getAdj().size() == 1 && v != cutVertexA && v != cutVertexB) {
+            addBidirectionalEdge(-1, v->getId(), INF, "ss");
+        }
+    }
+
+    double res = edmondsKarp(-1, targetVertex->getId());
+    removeVertex(-1);
+    return res;
+}
+
+void Graph::topkAffectedStations(int k,int stA, int stB){
+    std::vector<std::pair<int,int>> flowdiffs(vertexSet.size());
+
+    for (Vertex* v : vertexSet) {
+        int flow = vertexMaxTrains(v->getId(), stA, stB);
+        flowdiffs[v->getId()]= {v->getId(),flow};
+    }
+
+    Vertex *A= findVertex(stA);
+    int w;
+    std::string s;
+    for(Edge *ed:A->getAdj()){
+        if(ed->getDest()->getId() == stB){
+            w=ed->getCapacity();
+            s=ed->getService();
+            break;
+        }
+    }
+
+    A->removeEdge(stB);
+    findVertex(stB)->removeEdge(stA);
+
+    for (Vertex* v : vertexSet) {
+        int flow = vertexMaxTrains(v->getId(), stA, stB);
+        flowdiffs[v->getId()].second-=flow;
+    }
+
+    std::sort(flowdiffs.begin(),flowdiffs.end(),[this](const std::pair<int,int> &left, const std::pair<int,int> &right) {
+        if(left.second == right.second){
+            return findVertex(left.first)->getName() < findVertex(right.first)->getName();
+        }
+        return left.second > right.second;
+
+    });
+
+    for(int i = 0; i < k; i++){
+        std::cout << findVertex(flowdiffs[i].first)->getName()<< " Decay of Max Simultaneous Trains: " << flowdiffs[i].second << std::endl;
+    }
+    addBidirectionalEdge(stA, stB, w,s);
 }
 
 
@@ -390,9 +451,3 @@ void deleteMatrix(int **m, int n) {
     }
 }
 
-/*
-Graph::~Graph() {
-    deleteMatrix(distMatrix, vertexSet.size());
-    deleteMatrix(pathMatrix, vertexSet.size());
-}
-*/

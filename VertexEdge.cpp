@@ -28,7 +28,7 @@ bool Vertex::removeEdge(int destID) {
                 }
             }
             delete edge;
-            removedEdge = true; // allows for multiple edges to connect the same pair of vertices (multigraph)
+            removedEdge = true;
         }
         else {
             it++;
